@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class LinhKien {
 	private Kho kho;
-	private String id, ten;
+	private String id, ten, imagePath;
 	
 	public LinhKien() {
 		super();
@@ -14,13 +14,21 @@ public class LinhKien {
 		super();
 		setId(id);
 	}
-	public LinhKien(String id, String ten, Kho kho) throws Exception{
+	public LinhKien(String id, String ten, Kho kho, String imagePath) throws Exception{
 		super();
 		setId(id);
 		setKho(kho);
 		setTen(ten);
+		setImagePath(imagePath);
 	}
 	
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		// Nếu không có sẽ được gắn hình mặc định.
+		this.imagePath = imagePath;
+	}
 	public String getId() {
 		return id;
 	}
