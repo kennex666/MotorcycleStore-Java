@@ -165,7 +165,7 @@
                                                         </columns>
                                                       </TableView>
                                                       <Label layoutX="26.0" layoutY="29.0" text="Tìm kiếm sản phẩm:" />
-                                                      <TextField layoutX="179.0" layoutY="24.0"/>
+                                                      <TextField layoutX="179.0" layoutY="24.0" />
                                                       <Button layoutX="384.0" layoutY="24.0" mnemonicParsing="false" text="Tìm kiếm" />
                                                       <Button layoutX="482.0" layoutY="24.0" mnemonicParsing="false" text="Làm mới" />
                                                    </children>
@@ -181,7 +181,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Quản lí nhân viên">
+          <Tab text="Nhân viên">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -252,7 +252,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="Quản lí khách hàng">
+            <Tab text="Khách hàng">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -322,6 +322,11 @@
                         </ToolBar>
                      </children></AnchorPane>
                </content>
+            </Tab>
+            <Tab text="Xe">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
             </Tab>
             <Tab text="Trợ giúp">
                <content>
