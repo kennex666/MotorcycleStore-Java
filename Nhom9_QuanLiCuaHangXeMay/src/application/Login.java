@@ -22,6 +22,7 @@ public class Login {
 	
 	@FXML
 	private void checkLogin() {
+		
 		if (txtUsername.getText().equals("admin") && txtPassword.getText().equals("admin")) {
 			 Stage stageTheLabelBelongs = (Stage) txtUsername.getScene().getWindow();
 			 BorderPane root;
@@ -33,6 +34,18 @@ public class Login {
 
 				
 				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if (txtUsername.getText().equals("ql001") && txtPassword.getText().equals("ql001")) {
+			 Stage stageTheLabelBelongs = (Stage) txtUsername.getScene().getWindow();
+			 BorderPane root;
+			try {
+				root = (BorderPane)FXMLLoader.load(getClass().getResource("QuanLi.fxml"));
+				Scene scene = new Scene(root,1300, 750);
+				stageTheLabelBelongs.setScene(scene);
+				stageTheLabelBelongs.centerOnScreen();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

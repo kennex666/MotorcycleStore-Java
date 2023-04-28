@@ -232,21 +232,6 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="btnProduct2111" mnemonicParsing="false" prefHeight="57.0" prefWidth="203.0" text="Tìm kiếm thông tin" textAlignment="CENTER">
-                                 <effect>
-                                    <Blend />
-                                 </effect>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/ico/ico-browsing.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
                            </items>
                         </ToolBar>
                      </children></AnchorPane>
