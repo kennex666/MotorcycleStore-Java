@@ -2,8 +2,7 @@ package application;
 
 import java.io.IOException;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
