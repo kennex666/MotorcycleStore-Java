@@ -1,3 +1,4 @@
+
 package entity;
 
 public class Kho {
@@ -41,5 +42,4 @@ public class Kho {
 		}
 		else this.maKho = maKho;
 	}
-	
 }

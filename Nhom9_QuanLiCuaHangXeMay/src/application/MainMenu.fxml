@@ -113,6 +113,7 @@
                                                       <Label layoutX="405.0" layoutY="29.0" text="Nhà cung cấp" />
                                                       <Label layoutX="779.0" layoutY="29.0" text="Nước sản xuất" />
                                                       <ChoiceBox layoutX="884.0" layoutY="24.0" prefWidth="150.0" />
+
                                                    </children>
                                                 </AnchorPane>
                                           </content>
