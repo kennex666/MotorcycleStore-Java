@@ -303,7 +303,7 @@
                            </tabs>
                         </TabPane>
                      </children></AnchorPane>
-               </content>
+              </content>
             </Tab>
             <Tab text="Hóa đơn">
               <content>
@@ -360,7 +360,13 @@
                               </Tab>
                            </tabs>
                         </TabPane>
+                        
                      </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Xe">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
             <Tab text="Trợ giúp">
