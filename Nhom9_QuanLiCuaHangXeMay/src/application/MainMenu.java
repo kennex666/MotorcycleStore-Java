@@ -5,16 +5,27 @@ import java.io.File;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class MainMenu {
 	@FXML
-	private Button btnProduct;
+	private Button btnXe;
 	
 	@FXML
-	private SplitPane splitPane;
+	private Button btnLinhKien;
+
+	
+	@FXML
+	private SplitPane splitPaneXe;
+	
+	@FXML
+	private SplitPane splitPaneLK;
+
+	@FXML
+	private SplitPane splitPaneBH;
 	
 	@FXML
 	private Tab tabProduct;
@@ -35,8 +46,31 @@ public class MainMenu {
 		allTabs.getTabs().add(tabProduct);
 	}
 	
+	@FXML
+	private void actionAddSplitPaneXe() {
+		allTabs.getTabs().add(tabProduct);
+		splitPaneXe.setVisible(true);
+		splitPaneLK.setVisible(false);
+		splitPaneBH.setVisible(false);
+	}
+	
+	@FXML
+	private void actionAddSplitPaneLK() {
+		allTabs.getTabs().add(tabProduct);
+		splitPaneLK.setVisible(true);
+		splitPaneXe.setVisible(false);
+		splitPaneBH.setVisible(false);
+	}
+	
+	@FXML
+	private void actionAddSplitPaneBH() {
+		allTabs.getTabs().add(tabProduct);
+		splitPaneBH.setVisible(true);
+		splitPaneXe.setVisible(false);
+		splitPaneLK.setVisible(false);
+	}
+	
 	public MainMenu() {
 		super();
-		
 	}
 }
