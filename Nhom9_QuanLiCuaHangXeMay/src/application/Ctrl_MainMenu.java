@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class MainMenu {
+public class Ctrl_MainMenu {
 	@FXML
 	private Button btnXe;
 	
@@ -70,7 +70,7 @@ public class MainMenu {
 		splitPaneLK.setVisible(false);
 	}
 	
-	public MainMenu() {
+	public Ctrl_MainMenu() {
 		super();
 	}
 }

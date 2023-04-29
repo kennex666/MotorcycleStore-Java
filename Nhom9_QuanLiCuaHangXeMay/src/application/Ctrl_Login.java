@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.*;
 
-public class Login {
+public class Ctrl_Login {
 	@FXML
 	private TextField txtUsername;
 
