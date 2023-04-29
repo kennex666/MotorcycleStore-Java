@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenu">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_MainMenu">
    <center>
       <TabPane prefHeight="750.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -303,7 +303,7 @@
                            </tabs>
                         </TabPane>
                      </children></AnchorPane>
-               </content>
+              </content>
             </Tab>
             <Tab text="Hóa đơn">
               <content>
@@ -360,7 +360,13 @@
                               </Tab>
                            </tabs>
                         </TabPane>
+                        
                      </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Xe">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
             <Tab text="Trợ giúp">
