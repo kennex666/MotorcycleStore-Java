@@ -1,0 +1,9 @@
+package application;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.RadioButton;
+
+public class Ctrl_DienThongTinKH {
+	@FXML
+	private RadioButton radNam, radNu;
+}

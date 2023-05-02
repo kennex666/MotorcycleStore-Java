@@ -1,0 +1,7 @@
+package bus;
+
+import interfaces.IKhachHang;
+
+public class KhachHang_BUS implements IKhachHang{
+
+}

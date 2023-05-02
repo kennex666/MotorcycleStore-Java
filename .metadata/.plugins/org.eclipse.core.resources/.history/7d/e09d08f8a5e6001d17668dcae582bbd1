@@ -1,0 +1,22 @@
+package bus;
+
+import java.util.ArrayList;
+
+import entity.KhachHang;
+import interfaces.IKhachHang;
+
+public class KhachHang_BUS implements IKhachHang{
+	@Override
+	public ArrayList<KhachHang> findCustomers(String keywords) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ArrayList<KhachHang> getAllCustomers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public KhachHang_BUS() {
+		// TODO Auto-generated constructor stub
+	}
+}
