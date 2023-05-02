@@ -2,4 +2,5 @@
 <libraryInfos>
     <libraryInfo home="C:\Users\duong\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.4.v20220805-1047" version="17.0.4"/>
     <libraryInfo home="C:\Users\duong\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.4.v20220805-1047\jre" version="17.0.4"/>
+    <libraryInfo home="C:\Program Files\Java\jdk-18.0.2.1" version="18.0.2.1"/>
 </libraryInfos>
