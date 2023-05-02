@@ -1,0 +1,9 @@
+package interfaces;
+
+import java.util.ArrayList;
+
+import entity.DaiLy;
+
+public interface IDaiLy {
+	public ArrayList<DaiLy> getAllDaiLy();
+}

@@ -278,6 +278,21 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
+                              <Button fx:id="btnProduct21" mnemonicParsing="false" prefHeight="57.0" prefWidth="203.0" text="Thêm khách hàng" textAlignment="CENTER">
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ico/ico-product.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </items>
                         </ToolBar>
                         <TabPane layoutY="76.0" prefHeight="673.0" prefWidth="1300.0">
@@ -288,21 +303,23 @@
                                        <children>
                                           <TableView layoutY="66.0" prefHeight="530.0" prefWidth="1300.0">
                                             <columns>
-                                              <TableColumn prefWidth="126.0" text="Mã khách hàng" />
-                                              <TableColumn prefWidth="174.0" text="Họ và tên" />
-                                                <TableColumn prefWidth="352.0" text="Địa chỉ" />
-                                                <TableColumn prefWidth="146.0" text="Giới tính" />
-                                                <TableColumn prefWidth="164.0" text="Ngày sinh" />
-                                                <TableColumn prefWidth="173.0" text="Số điện thoại" />
-                                                <TableColumn prefWidth="164.0" text="Số CCCD" />
+                                                <TableColumn prefWidth="48.0" text="STT" />
+                                              <TableColumn prefWidth="153.0" text="Mã khách hàng" />
+                                              <TableColumn prefWidth="214.0" text="Họ và tên" />
+                                                <TableColumn prefWidth="73.0" text="Giới tính" />
+                                                <TableColumn prefWidth="217.0" text="Địa chỉ" />
+                                                <TableColumn prefWidth="164.0" text="Số điện thoại" />
+                                                <TableColumn prefWidth="189.0" text="Email" />
+                                                <TableColumn prefWidth="152.0" text="Ngày sinh" />
                                             </columns>
                                           </TableView>
-                                          <Label layoutX="50.0" layoutY="23.0" text="Tìm kiếm khách hàng: " />
-                                          <TextField layoutX="224.0" layoutY="18.0" />
-                                          <Button layoutX="1013.0" layoutY="18.0" mnemonicParsing="false" text="Tìm kiếm" />
-                                          <Button layoutX="1133.0" layoutY="18.0" mnemonicParsing="false" text="Làm mới" />
-                                          <Label layoutX="498.0" layoutY="23.0" text="Số điện thoại: " />
-                                          <TextField layoutX="625.0" layoutY="18.0" />
+                                          <Label layoutX="50.0" layoutY="21.0" text="Tìm kiếm khách hàng: " />
+                                          <TextField layoutX="209.0" layoutY="16.0" prefHeight="12.0" prefWidth="290.0" promptText="Tìm kiếm tên, mã kh, sdt, cccd" />
+                                          <Button layoutX="527.0" layoutY="16.0" mnemonicParsing="false" text="Tìm kiếm" />
+                                          <Button layoutX="637.0" layoutY="16.0" mnemonicParsing="false" text="Làm mới" />
+                                          <Button layoutX="747.0" layoutY="16.0" mnemonicParsing="false" text="Lọc nâng cao" />
+                                          <Button layoutX="970.0" layoutY="16.0" mnemonicParsing="false" text="Sửa thông tin" />
+                                          <Button layoutX="1113.0" layoutY="16.0" mnemonicParsing="false" text="Xoá thông tin" />
                                        </children>
                                     </AnchorPane>
                                  </content>

@@ -1,0 +1,25 @@
+package bus;
+
+import java.util.ArrayList;
+
+import dao.KhachHang_DAO;
+import entity.KhachHang;
+import interfaces.IKhachHang;
+
+public class KhachHang_BUS implements IKhachHang{
+	@Override
+	public ArrayList<KhachHang> findCustomers(String keywords) {
+		KhachHang_DAO kh_dao = new KhachHang_DAO();
+		return kh_dao.findCustomers(keywords);
+	}
+	
+	@Override
+	public ArrayList<KhachHang> getAllCustomers() {
+		KhachHang_DAO kh_dao = new KhachHang_DAO();
+		return kh_dao.getAllCustomers();
+	}
+	
+	public KhachHang_BUS() {
+		// TODO Auto-generated constructor stub
+	}
+}
