@@ -20,7 +20,7 @@ public class KhachHang_DAO implements IKhachHang{
 		// TODO Auto-generated method stub// TODO Auto-generated method stub
 		ArrayList<KhachHang> listKhachHang = new ArrayList<KhachHang>();
 		Connection conn = ConnectDB.getConnection();
-		String query = "SELECT * FROM KhachHang WHERE maKH LIKE CONCAT('%', ?, '%') OR tenKH LIKE CONCAT('%', ?, '%') OR sdt LIKE CONCAT('%', ?, '%') OR soCCCD LIKE CONCAT('%', ?, '%')";
+		String query = "SELECT * FROM KhachHang WHERE maKH LIKE CONCAT('%', ?, '%') OR tenKH LIKE CONCAT('%', ?, '%') OR sdt LIKE CONCAT('%', ?, '%') OR soCCCD LIKE CONCAT('%', ?, '%') OR email LIKE CONCAT('%', ?, '%')";
 		try {
 			PreparedStatement pstm = conn.prepareStatement(query);
 			pstm.setString(1, keywords);
@@ -36,9 +36,10 @@ public class KhachHang_DAO implements IKhachHang{
 				 String SDT = rs.getString("SDT");
 				 String soCCCD = rs.getString("soCCCD");
 				 boolean gt = rs.getBoolean("gioiTinh");
+				 String email = rs.getString("email");
 				 LocalDate ngaySinh = ProcessDate.date2LocalDate(rs.getDate("ngaySinh"));
 				 try {
-					 temp = new KhachHang(maKH, tenKH, diaChi, SDT, soCCCD, gt, ngaySinh);
+					 temp = new KhachHang(maKH, tenKH, diaChi, SDT, soCCCD, gt, ngaySinh, email);
 					 listKhachHang.add(temp);
 				 }catch (Exception e) {
 					// TODO: handle exception
@@ -71,8 +72,9 @@ public class KhachHang_DAO implements IKhachHang{
 				 String soCCCD = rs.getString("soCCCD");
 				 boolean gt = rs.getBoolean("gioiTinh");
 				 LocalDate ngaySinh = ProcessDate.date2LocalDate(rs.getDate("ngaySinh"));
+				 String email = rs.getString("email");
 				 try {
-					 temp = new KhachHang(maKH, tenKH, diaChi, SDT, soCCCD, gt, ngaySinh);
+					 temp = new KhachHang(maKH, tenKH, diaChi, SDT, soCCCD, gt, ngaySinh, email);
 					 listKhachHang.add(temp);
 				 }catch (Exception e) {
 					// TODO: handle exception
@@ -90,7 +92,7 @@ public class KhachHang_DAO implements IKhachHang{
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
 		
-		String query = "UPDATE KhachHang SET tenKH = ?, diaChi = ?, SDT = ?, soCCCD = ?, gioiTinh = ?, ngaySinh = ? WHERE maKH = ?";
+		String query = "UPDATE KhachHang SET tenKH = ?, diaChi = ?, SDT = ?, soCCCD = ?, gioiTinh = ?, ngaySinh = ?, email = ? WHERE maKH = ?";
 		try {
 
 			PreparedStatement prestm = conn.prepareStatement(query);
@@ -101,7 +103,8 @@ public class KhachHang_DAO implements IKhachHang{
 			prestm.setString(4, kHTTMoi.getSoCCCD());
 			prestm.setBoolean(5, kHTTMoi.isGioiTinh());
 			prestm.setDate(6, ProcessDate.localDate2Date(kHTTMoi.getNgaySinh()));
-			prestm.setString(7, kHTTMoi.getMaKhachHang());
+			prestm.setString(7, kHTTMoi.getEmail());
+			prestm.setString(8, kHTTMoi.getMaKhachHang());
 
 			return (prestm.executeUpdate() > 0) ? true : false;
 		} catch (Exception e) {
