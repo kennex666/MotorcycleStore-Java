@@ -1,0 +1,15 @@
+package bus;
+
+import dao.NhaCungCap_DAO;
+
+public class NhaCungCap_BUS {
+	private NhaCungCap_DAO ncc_DAO;
+
+	public NhaCungCap_BUS() {
+		super();
+		this.ncc_DAO = new NhaCungCap_DAO();
+	}
+	
+	
+	
+}

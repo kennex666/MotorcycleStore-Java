@@ -1,0 +1,12 @@
+package interfaces;
+
+import java.util.ArrayList;
+
+import entity.Xe;
+
+public interface IXe {
+	public ArrayList<Xe> getAllXe() throws Exception;
+	public void updateSoLuongKho(int newSL);
+	public void updateSoLuongBan(int newSL);
+	void updateSoLuongKho(int newSL, String maXe);
+}

@@ -1,0 +1,5 @@
+package interfaces;
+
+public interface IXe_Kho {
+	public int getSoLuongByMaSP(String maSP);
+}
