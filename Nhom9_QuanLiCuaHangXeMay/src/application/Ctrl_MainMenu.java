@@ -38,7 +38,7 @@ public class Ctrl_MainMenu {
 	
 	@FXML
 	private void initialize() {
-		tabProduct.getTabPane().getTabs().remove(tabProduct);
+//		tabProduct.getTabPane().getTabs().remove(tabProduct);
 	}
 	
 	@FXML

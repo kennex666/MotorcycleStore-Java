@@ -10,19 +10,13 @@ public class Xe {
 	private String soSuon;
 	private String mauXe;
 	private double giaXe;
+	private double soLuongKho;
+	private double soLuongBan;
 	private String imagePath;
-	public Xe() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
-	public Xe(String maXe) throws Exception {
-		super();
-		this.setMaXe(maXe);
-	}
 
 	public Xe(String maXe, String tenXe, String loaiXe, String nuocSX, double soPK, String soKhung, String soSuon,
-			String mauXe, double giaXe, String imagePath) throws Exception {
+			String mauXe, double giaXe,double soLuongKho,double soLuongBan, String imagePath) throws Exception {
 		super();
 		this.setMaXe(maXe);
 		this.setTenXe(tenXe);
@@ -33,6 +27,8 @@ public class Xe {
 		this.setSoSuon(soSuon);
 		this.setMauXe(mauXe);
 		this.setGiaXe(giaXe);
+		this.setSoLuongKho(soLuongKho);
+		this.setSoLuongBan(soLuongBan);
 		this.setImagePath(imagePath);
 	}
 
@@ -134,7 +130,35 @@ public class Xe {
 		}
 		else this.giaXe = giaXe;
 	}
+	public double getSoLuongKho() {
+		return soLuongKho;
+	}
 
+	public void setSoLuongKho(double soLuongKho) throws Exception {
+		if (soLuongKho<0)
+			throw new Exception("Hết xe trong kho");
+		this.soLuongKho = soLuongKho;
+	}
+
+	public double getSoLuongBan() {
+		return soLuongBan;
+	}
+
+	public void setSoLuongBan(double soLuongBan) {
+		this.soLuongBan = soLuongBan;
+	}
+
+	
+	public Xe() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Xe(String maXe) throws Exception {
+		super();
+		this.setMaXe(maXe);
+	}
+	
 	public String getImagePath() {
 		return imagePath;
 	}

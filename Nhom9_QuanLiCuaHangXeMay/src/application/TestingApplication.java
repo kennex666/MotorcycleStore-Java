@@ -19,12 +19,12 @@ public class TestingApplication extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
-			BorderPane frm2 = (BorderPane)FXMLLoader.load(getClass().getResource("FrmDienTTKhachHang.fxml"));
-			Scene sceneTaoKH = new Scene(frm2);
-			Stage secondaryStage = new Stage();
-			secondaryStage.setScene(sceneTaoKH);
-			secondaryStage.setResizable(false);
-			secondaryStage.show();
+//			BorderPane frm2 = (BorderPane)FXMLLoader.load(getClass().getResource("FrmQuanLiXe.fxml"));
+//			Scene sceneTaoKH = new Scene(frm2);
+//			Stage secondaryStage = new Stage();
+//			secondaryStage.setScene(sceneTaoKH);
+//			secondaryStage.setResizable(false);
+//			secondaryStage.show();
 			
 		} catch(Exception e) {
 			e.printStackTrace();

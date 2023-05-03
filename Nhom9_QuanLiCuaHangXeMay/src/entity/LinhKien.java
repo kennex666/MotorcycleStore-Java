@@ -3,9 +3,9 @@ package entity;
 import java.util.Objects;
 
 public class LinhKien {
-	private Kho kho;
-	private String id, ten, imagePath;
-	
+	private String id, ten;
+	private double soLuongKho,soLuongBan;
+	private String imagePath;
 	public LinhKien() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -14,14 +14,15 @@ public class LinhKien {
 		super();
 		setId(id);
 	}
-	public LinhKien(String id, String ten, Kho kho, String imagePath) throws Exception{
-		super();
-		setId(id);
-		setKho(kho);
-		setTen(ten);
-		setImagePath(imagePath);
-	}
 	
+	public LinhKien(String id, String ten, double soLuongKho, double soLuongBan, String imagePath) throws Exception {
+		super();
+		this.setId(id);
+		this.setTen(ten);
+		this.setSoLuongKho(soLuongKho);
+		this.setSoLuongBan(soLuongBan);
+		this.setImagePath(imagePath);
+	}
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -32,9 +33,7 @@ public class LinhKien {
 	public String getId() {
 		return id;
 	}
-	public Kho getKho() {
-		return kho;
-	}
+
 	public String getTen() {
 		return ten;
 	}
@@ -43,10 +42,23 @@ public class LinhKien {
 			throw new Exception("ID không hợp lệ. Lỗi trong quá trình phát sinh!");
 		this.id = id;
 	}
-	public void setKho(Kho kho) throws Exception{
-		if (kho == null)
-			throw new Exception("Chưa có kho. Vui lòng kiểm tra lại!");
-		this.kho = kho;
+	
+	
+
+	
+	public double getSoLuongKho() {
+		return soLuongKho;
+	}
+	public void setSoLuongKho(double soLuongKho) throws Exception {
+		if (soLuongKho<0)
+			throw new Exception("Hết linh kiện trong kho!");
+		this.soLuongKho = soLuongKho;
+	}
+	public double getSoLuongBan() {
+		return soLuongBan;
+	}
+	public void setSoLuongBan(double soLuongBan) {
+		this.soLuongBan = soLuongBan;
 	}
 	public void setTen(String ten) throws Exception{
 		if (ten.trim() == "" || ten.isEmpty() || ten.isBlank())
