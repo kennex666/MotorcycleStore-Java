@@ -18,13 +18,6 @@ public class TestingApplication extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-
-			BorderPane frm2 = (BorderPane)FXMLLoader.load(getClass().getResource("FrmDienTTKhachHang.fxml"));
-			Scene sceneTaoKH = new Scene(frm2);
-			Stage secondaryStage = new Stage();
-			secondaryStage.setScene(sceneTaoKH);
-			secondaryStage.setResizable(false);
-			secondaryStage.show();
 			
 		} catch(Exception e) {
 			e.printStackTrace();

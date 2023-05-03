@@ -36,6 +36,17 @@ public class Ctrl_DienThongTinKH {
 		radNam.setToggleGroup(radGroup);
 		radNu.setToggleGroup(radGroup);
 		radNam.setSelected(true);
+	}
+	
+	public Ctrl_DienThongTinKH() {
+		radGroup = new ToggleGroup();
+		// Tạo giao diện.
+		// Tự động
+	}
+	
+	public void loadData(KhachHang temp) {
+		dataKH = temp;
+		System.out.println("Loaded");
 		if (dataKH != null) {
 			trangThai = ModeEditor.SUA;
 			radNam.setSelected(dataKH.isGioiTinh() ^ GioiTinh.NU);
@@ -50,30 +61,11 @@ public class Ctrl_DienThongTinKH {
 		}
 	}
 	
-	public Ctrl_DienThongTinKH() {
-		radGroup = new ToggleGroup();
-		KhachHang temp;
-		LocalDate date = LocalDate.now();
-		try {
-			temp = new KhachHang("11111", "Dương Thái Bảo", "Ấp 4, Bình Phước", "0869953285", "020202020", true, date, "bao1boxstudios");
-			loadData(temp);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// Tạo giao diện.
-		// Tự động
-	}
-	
-	public void loadData(KhachHang temp) {
-		dataKH = temp;
-	}
-	
 	@FXML
 	private void actionBtnCancel() {
-		//Stage stage = (Stage) (frmThongTinKhachHang.getScene().getWindow());
-		//stage.close();
-		getKhachHangFromField();
+		Stage stage = (Stage) (frmThongTinKhachHang.getScene().getWindow());
+		stage.close();
+		//getKhachHangFromField();
 	}
 	
 	@FXML
@@ -132,7 +124,7 @@ public class Ctrl_DienThongTinKH {
 			return null;
 		}
 		
-		if (!PopupNotify.regexValidNotification(soDT, RegexPattern.EMAIL, titleNotification, "Email không hợp lệ!", "Vui lòng kiểm tra lại.")) {
+		if (!PopupNotify.regexValidNotification(email, RegexPattern.EMAIL, titleNotification, "Email không hợp lệ!", "Vui lòng kiểm tra lại.")) {
 			txtEmail.requestFocus();
 			return null;
 		}
