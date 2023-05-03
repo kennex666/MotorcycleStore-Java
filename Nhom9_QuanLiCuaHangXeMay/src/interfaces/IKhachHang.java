@@ -16,4 +16,6 @@ public interface IKhachHang {
 	
 	public boolean editCustomer(KhachHang kHTTMoi);
 	
+	public boolean addCustomer(KhachHang kh);
+	
 }

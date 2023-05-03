@@ -278,7 +278,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="btnProduct21" mnemonicParsing="false" prefHeight="57.0" prefWidth="203.0" text="Thêm khách hàng" textAlignment="CENTER">
+                              <Button fx:id="btnThemKH" mnemonicParsing="false" onAction="#actionBtnThemKH" prefHeight="57.0" prefWidth="203.0" text="Thêm khách hàng" textAlignment="CENTER">
                                  <effect>
                                     <Blend />
                                  </effect>
@@ -308,9 +308,9 @@
                                               <TableColumn fx:id="colHoTen" prefWidth="214.0" text="Họ và tên" />
                                                 <TableColumn fx:id="colGioiTinh" prefWidth="73.0" text="Giới tính" />
                                                 <TableColumn fx:id="colNgaySinh" prefWidth="152.0" text="Ngày sinh" />
-                                                <TableColumn fx:id="colDiaChi" prefWidth="217.0" text="Địa chỉ" />
-                                                <TableColumn fx:id="colSDT" prefWidth="164.0" text="Số điện thoại" />
-                                                <TableColumn fx:id="colEmail" prefWidth="189.0" text="Email" />
+                                                <TableColumn fx:id="colDiaChi" prefWidth="289.0" text="Địa chỉ" />
+                                                <TableColumn fx:id="colSDT" prefWidth="183.0" text="Số điện thoại" />
+                                                <TableColumn fx:id="colEmail" prefWidth="187.0" text="Email" />
                                             </columns>
                                           </TableView>
                                           <Label layoutX="50.0" layoutY="21.0" text="Tìm kiếm khách hàng: " />

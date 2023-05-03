@@ -23,4 +23,12 @@ public class PopupNotify {
 			return false;
 		}
 	}
+	
+	public static void successNotify(String title, String headerText, String contentText) {
+		Alert noti = new Alert(Alert.AlertType.INFORMATION);
+		noti.setHeaderText(headerText);
+		noti.setTitle(title);
+		noti.setContentText(contentText);
+		noti.show();
+	}
 }

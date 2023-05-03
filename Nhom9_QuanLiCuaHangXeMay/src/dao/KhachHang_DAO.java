@@ -123,11 +123,41 @@ public class KhachHang_DAO implements IKhachHang{
 			String query = "SELECT Count(*) AS soLuong FROM KhachHang";
 			Statement stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery(query);
-			return rs.getInt("soLuong");
+			if (rs.next())
+				return rs.getInt("soLuong");
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+
+		return -1;
+	}
+	
+	public boolean addCustomer(KhachHang kHTTMoi) {
+		boolean result = false;
+		Connection conn = ConnectDB.getConnection();
+		
+		String query = "INSERT INTO KhachHang (maKH, tenKH, diaChi, SDT, soCCCD, gioiTinh, ngaySinh, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+
+			PreparedStatement prestm = conn.prepareStatement(query);
+
+			prestm.setString(1, kHTTMoi.getMaKhachHang());
+			prestm.setString(2, kHTTMoi.getTenKhachHang());
+			prestm.setString(3, kHTTMoi.getDiaChi());
+			prestm.setString(4, kHTTMoi.getSoDT());
+			prestm.setString(5, kHTTMoi.getSoCCCD());
+			prestm.setBoolean(6, kHTTMoi.isGioiTinh());
+			prestm.setDate(7, ProcessDate.localDate2Date(kHTTMoi.getNgaySinh()));
+			prestm.setString(8, kHTTMoi.getEmail());
+
+			return (prestm.executeUpdate() > 0) ? true : false;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return -1;
+		
+		
+		return result;
 	}
 	
 	public KhachHang_DAO() {

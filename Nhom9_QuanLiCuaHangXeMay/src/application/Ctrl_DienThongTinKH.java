@@ -4,10 +4,12 @@ import java.time.LocalDate;
 
 import bus.KhachHang_BUS;
 import entity.KhachHang;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import utilities.*;
 
 public class Ctrl_DienThongTinKH {
@@ -15,6 +17,7 @@ public class Ctrl_DienThongTinKH {
 	private KhachHang dataKH;
 	private ModeEditor trangThai = ModeEditor.THEM;
 	private KhachHang_BUS kh_bus;
+	private ObservableList<KhachHang> tblModelKH;
 	
 	@FXML
 	private Pane frmThongTinKhachHang;
@@ -46,7 +49,6 @@ public class Ctrl_DienThongTinKH {
 	
 	public void loadData(KhachHang temp) {
 		dataKH = temp;
-		System.out.println("Loaded");
 		if (dataKH != null) {
 			trangThai = ModeEditor.SUA;
 			radNam.setSelected(dataKH.isGioiTinh() ^ GioiTinh.NU);
@@ -70,27 +72,47 @@ public class Ctrl_DienThongTinKH {
 	
 	@FXML
 	private void actionBtnThemSua() {
+		Stage stage = (Stage) (frmThongTinKhachHang.getScene().getWindow());
 		kh_bus = new KhachHang_BUS();
+		KhachHang temp = null;
+		temp = getKhachHangFromField();
+		if (temp == null)
+			return;
 		switch (trangThai) {
 			case THEM -> {
-				
+				if (kh_bus.addCustomer(temp)) {
+					PopupNotify.successNotify("Thông tin", "Thêm khách hàng thành công!", "");
+					tblModelKH.add(temp);
+					stage.close();
+				}else {
+					PopupNotify.showErrorField("Lỗi", "Thêm khách hàng thất bại!", "Lỗi do kết nối cơ sở dữ liệu hoặc bất thường dữ liệu");
+				}
 			}
 			case SUA ->{
-				kh_bus.editCustomer(dataKH);
+				if (kh_bus.editCustomer(temp)) {
+					PopupNotify.successNotify("Thông tin", "Sửa thông tin khách hàng thành công!", "");
+					tblModelKH.set(tblModelKH.indexOf(temp), temp);
+					stage.close();
+				}else {
+					PopupNotify.showErrorField("Lỗi", "Sửa thông tin khách hàng thất bại!", "Lỗi do kết nối cơ sở dữ liệu hoặc bất thường dữ liệu");
+				}
 			}
 			default -> {
-				throw new IllegalArgumentException("Unexpected value: " + trangThai);
+				PopupNotify.showErrorField("Lỗi", "Dữ liệu không mong đợi", "Unexpected value: " + trangThai);
 			}
 		}
 
 	}
 	
+	public void setTableModel(ObservableList<KhachHang> temp) {
+		tblModelKH = temp;
+	}
 	
 	private KhachHang getKhachHangFromField() {
 		KhachHang temp = null;
 		String titleNotification = "Dữ liệu không hợp lệ";
 		
-		String ten, diaChi, soDT, soCCCD, email;
+		String maKH, ten, diaChi, soDT, soCCCD, email;
 		boolean gioiTinh;
 		LocalDate dob, now = LocalDate.now();
 		
@@ -134,12 +156,18 @@ public class Ctrl_DienThongTinKH {
 			txtDiaChi.requestFocus();
 			return null;
 		}
+		
+		if (ModeEditor.SUA == trangThai) {
+			maKH = dataKH.getMaKhachHang();
+		}else {
+			maKH = GenerateID.taoIDKhachHang(kh_bus.totalCustomers(), GenerateID.MADAILY_FORTESTING, "KH");
+		}
 
 		try {
-			
-			temp = new KhachHang("11111", "Dương Thái Bảo", "Ấp 4, Bình Phước", "0869953285", "020202020", true, txtDOB.getValue(), "bao1boxstudios");
+			temp = new KhachHang(maKH, ten, diaChi, soDT, soCCCD, gioiTinh, dob, email);
 		} catch (Exception e) {
-			
+			PopupNotify.showErrorField("Lỗi khởi tạo", "Xảy ra lỗi! Xem bên dưới để biết thêm chi tiết.", "Chi tiết lỗi: " + e.getMessage());
+			return null;
 		}
 		return temp;
 	}

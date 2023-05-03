@@ -2,9 +2,12 @@ package application;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import bus.KhachHang_BUS;
+import connectDB.ConnectDB;
 import entity.KhachHang;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -20,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import utilities.PopupNotify;
 
 public class Ctrl_MainMenu {
 	@FXML
@@ -88,33 +92,39 @@ public class Ctrl_MainMenu {
 		if (tabKH.isSelected()) {
 			loadDataKH();
 			tblKhachHang.setItems(listKHObs);
-
-			//Load KH: listKHObs.add(temp);
 		}
 	}
 	
 	@FXML
 	private void actionBtnSuaKH(){
+		KhachHang temp = (KhachHang) tblKhachHang.getSelectionModel().getSelectedItem();
+		if (temp == null) {
+			PopupNotify.showErrorField("Lỗi", "Vui lòng chọn khách hàng cần thay đổi thông tin", "Hãy chọn 1 khách hàng cụ thể để tiếp tục!");
+			return;
+		}
+		Ctrl_DienThongTinKH ctrlDienTT = actionBtnThemKH();
+		ctrlDienTT.loadData(temp);
+	}
+	
+	@FXML
+	private Ctrl_DienThongTinKH actionBtnThemKH(){
 		// TODO Auto-generated method stub
 		BorderPane frmEdit;
 		try {
-			KhachHang temp = (KhachHang) tblKhachHang.getSelectionModel().getSelectedItem();
-			
 			FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("FrmDienTTKhachHang.fxml"));
 			frmEdit = (BorderPane) fxmlLoad.load();
 			Ctrl_DienThongTinKH ctrlDienTT = fxmlLoad.getController();
-			ctrlDienTT.loadData(temp);
-			
 			Scene sceneTaoKH = new Scene(frmEdit);
 			Stage secondaryStage = new Stage();
 			secondaryStage.setScene(sceneTaoKH);
 			secondaryStage.setResizable(false);
 			secondaryStage.show();
-				
+			return ctrlDienTT;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 	/*
@@ -147,10 +157,15 @@ public class Ctrl_MainMenu {
 		colSTT.setSortable(false);
 		colSTT.setCellValueFactory(col -> 
 			new ReadOnlyObjectWrapper<Number>(tblKhachHang.getItems().indexOf(col.getValue()) + 		1));
+
+		ArrayList<KhachHang> listKH = kh_bus.getAllCustomers();
+		for (KhachHang x : listKH)
+			listKHObs.add(x);
 	}
 	
 	public Ctrl_MainMenu() {
 		super();
+		ConnectDB.getInstance().connect();
 		kh_bus = new KhachHang_BUS();
 	}
 }
