@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import bus.NhaCungCap_BUS;
 import bus.Xe_Bus;
 import connectDB.ConnectDB;
+import dao.NhaCungCap_DAO;
 import entity.KhachHang;
 import entity.NhaCungCap;
 import entity.Xe;
@@ -25,6 +26,7 @@ import javafx.util.StringConverter;
 import utilities.PopupNotify;
 
 public class Ctrl_MainMenu {
+	private NhaCungCap_BUS ncc_bus;
 	@FXML
 	private Button btnXe;
 	
@@ -53,13 +55,6 @@ public class Ctrl_MainMenu {
 	@FXML
 	private void initialize() throws SQLException {
 		
-		try {
-			ConnectDB.getInstance().connect();
-			System.out.println("Connect");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 //		tabProduct.getTabPane().getTabs().remove(tabProduct);
 		themDuLieuNCC();
 	}
@@ -105,7 +100,6 @@ public class Ctrl_MainMenu {
 	@FXML
 	private ObservableList<Xe> listXeObs = FXCollections.observableArrayList();
 	
-	private NhaCungCap_BUS ncc_BUS;
 	
 	@FXML
 	private void themXe() throws Exception {
@@ -139,15 +133,16 @@ public class Ctrl_MainMenu {
 		soLuongKho = Integer.parseInt(soLuongKho_String);
 		
 		NhaCungCap ncc = cboNXS.getValue();
-		xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STIRNG", ncc, soLuongKho, 0);
+		xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STRING", ncc, soLuongKho, 0);
 		Xe_Bus xe_BUS = new Xe_Bus();
 		xe_BUS.addXe(xe);
-		addXeVaoTable();
-		PopupNotify.showErrorField("", "Thêm thành công!", null);
+		listXeObs.add(xe);
+		//addXeVaoTable();
+		PopupNotify.showErrorField(null, "Thêm thành công!", null);
 	}
 	
 	@FXML
-	private ComboBox< NhaCungCap> cboNXS;
+	private ComboBox<NhaCungCap> cboNXS;
 	
 	@FXML
 	private TabPane tabXe;
@@ -170,24 +165,13 @@ public class Ctrl_MainMenu {
 	
 	@FXML
 	private void themDuLieuNCC() {
-		ncc_BUS = new NhaCungCap_BUS();
-		ArrayList<NhaCungCap> listNCC = ncc_BUS.getAllNCC();
-		cboNXS.getItems().add(new NhaCungCap(null, "Tất cả"));
-		cboNXS.getItems().addAll(listNCC);
-		cboNXS.setConverter(new StringConverter<NhaCungCap>() {
-			
-			@Override
-			public String toString(NhaCungCap nhaCungCap) {
-				return nhaCungCap == null ? null : nhaCungCap.getTenNCC();
-			}
-			
-			@Override
-			public NhaCungCap fromString(String arg0) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		});
-		cboNXS.setValue(listNCC.get(0));
+		ArrayList<NhaCungCap> listNCC = ncc_bus.getAllNCC();
+		ObservableList<NhaCungCap> obsListNCC = FXCollections.observableArrayList();
+		obsListNCC.add(new NhaCungCap(null, "Tất cả"));
+		for (NhaCungCap x : listNCC)
+			obsListNCC.add(x);
+		cboNXS.setValue(obsListNCC.get(0));
+		cboNXS.setItems(obsListNCC);
 	}
 	
 	@FXML
@@ -203,7 +187,7 @@ public class Ctrl_MainMenu {
 	@FXML
 	private TableColumn<Xe, Integer> colSoLuongKho;
 	@FXML
-	private TableView<Xe> tblXe;
+	private TableView tblXe;
 	
 	@FXML
 	private void addXeVaoTable() throws Exception {
@@ -217,25 +201,28 @@ public class Ctrl_MainMenu {
 		colSoPK.setCellValueFactory(new PropertyValueFactory<Xe,Double>("soPK"));
 		colGia.setCellValueFactory(new PropertyValueFactory<Xe,Double>("giaXe"));
 		colNhaSX.setCellValueFactory(cellData -> {
-			return new SimpleStringProperty(ncc_BUS.getTenNCCByMa(cellData.getValue().getNcc().getMaNCC()));
+			return new SimpleStringProperty(ncc_bus.getTenNCCByMa(cellData.getValue().getNcc().getMaNCC()));
 		});
 		colNuocSX.setCellValueFactory(new PropertyValueFactory<Xe,String>("nuocSX"));
 		colSoSuon.setCellValueFactory(new PropertyValueFactory<Xe,String>("soSuon"));
 		colSoKhung.setCellValueFactory(new PropertyValueFactory<Xe,String>("soKhung"));
 		colSoLuongKho.setCellValueFactory(new PropertyValueFactory<Xe,Integer>("soLuongKho"));
 		
-		tblXe.getItems().addAll(listXe);
+		for (Xe x : listXe)
+			listXeObs.add(x);
+		
+		tblXe.setItems(listXeObs);
 		
 	}
 	
 	private void xoaTrangDuLieuTable() {
-		tblXe.getItems().clear();
+		listXeObs.clear();
 	}
 	
 	
 	@FXML
 	private void clickTable() {
-		Xe xe = tblXe.getSelectionModel().getSelectedItem();
+		Xe xe = (Xe) tblXe.getSelectionModel().getSelectedItem();
 		txtTenXe.setText(xe.getTenXe());
 		txtLoaiXe.setText(xe.getLoaiXe());
 		txtNuocSX.setText(xe.getNuocSX());
@@ -244,8 +231,7 @@ public class Ctrl_MainMenu {
 		String soPKK = Double.toString(soPK);
 		txtSoPK.setText(soPKK);
 		txtSoKhung.setText(xe.getSoKhung());
-		ObservableList<NhaCungCap> nccList = FXCollections.observableArrayList(xe.getNcc());
-		cboNXS.setItems(nccList);
+		cboNXS.setValue(xe.getNcc());
 		txtSoSuon.setText(xe.getSoSuon());
 		txtGia.setText(Double.toString(xe.getGiaXe()));
 		txtSoLuongKho.setText(Integer.toString(xe.getSoLuongKho()));
@@ -256,7 +242,7 @@ public class Ctrl_MainMenu {
 	
 	@FXML
 	public void suaXe() throws Exception {
-		Xe xe = tblXe.getSelectionModel().getSelectedItem();
+		Xe xe = (Xe) tblXe.getSelectionModel().getSelectedItem();
 		if (xe == null )
 		{
 			PopupNotify.showErrorField("Lỗi !", "Chưa chọn dữ liệu cần sửa!", null);
@@ -294,7 +280,10 @@ public class Ctrl_MainMenu {
 			
 			NhaCungCap ncc = cboNXS.getValue();
 			xeSua = new Xe(xe.getMaXe(), tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STIRNG", ncc, soLuongKho, 0);
-			if (xe_BUS.editXe(xeSua)) PopupNotify.showErrorField("", "Đã sửa!", null);
+			if (xe_BUS.editXe(xeSua)) {
+				PopupNotify.showErrorField(null, "Đã sửa!", null);
+				listXeObs.set( tblXe.getSelectionModel().getSelectedIndex(), xeSua);
+			}
 			
 		}
 	}
@@ -303,7 +292,19 @@ public class Ctrl_MainMenu {
 		
 	}
 	
+	private void xoaTrangTable() {
+		listXeObs.clear();
+	}
+	
 	public Ctrl_MainMenu() {
 		super();
+		try {
+			ConnectDB.getInstance().connect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ncc_bus = new NhaCungCap_BUS();
+		
 	}
 }

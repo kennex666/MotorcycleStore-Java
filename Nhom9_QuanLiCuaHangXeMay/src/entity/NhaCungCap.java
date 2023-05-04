@@ -28,6 +28,11 @@ public class NhaCungCap {
 	public void setTenNCC(String tenNCC) {
 		this.tenNCC = tenNCC;
 	}
+	@Override
+	public String toString() {
+		return tenNCC;
+	}
+	
 	
 	
 }

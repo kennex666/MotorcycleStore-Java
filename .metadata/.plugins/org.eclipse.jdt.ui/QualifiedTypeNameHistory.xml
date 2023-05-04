@@ -9,11 +9,8 @@
     <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Tab"/>
     <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
-    <fullyQualifiedTypeName name="bus.NhaCungCap_BUS"/>
     <fullyQualifiedTypeName name="javafx.util.StringConverter"/>
-    <fullyQualifiedTypeName name="connectDB.ConnectDB"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="entity.NhaCungCap"/>
     <fullyQualifiedTypeName name="utilities.GenerateID"/>
     <fullyQualifiedTypeName name="dao.Xe_DAO"/>
     <fullyQualifiedTypeName name="entity.KhachHang"/>
@@ -23,14 +20,18 @@
     <fullyQualifiedTypeName name="javafx.beans.property.SimpleStringProperty"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="entity.Xe"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Alert"/>
     <fullyQualifiedTypeName name="utilities.PopupNotify"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="bus.Xe_Bus"/>
     <fullyQualifiedTypeName name="javafx.scene.control.SplitPane"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.AnchorPane"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TabPane"/>
+    <fullyQualifiedTypeName name="connectDB.ConnectDB"/>
+    <fullyQualifiedTypeName name="dao.NhaCungCap_DAO"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="bus.NhaCungCap_BUS"/>
     <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
     <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
+    <fullyQualifiedTypeName name="entity.NhaCungCap"/>
+    <fullyQualifiedTypeName name="entity.Xe"/>
 </qualifiedTypeNameHistroy>

@@ -23,7 +23,7 @@ public class Xe_DAO implements iXe{
 	@Override
 	public ArrayList<Xe> getAllXe() throws Exception {
 		ArrayList<Xe> list = new ArrayList<>();
-		String query = "Select * from Xe";
+		String query = "Select * from Xe x JOIN NhaCungCap ncc ON x.Mancc = ncc.mancc";
 		try {
 			Statement stm = con.createStatement();
 			ResultSet results = stm.executeQuery(query);
@@ -42,7 +42,7 @@ public class Xe_DAO implements iXe{
 				int soLuongBan = results.getInt("SoLuongBan");
 				int soLuongKho = results.getInt("SoLuongKho");
 
-				NhaCungCap ncc = new NhaCungCap(maNCC);
+				NhaCungCap ncc = new NhaCungCap(maNCC, results.getString("ten"));
 
 				Xe xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imgPath, ncc, soLuongKho, soLuongBan);
 				list.add(xe);
@@ -61,7 +61,7 @@ public class Xe_DAO implements iXe{
 	public ArrayList<Xe> findXe(String keywords) {
 		ArrayList<Xe> listXe = new ArrayList<Xe>();
 		Connection conn = ConnectDB.getConnection();
-		String query = "SELECT * FROM Xe WHERE maXe LIKE CONCAT('%', ?, '%') OR tenXe LIKE CONCAT('%', ?, '%') OR nuocSX LIKE CONCAT('%', ?, '%') OR soKhung LIKE CONCAT('%', ?, '%') OR soSuon LIKE CONCAT('%', ?, '%') OR mauXe LIKE CONCAT('%', ?, '%') OR soPk=? OR gia=?";
+		String query = "SELECT * FROM Xe x JOIN NhaCungCap ncc ON x.Mancc = ncc.mancc WHERE maXe LIKE CONCAT('%', ?, '%') OR tenXe LIKE CONCAT('%', ?, '%') OR nuocSX LIKE CONCAT('%', ?, '%') OR soKhung LIKE CONCAT('%', ?, '%') OR soSuon LIKE CONCAT('%', ?, '%') OR mauXe LIKE CONCAT('%', ?, '%') OR soPk=? OR gia=?";
 		try {
 			PreparedStatement pstm = conn.prepareStatement(query);
 			pstm.setString(1, keywords);
@@ -93,7 +93,7 @@ public class Xe_DAO implements iXe{
 					int soLuongBan = Integer.parseInt(soLuongBan_string);
 					String imagePath = rs.getString("imagePath");
 					String maNcc = rs.getString("mancc");
-					NhaCungCap ncc = new NhaCungCap(maNcc);
+					NhaCungCap ncc = new NhaCungCap(maNcc, rs.getString("ten"));
 				 try {
 					 temp = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imagePath, ncc, soLuongKho, soLuongBan);
 					 listXe.add(temp);
@@ -116,7 +116,7 @@ public class Xe_DAO implements iXe{
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
 		
-		String query = "UPDATE Xe SET tenXe = ?, loaiXe = ?, nuocSX = ?, soPK = ?, soKhung = ?, soSuon = ?, mauXe = ?, gia = ?, imgPath = ?,soluongkho=?,soluongban=?    WHERE maXe = ?";
+		String query = "UPDATE Xe SET tenXe = ?, loaiXe = ?, nuocSX = ?, soPK = ?, soKhung = ?, soSuon = ?, mauXe = ?, gia = ?, imgPath = ?,soluongkho=?,soluongban=?,mancc=?    WHERE maXe = ?";
 		try {
 
 			PreparedStatement prestm = conn.prepareStatement(query);
@@ -132,8 +132,8 @@ public class Xe_DAO implements iXe{
 			prestm.setString(9, xeCanSua.getImagePath());
 			prestm.setInt(10, xeCanSua.getSoLuongKho());
 			prestm.setInt(11, xeCanSua.getSoLuongBan());
-			prestm.setString(12, xeCanSua.getMaXe());
-			System.out.println("Co Cap Nhat");
+			prestm.setString(12, xeCanSua.getNcc().getMaNCC());
+			prestm.setString(13, xeCanSua.getMaXe());
 			return (prestm.executeUpdate() > 0) ? true : false;
 		} catch (Exception e) {
 			// TODO: handle exception
