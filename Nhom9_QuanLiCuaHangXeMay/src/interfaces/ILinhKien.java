@@ -9,4 +9,5 @@ public interface ILinhKien {
 	void updateSoLuongKho(int newSL, String maLK);
 	void updateSoLuongBan(int newSL, String maLK);
 	String getTenByMa(String maLK);
+	public ArrayList<LinhKien> findLinhKien(String keywords) throws Exception;
 }

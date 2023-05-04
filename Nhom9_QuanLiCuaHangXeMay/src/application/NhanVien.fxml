@@ -132,9 +132,8 @@
                                                          </columns>
                                                       </TableView>
                                                       <Label layoutX="26.0" layoutY="29.0" text="Tìm kiếm sản phẩm:" />
-                                                      <TextField layoutX="179.0" layoutY="24.0" />
-                                                      <Button layoutX="384.0" layoutY="24.0" mnemonicParsing="false" text="Tìm kiếm" />
-                                                      <Button layoutX="482.0" layoutY="24.0" mnemonicParsing="false" text="Làm mới" />
+                                                      <TextField fx:id="txtTimLK" layoutX="179.0" layoutY="24.0" />
+                                                      <Button fx:id="btnTimLK" layoutX="384.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleTimLK" text="Tìm kiếm" />
                                                    </children>
                                                 </AnchorPane>
                                              </content>
@@ -145,7 +144,7 @@
                               </AnchorPane>
                            </items>
                         </SplitPane>
-                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0">
+                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0" visible="false">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="642.0" prefWidth="1285.0">
                                  <children>
@@ -215,7 +214,7 @@
                                        <graphic>
                                           <ImageView fx:id="btnAddKH" fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../Downloads/Awicons-Vista-Artistic-Add.16%20(1).png" />
+                                                <Image url="@../images/ico/icon-add-kh.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>

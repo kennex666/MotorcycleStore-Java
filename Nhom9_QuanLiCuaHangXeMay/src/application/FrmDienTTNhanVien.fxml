@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_DienThongTinNV">
+   <left>
+      <Pane fx:id="frmThongTinNhanVien" prefHeight="600.0" prefWidth="810.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutY="63.0" prefHeight="53.0" prefWidth="810.0" text="Thông tin nhân viên" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" layoutY="170.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Label prefHeight="20.0" prefWidth="128.0" text="Họ tên nhân viên:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="15.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField fx:id="txtHoTen" prefHeight="31.0" prefWidth="299.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="25.0" />
+                  <Label text="Giới tính:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <RadioButton fx:id="radNam" mnemonicParsing="false" text="Nam">
+                     <font>
+                        <Font size="14.0" />
+                     </font></RadioButton>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <RadioButton fx:id="radNu" mnemonicParsing="false" text="Nữ">
+                     <font>
+                        <Font size="14.0" />
+                     </font></RadioButton>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="320.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Label prefHeight="21.0" prefWidth="88.0" text="Ngày sinh:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="55.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <DatePicker fx:id="txtDOB" prefHeight="31.0" prefWidth="208.0" promptText="mm/dd/YYYY" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="25.0" />
+                  <Label text="Số CCCD: ">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <TextField fx:id="txtCCCD" prefHeight="31.0" prefWidth="222.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="-1.0" layoutY="370.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Label prefHeight="21.0" prefWidth="129.0" text="Số điện thoại:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="15.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField fx:id="txtSDT" prefHeight="31.0" prefWidth="208.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="25.0" />
+                  <Label prefHeight="21.0" prefWidth="49.0" text="Email:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="30.0" />
+                  <TextField fx:id="txtEmail" prefHeight="31.0" prefWidth="222.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="-1.0" layoutY="420.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Label prefHeight="21.0" prefWidth="130.0" text="Địa chỉ nhà:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="15.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField fx:id="txtDiaChi" onAction="#actionBtnThemSua" prefHeight="31.0" prefWidth="531.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="-7.0" layoutY="476.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="68.0" prefWidth="823.0">
+               <children>
+                  <Button fx:id="btnThemSua" mnemonicParsing="false" onAction="#actionBtnThemSua" prefHeight="39.0" prefWidth="104.0" text="Thêm" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Button fx:id="btnHuy" mnemonicParsing="false" onAction="#actionBtnCancel" prefHeight="39.0" prefWidth="102.0" text="Huỷ bỏ" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="220.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Label prefHeight="21.0" prefWidth="88.0" text="Phòng ban:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="55.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <ComboBox fx:id="cboPhongBan" prefHeight="31.0" prefWidth="213.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="25.0" />
+                  <Label prefHeight="20.0" prefWidth="64.0" text="Chức vụ">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <ComboBox fx:id="cboChucVu" onAction="#selectedCboChucVu" prefHeight="31.0" prefWidth="213.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="270.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Label prefHeight="21.0" prefWidth="138.0" text="Trình độ học vấn:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="5.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <ComboBox fx:id="cboTrinhDo" prefHeight="31.0" prefWidth="213.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="25.0" />
+                  <Label prefHeight="20.0" prefWidth="63.0" text="Bậc thợ:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <ComboBox fx:id="cboBacTho" disable="true" prefHeight="31.0" prefWidth="213.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>

@@ -28,4 +28,8 @@ public class LinhKien_BUS {
 	public String getTenByMa(String maXe) {
 		return linhKien_DAO.getTenByMa(maXe);
 	}
+	
+	public ArrayList<LinhKien> findLinhKien(String keywords) throws Exception {
+		return linhKien_DAO.findLinhKien(keywords);
+	}
 }

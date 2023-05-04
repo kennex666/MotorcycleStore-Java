@@ -1,5 +1,0 @@
-package interfaces;
-
-public interface INhaCungCap {
-	public String getTenByMa(String maNCC);
-}

@@ -22,7 +22,7 @@ public class Ctrl_Login {
 	@FXML
 	private void checkLogin() {
 		
-		if (txtUsername.getText().equals("thang@nhanvien.com") && txtPassword.getText().equals("123456")) {
+		if (txtUsername.getText().equals("nhanvien") && txtPassword.getText().equals("nhanvien")) {
 			 Stage stageTheLabelBelongs = (Stage) txtUsername.getScene().getWindow();
 			 BorderPane root;
 			try {

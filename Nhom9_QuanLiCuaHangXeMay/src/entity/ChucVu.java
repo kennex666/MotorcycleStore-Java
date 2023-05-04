@@ -41,5 +41,11 @@ public class ChucVu {
 		else this.tenChucVu = tenChucVu;
 	}
 
+	@Override
+	public String toString() {
+		return tenChucVu;
+	}
 
+
+	
 }

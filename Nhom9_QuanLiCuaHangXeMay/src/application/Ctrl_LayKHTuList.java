@@ -3,7 +3,6 @@ package application;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -65,7 +64,6 @@ public class Ctrl_LayKHTuList {
 	 */
 	@FXML
 	private void actionBtnSelect(){
-//		??????? -> txtLoad ?
 		if (txtLoad == null) {
 			PopupNotify.showErrorField("Lỗi", "Load dữ liệu thất bại!", null);
 			return;
@@ -149,7 +147,7 @@ public class Ctrl_LayKHTuList {
 	public void setKhachHang(KhachHang x) {
 		this.khSelected = x;
 	}
-
+	
 	public KhachHang getKhachHang() {
 		return khSelected;
 	}
@@ -159,7 +157,7 @@ public class Ctrl_LayKHTuList {
 	}
 	
 	
-	public Ctrl_LayKHTuList() throws SQLException {
+	public Ctrl_LayKHTuList() {
 		super();
 		ConnectDB.getInstance().connect();
 		kh_bus = new KhachHang_BUS();

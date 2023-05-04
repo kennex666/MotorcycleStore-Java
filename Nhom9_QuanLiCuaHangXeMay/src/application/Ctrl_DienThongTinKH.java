@@ -43,6 +43,7 @@ public class Ctrl_DienThongTinKH {
 	
 	public Ctrl_DienThongTinKH() {
 		radGroup = new ToggleGroup();
+		kh_bus = new KhachHang_BUS();
 		// Tạo giao diện.
 		// Tự động
 	}
@@ -73,7 +74,6 @@ public class Ctrl_DienThongTinKH {
 	@FXML
 	private void actionBtnThemSua() {
 		Stage stage = (Stage) (frmThongTinKhachHang.getScene().getWindow());
-		kh_bus = new KhachHang_BUS();
 		KhachHang temp = null;
 		temp = getKhachHangFromField();
 		if (temp == null)
@@ -82,10 +82,22 @@ public class Ctrl_DienThongTinKH {
 			case THEM -> {
 				if (kh_bus.addCustomer(temp)) {
 					PopupNotify.successNotify("Thông tin", "Thêm khách hàng thành công!", "");
-//					tblModelKH.add(temp);
+					if (tblModelKH != null)
+						tblModelKH.add(temp);
 					stage.close();
 				}else {
 					PopupNotify.showErrorField("Lỗi", "Thêm khách hàng thất bại!", "Lỗi do kết nối cơ sở dữ liệu hoặc bất thường dữ liệu");
+				}
+			}
+			case SUA ->{
+				if (kh_bus.editCustomer(temp)) {
+					PopupNotify.successNotify("Thông tin", "Sửa thông tin khách hàng thành công!", "");
+
+					if (tblModelKH != null)
+						tblModelKH.set(tblModelKH.indexOf(temp), temp);
+					stage.close();
+				}else {
+					PopupNotify.showErrorField("Lỗi", "Sửa thông tin khách hàng thất bại!", "Lỗi do kết nối cơ sở dữ liệu hoặc bất thường dữ liệu");
 				}
 			}
 			default -> {

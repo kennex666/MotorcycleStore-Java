@@ -7,11 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-
 import bus.ChiTietHoaDon_BUS;
 import bus.HoaDon_BUS;
 import bus.KhachHang_BUS;
@@ -305,6 +300,10 @@ public class Ctrl_NhanVienGUI {
 	
 	@FXML
 	private TableColumn<Object, Integer> sttCartCol;	
+	
+	@FXML 
+	private TextField txtTimLK;
+	
 
 	private NhaCungCap_BUS ncc_BUS;
 	private LinhKien_BUS linhKien_BUS;
@@ -345,7 +344,8 @@ public class Ctrl_NhanVienGUI {
 			}
 		});
 
-		cbNCC.setValue(listNCC.get(0));
+		if (listNCC.size() > 0)
+			cbNCC.setValue(listNCC.get(0));
 
 	}
 
@@ -361,7 +361,8 @@ public class Ctrl_NhanVienGUI {
 		cbNSX.getItems().add("Tất cả");
 		cbNSX.getItems().addAll(listNSX);
 
-		cbNSX.setValue(listNSX.get(0));
+		if (listNSX.size() > 0)
+			cbNSX.setValue(listNSX.get(0));
 	}
 
 	private void renderXeInfoToView() throws Exception {
@@ -400,8 +401,8 @@ public class Ctrl_NhanVienGUI {
 		listHD = hd_BUS.getAllHoaDon();
 
 		for (HoaDon i: listHD) {
-			i.getKh().setTenKhachHang(kh_BUS.getTenByMaKH(i.getKh().getMaKhachHang()));
-			i.getNv().setHoTenNV(nv_BUS.getTenByMa(i.getNv().getID()));
+			i.getKh().setTenKhachHang(kh_BUS.getHoTenByMa(i.getKh().getMaKhachHang()));
+			i.getNv().setTenNhanVien(nv_BUS.getTenByMaNV(i.getNv().getMaNhanVien()));
 		}
 //		sttHDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
 		//		Set STT auto increase
@@ -416,14 +417,15 @@ public class Ctrl_NhanVienGUI {
 
 		maHDCol.setCellValueFactory(new PropertyValueFactory<HoaDon, String>("id"));
 		tenNVCol.setCellValueFactory(cellData -> {
-			return new SimpleStringProperty(cellData.getValue().getNv().getHoTenNV());
+			return new SimpleStringProperty(cellData.getValue().getNv().getTenNhanVien());
 		});
 		tenKHHDCol.setCellValueFactory(cellData -> {
 			return new SimpleStringProperty(cellData.getValue().getKh().getTenKhachHang());
 		});
 		ngayLapHDCol.setCellValueFactory(new PropertyValueFactory<HoaDon, String>("ngayLapHoaDon"));
-		tongTienCol.setCellValueFactory(cellData -> new SimpleObjectProperty<>(format.format(cellData.getValue().getTongTien())));
+		tongTienCol.setCellValueFactory(cellData -> new SimpleObjectProperty<>(format.format(cellData.getValue().getTongTien() * 1.1)));
 
+		tblHoaDon.getItems().clear();
 		tblHoaDon.getItems().addAll(listHD);
 	}
 
@@ -544,6 +546,12 @@ public class Ctrl_NhanVienGUI {
 		tblKhachHang.getItems().clear();
 		tblKhachHang.getItems().addAll(listKH);
 	}
+	
+	@FXML
+	private void handleTimLK() throws Exception {
+		tblLinhKien.getItems().clear();
+		tblLinhKien.getItems().addAll(linhKien_BUS.findLinhKien(txtTimLK.getText().trim()));
+	}
 
 	private void addLinhKienToTable() throws Exception {
 		listLinhKien = linhKien_BUS.getAllLinhKien();
@@ -579,7 +587,7 @@ public class Ctrl_NhanVienGUI {
 		try {
 			ConnectDB.getInstance().connect();
 			System.out.println("Connect");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -726,7 +734,6 @@ public class Ctrl_NhanVienGUI {
 	}
 
 	private void renderDataToProductTbl() throws Exception {
-		System.out.println("RUN");
 		listLinhKien = linhKien_BUS.getAllLinhKien();
 		listXe = xe_BUS.getAllXe();
 		
@@ -836,7 +843,6 @@ public class Ctrl_NhanVienGUI {
 		if (productSelected instanceof Xe) {
 			quantityKho = ((Xe) productSelected).getSoLuongKho();
 		} else quantityKho = ((LinhKien) productSelected).getSoLuongKho();
-		System.out.println(quantityKho);
 		if (quantity > quantityKho) {
 			Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.setTitle("Không đủ số lượng");
@@ -861,7 +867,6 @@ public class Ctrl_NhanVienGUI {
 								Xe x = (Xe) obj;
 								if (((Xe) obj).getMaXe().equals(i.getMaXe())) {
 									isHave = 1;
-									System.out.println(x.getSoLuongKho());
 									x.setSoLuongKho(x.getSoLuongKho() + quantity);
 								}
 							}
@@ -926,7 +931,7 @@ public class Ctrl_NhanVienGUI {
 			for (Object obj: tblProduct.getItems()) {
 				if (obj instanceof Xe) {
 					Xe xe = (Xe) obj;
-					xe_BUS.updateSLKho(xe.getSoLuongKho(), xe.getMaXe());
+					xe_BUS.updateSoLuongKho(xe.getSoLuongKho(), xe.getMaXe());
 				}
 				else {
 					LinhKien lk = (LinhKien) obj;
@@ -936,7 +941,7 @@ public class Ctrl_NhanVienGUI {
 			for (Object obj: tblCart.getItems()) {
 				if (obj instanceof Xe) {
 					Xe xe = (Xe) obj;
-					xe_BUS.updateSLBan(xe.getSoLuongKho(), xe.getMaXe());
+					xe_BUS.updateSoLuongBan(xe.getSoLuongKho(), xe.getMaXe());
 				}
 				else {
 					LinhKien lk = (LinhKien) obj;
@@ -953,7 +958,7 @@ public class Ctrl_NhanVienGUI {
 					tongTien += ((LinhKien) i).getGiaLinhKien() * ((LinhKien) i).getSoLuongKho();
 				}
 			}
-			NhanVien nv = new NhanVien("1");
+			NhanVien nv = nv_BUS.getAllEmployees().get(0);
 			HoaDon hd = new HoaDon(GenerateID.taoMaHD(), java.sql.Date.valueOf(LocalDate.now()), khHoaDon, nv, tongTien);
 			HoaDon_BUS hd_BUS = new HoaDon_BUS();
 			hd_BUS.taoHoaDon(hd);
@@ -972,6 +977,7 @@ public class Ctrl_NhanVienGUI {
 			}
 			renderDataToProductTbl();
 			PopupNotify.successNotify("Thanh toán thành công", "Thanh toán thành công", "Chúc mừng bạn đã thanh toán thành công");
+			tblCart.getItems().clear();
 		}
 		else if (khHoaDon == null) PopupNotify.showErrorField("Chọn khách hàng", "Khách hàng chưa được chọn", "Vui lòng chọn khách hàng thanh toán");
 		else PopupNotify.showErrorField("Chọn khách hàng", "Khách hàng chưa được chọn", "Vui lòng chọn khách hàng thanh toán");

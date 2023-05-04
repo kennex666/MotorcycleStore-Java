@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_QuanLiXe">
+   <bottom>
+      <Pane prefHeight="626.0" prefWidth="810.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutY="32.0" prefHeight="53.0" prefWidth="810.0" text="Thông Tin Xe" textAlignment="CENTER">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" layoutX="-31.0" layoutY="140.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="40.0" />
+                  <Label prefWidth="125.0" text="Tên xe : ">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="10.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField prefHeight="31.0" prefWidth="299.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="85.0" />
+                  <Label alignment="CENTER" prefWidth="89.0" text="Loại xe :" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <TextField prefHeight="31.0" prefWidth="207.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="-31.0" layoutY="213.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="40.0" />
+                  <Label prefHeight="21.0" prefWidth="125.0" text="Số khung :">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="13.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField prefHeight="31.0" prefWidth="299.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="85.0" />
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="90.0" text="Số sườn : " textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <TextField prefHeight="31.0" prefWidth="207.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="-31.0" layoutY="282.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="40.0" />
+                  <Label prefHeight="21.0" prefWidth="125.0" text="Số phân khối :">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="13.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField prefHeight="31.0" prefWidth="299.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="85.0" />
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="90.0" text="Màu xe :" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <TextField prefHeight="31.0" prefWidth="207.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="-31.0" layoutY="352.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="40.0" />
+                  <Label prefHeight="21.0" prefWidth="110.0" text="Nước sản xuất:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="15.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField prefHeight="31.0" prefWidth="648.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="-31.0" layoutY="422.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="40.0" />
+                  <Label prefHeight="21.0" prefWidth="110.0" text="Giá :">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="15.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField prefHeight="31.0" prefWidth="283.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="2.0" layoutY="505.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="58.0" prefWidth="807.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="150.0" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Hủy bỏ" textAlignment="CENTER" textFill="#f82525">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="250.0" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="130.0" text="Thêm " textAlignment="CENTER" textFill="#f82c2c">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </bottom>
+</BorderPane>
