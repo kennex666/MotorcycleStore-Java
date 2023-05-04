@@ -7,11 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-
 import bus.ChiTietHoaDon_BUS;
 import bus.HoaDon_BUS;
 import bus.KhachHang_BUS;
@@ -345,7 +340,8 @@ public class Ctrl_NhanVienGUI {
 			}
 		});
 
-		cbNCC.setValue(listNCC.get(0));
+		if (listNCC.size() > 0)
+			cbNCC.setValue(listNCC.get(0));
 
 	}
 
@@ -361,7 +357,8 @@ public class Ctrl_NhanVienGUI {
 		cbNSX.getItems().add("Tất cả");
 		cbNSX.getItems().addAll(listNSX);
 
-		cbNSX.setValue(listNSX.get(0));
+		if (listNSX.size() > 0)
+			cbNSX.setValue(listNSX.get(0));
 	}
 
 	private void renderXeInfoToView() throws Exception {

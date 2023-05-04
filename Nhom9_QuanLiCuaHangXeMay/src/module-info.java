@@ -2,7 +2,6 @@ module Nhom9_QuanLiCuaHangXeMay {
 	requires javafx.controls;
 	requires javafx.fxml;
 	requires java.sql;
-	requires itextpdf;
 	requires java.base;
 
 	

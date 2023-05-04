@@ -145,7 +145,7 @@
                               </AnchorPane>
                            </items>
                         </SplitPane>
-                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0">
+                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0" visible="false">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="642.0" prefWidth="1285.0">
                                  <children>
