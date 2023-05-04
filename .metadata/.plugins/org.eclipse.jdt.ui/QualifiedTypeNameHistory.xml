@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="utilities.RegexPattern"/>
     <fullyQualifiedTypeName name="utilities.ProcessDate"/>
     <fullyQualifiedTypeName name="javafx.fxml.FXMLLoader"/>
-    <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TableColumn"/>
     <fullyQualifiedTypeName name="java.lang.Number"/>
     <fullyQualifiedTypeName name="javafx.beans.property.ReadOnlyObjectProperty"/>
@@ -25,11 +24,8 @@
     <fullyQualifiedTypeName name="javafx.stage.Stage"/>
     <fullyQualifiedTypeName name="javafx.stage.Window"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TableView"/>
-    <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
     <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
-    <fullyQualifiedTypeName name="connectDB.ConnectDB"/>
     <fullyQualifiedTypeName name="bus.KhachHang_BUS"/>
-    <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
     <fullyQualifiedTypeName name="application.Ctrl_DienThongTinKH"/>
     <fullyQualifiedTypeName name="javafx.scene.control.PopupControl"/>
     <fullyQualifiedTypeName name="utilities.SelectedTab"/>
@@ -39,11 +35,23 @@
     <fullyQualifiedTypeName name="entity.KhachHang"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="utilities.PopupNotify"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="entity.PhongBan"/>
-    <fullyQualifiedTypeName name="entity.ChucVu"/>
     <fullyQualifiedTypeName name="interfaces.INhanVien"/>
-    <fullyQualifiedTypeName name="bus.NhanVien_BUS"/>
     <fullyQualifiedTypeName name="dao.NhanVien_DAO"/>
     <fullyQualifiedTypeName name="entity.NhanVien"/>
+    <fullyQualifiedTypeName name="interfaces.IChucVu"/>
+    <fullyQualifiedTypeName name="interfaces.IPhongBan"/>
+    <fullyQualifiedTypeName name="bus.PhongBan"/>
+    <fullyQualifiedTypeName name="dao.PhongBan_DAO"/>
+    <fullyQualifiedTypeName name="entity.PhongBan"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
+    <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
+    <fullyQualifiedTypeName name="bus.NhanVien_BUS"/>
+    <fullyQualifiedTypeName name="bus.ChucVu_BUS"/>
+    <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
+    <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="bus.PhongBan_BUS"/>
+    <fullyQualifiedTypeName name="connectDB.ConnectDB"/>
+    <fullyQualifiedTypeName name="utilities.DataDefault"/>
+    <fullyQualifiedTypeName name="entity.ChucVu"/>
 </qualifiedTypeNameHistroy>
