@@ -9,7 +9,9 @@ public interface IKhachHang {
 	public ArrayList<KhachHang> findCustomers(String keywords);
 	public ArrayList<KhachHang> getAllKhachHang() throws Exception;
 	String getHoTenByMa(String maKH);
-	public boolean addCustomer(KhachHang kh);
 	public int totalCustomers();
+	public boolean editCustomer(KhachHang kHTTMoi);
+	public boolean addCustomer(KhachHang kh);
+	public boolean deleteCustomer(KhachHang kh);
 	ArrayList<KhachHang> getAllCustomers();
 }

@@ -7,11 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-
 import bus.ChiTietHoaDon_BUS;
 import bus.HoaDon_BUS;
 import bus.KhachHang_BUS;
@@ -345,7 +340,8 @@ public class Ctrl_NhanVienGUI {
 			}
 		});
 
-		cbNCC.setValue(listNCC.get(0));
+		if (listNCC.size() > 0)
+			cbNCC.setValue(listNCC.get(0));
 
 	}
 
@@ -361,7 +357,8 @@ public class Ctrl_NhanVienGUI {
 		cbNSX.getItems().add("Tất cả");
 		cbNSX.getItems().addAll(listNSX);
 
-		cbNSX.setValue(listNSX.get(0));
+		if (listNSX.size() > 0)
+			cbNSX.setValue(listNSX.get(0));
 	}
 
 	private void renderXeInfoToView() throws Exception {
@@ -400,8 +397,8 @@ public class Ctrl_NhanVienGUI {
 		listHD = hd_BUS.getAllHoaDon();
 
 		for (HoaDon i: listHD) {
-			i.getKh().setTenKhachHang(kh_BUS.getTenByMaKH(i.getKh().getMaKhachHang()));
-			i.getNv().setHoTenNV(nv_BUS.getTenByMa(i.getNv().getID()));
+			i.getKh().setTenKhachHang(kh_BUS.getHoTenByMa(i.getKh().getMaKhachHang()));
+			i.getNv().setTenNhanVien(nv_BUS.getTenByMaNV(i.getNv().getMaNhanVien()));
 		}
 //		sttHDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
 		//		Set STT auto increase
@@ -416,7 +413,7 @@ public class Ctrl_NhanVienGUI {
 
 		maHDCol.setCellValueFactory(new PropertyValueFactory<HoaDon, String>("id"));
 		tenNVCol.setCellValueFactory(cellData -> {
-			return new SimpleStringProperty(cellData.getValue().getNv().getHoTenNV());
+			return new SimpleStringProperty(cellData.getValue().getNv().getTenNhanVien());
 		});
 		tenKHHDCol.setCellValueFactory(cellData -> {
 			return new SimpleStringProperty(cellData.getValue().getKh().getTenKhachHang());
@@ -579,7 +576,7 @@ public class Ctrl_NhanVienGUI {
 		try {
 			ConnectDB.getInstance().connect();
 			System.out.println("Connect");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -926,7 +923,7 @@ public class Ctrl_NhanVienGUI {
 			for (Object obj: tblProduct.getItems()) {
 				if (obj instanceof Xe) {
 					Xe xe = (Xe) obj;
-					xe_BUS.updateSLKho(xe.getSoLuongKho(), xe.getMaXe());
+					xe_BUS.updateSoLuongKho(xe.getSoLuongKho(), xe.getMaXe());
 				}
 				else {
 					LinhKien lk = (LinhKien) obj;
@@ -936,7 +933,7 @@ public class Ctrl_NhanVienGUI {
 			for (Object obj: tblCart.getItems()) {
 				if (obj instanceof Xe) {
 					Xe xe = (Xe) obj;
-					xe_BUS.updateSLBan(xe.getSoLuongKho(), xe.getMaXe());
+					xe_BUS.updateSoLuongBan(xe.getSoLuongKho(), xe.getMaXe());
 				}
 				else {
 					LinhKien lk = (LinhKien) obj;

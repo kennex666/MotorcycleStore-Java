@@ -51,12 +51,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ngoct/Downloads/MotorcycleStore-GUI_NV/MotorcycleStore-GUI_NV/Nhom9_QuanLiCuaHangXeMay/lib/lib/itextpdf-5.4.2.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ngoct/Downloads/MotorcycleStore-GUI_NV/MotorcycleStore-GUI_NV/Nhom9_QuanLiCuaHangXeMay/lib/lib/sqljdbc42.jar">
+	<classpathentry kind="lib" path="lib/lib/sqljdbc42.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

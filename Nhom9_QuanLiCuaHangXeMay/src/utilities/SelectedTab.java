@@ -2,5 +2,6 @@ package utilities;
 
 public enum SelectedTab {
 	KhachHang,
-	MainMenu
+	MainMenu,
+	NhanVien
 }

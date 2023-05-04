@@ -47,7 +47,7 @@ public class HoaDon_DAO implements IHoaDon {
 		// TODO Auto-generated method stub
 		String maHD = hd.getId();
 		String maKH = hd.getKh().getMaKhachHang();
-		String maNV = hd.getNv().getID();
+		String maNV = hd.getNv().getMaNhanVien();
 		java.util.Date ngayLap = hd.getNgayLapHoaDon();
 		double tongTien = hd.getTongTien();
 		String sql = "INSERT INTO HoaDon (MaHD, MaKH, MaNV, NgayLapHoaDon, TongTien) VALUES (?, ?, ?, ?, ?)";
