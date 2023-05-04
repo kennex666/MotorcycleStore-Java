@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import connectDB.ConnectDB;
 import entity.ChucVu;
+import entity.KhachHang;
 import entity.NhanVien;
 import entity.PhongBan;
 import interfaces.INhanVien;
@@ -229,6 +230,93 @@ public class NhanVien_DAO implements INhanVien{
 		}
 		return null;
 	}
+	
+	@Override
+	public ArrayList<NhanVien> findEmployeeAdvanced(Object[] obj) {
+		// TODO Auto-generated method stub
+		String ten = (String) obj[0];
+		boolean isTimNam = (boolean) obj[1];
+		boolean isTimNu = (boolean) obj[2];
+		int tuTuoi = (int) obj[3];
+		int denTuoi = (int) obj[4];
+		int thangSinh = (int) obj[5];
+		int maPb = (int) obj[6], maCV = (int) obj[7];
+		ArrayList<NhanVien> listNv = new ArrayList<NhanVien>();
+		Connection conn = ConnectDB.getConnection();
+		String query = "SELECT * FROM NhanVien nv JOIN PhongBan pb ON nv.MaPB = pb.MaPB JOIN ChucVu cv ON cv.MaCV = nv.MaCV WHERE tenKH LIKE CONCAT('%', ?, '%') ";
+
+
+		
+		if (!(isTimNu && isTimNam)) {
+			if (isTimNam) {
+				query += "AND gioiTinh = 1 ";
+			}else {
+				if (isTimNu == false && isTimNam == false) {
+					query += "AND gioiTinh <> 0 AND gioiTinh <> 1 ";
+				}else
+					query += "AND gioiTinh = 0 ";
+			}
+		}
+
+		if (tuTuoi != 0) {
+			query += "AND (YEAR(GETDATE()) - YEAR(ngaySinh)) >= " + tuTuoi +" ";
+		}
+		if (denTuoi != 0) {
+			query += "AND (YEAR(GETDATE()) - YEAR(ngaySinh)) <= " + denTuoi +" ";
+		}
+
+		if (thangSinh != 0) {
+			query += "AND MONTH(ngaySinh) = " + thangSinh + " ";
+		}
+		
+		if (maCV != 0) {
+			query += "AND maCV = " + maCV + " ";
+		}
+		if (maPb != 0) {
+			query += "AND maPB = " + maPb + " ";
+		}
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(query);
+			pstm.setString(1, ten);
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				NhanVien temp;
+				 String manv = rs.getString("MaNV");
+				 PhongBan phongBan = null;
+				 ChucVu chucVu = null;
+				 try {
+					phongBan = new PhongBan(rs.getInt("MaPB"), rs.getString("tenPB"));
+					chucVu = new ChucVu(rs.getInt("MaCV"), rs.getString("tenCV"));
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 String tennv = rs.getString("HoTenNV");
+				 LocalDate ngaySinh = ProcessDate.date2LocalDate(rs.getDate("ngaySinh"));
+				 String SDT = rs.getString("SDT");
+				 String soCCCD = rs.getString("soCCCD");
+				 String diaChi = rs.getString("diaChi");
+				 String email = rs.getString("email");
+				 boolean gt = rs.getBoolean("gioiTinh");
+				 String trinhDo = rs.getString("TrinhDoHocVan");
+				 String bacTho = rs.getString("BacTho");
+				 try {
+					 temp = new NhanVien(manv, tennv, diaChi, SDT, soCCCD, gt, ngaySinh, email, trinhDo, bacTho, chucVu, phongBan);
+					 listNv.add(temp);
+				 }catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+			return listNv;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 	
 	public NhanVien_DAO() {
 		// TODO Auto-generated constructor stub

@@ -180,6 +180,27 @@ public class Ctrl_MainMenu {
 		return null;
 	}
 	
+	@FXML
+	private void actionLocKHNangCao() {// TODO Auto-generated method stub
+		BorderPane frmEdit;
+		try {
+			FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("FrmTimKHNangCao.fxml"));
+			frmEdit = (BorderPane) fxmlLoad.load();
+			Ctrl_TimKHNangCao ctrlDienTT = fxmlLoad.getController();
+			ctrlDienTT.setTableModel(listKHObs);
+			Scene sceneTaoKH = new Scene(frmEdit);
+			Stage secondaryStage = new Stage();
+			secondaryStage.setScene(sceneTaoKH);
+			secondaryStage.setResizable(false);
+			secondaryStage.show();
+			return;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
 	private void loadDataTablePropertyKH() {
 		colMaKH.setCellValueFactory(new PropertyValueFactory<>("maKhachHang"));
 		colHoTen.setCellValueFactory(new PropertyValueFactory<>("tenKhachHang"));
