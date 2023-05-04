@@ -375,15 +375,15 @@
                                        <children>
                                           <TableView fx:id="tblNhanVien" layoutY="66.0" prefHeight="530.0" prefWidth="1300.0">
                                              <columns>
-                                                <TableColumn fx:id="colSTT1" prefWidth="48.0" text="STT" />
-                                                <TableColumn fx:id="colMaKH1" prefWidth="153.0" text="Mã nhân viên" />
-                                                <TableColumn fx:id="colHoTen1" prefWidth="214.0" text="Họ và tên" />
-                                                <TableColumn fx:id="colSTT11" prefWidth="107.0" text="Chức vụ" />
-                                                <TableColumn fx:id="colGioiTinh1" prefWidth="76.0" text="Giới tính" />
-                                                <TableColumn fx:id="colNgaySinh1" prefWidth="176.0" text="Ngày sinh" />
-                                                <TableColumn fx:id="colDiaChi1" prefWidth="191.0" text="Địa chỉ" />
-                                                <TableColumn fx:id="colSDT1" prefWidth="166.0" text="Số điện thoại" />
-                                                <TableColumn fx:id="colEmail1" prefWidth="168.0" text="Email" />
+                                                <TableColumn fx:id="colnvSTT" prefWidth="48.0" text="STT" />
+                                                <TableColumn fx:id="colnvMa" prefWidth="153.0" text="Mã nhân viên" />
+                                                <TableColumn fx:id="colnvHoTen" prefWidth="214.0" text="Họ và tên" />
+                                                <TableColumn fx:id="colnvChucVu" prefWidth="107.0" text="Chức vụ" />
+                                                <TableColumn fx:id="colnvGioiTinh" prefWidth="76.0" text="Giới tính" />
+                                                <TableColumn fx:id="colnvNgaySinh" prefWidth="176.0" text="Ngày sinh" />
+                                                <TableColumn fx:id="colnvDiaChi" prefWidth="191.0" text="Địa chỉ" />
+                                                <TableColumn fx:id="colnvSDT" prefWidth="166.0" text="Số điện thoại" />
+                                                <TableColumn fx:id="colnvEmail" prefWidth="168.0" text="Email" />
                                              </columns>
                                           </TableView>
                                           <Label layoutX="50.0" layoutY="21.0" text="Tìm kiếm nhân viên: " />

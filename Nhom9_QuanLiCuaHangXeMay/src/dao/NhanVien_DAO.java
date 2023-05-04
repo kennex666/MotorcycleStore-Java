@@ -23,7 +23,7 @@ public class NhanVien_DAO implements INhanVien{
 		// TODO Auto-generated method stub// TODO Auto-generated method stub
 		ArrayList<NhanVien> listNhanVien = new ArrayList<NhanVien>();
 		Connection conn = ConnectDB.getConnection();
-		String query = "SELECT * FROM NhanVien WHERE maNV LIKE CONCAT('%', ?, '%') OR HoTenNV LIKE CONCAT('%', ?, '%') OR sdt LIKE CONCAT('%', ?, '%') OR soCCCD LIKE CONCAT('%', ?, '%') OR email LIKE CONCAT('%', ?, '%')";
+		String query = "SELECT * FROM NhanVien nv JOIN PhongBan pb ON nv.MaPB = pb.MaPB JOIN ChucVu cv ON cv.MaCV = nv.MaCV WHERE maNV LIKE CONCAT('%', ?, '%') OR HoTenNV LIKE CONCAT('%', ?, '%') OR sdt LIKE CONCAT('%', ?, '%') OR soCCCD LIKE CONCAT('%', ?, '%') OR email LIKE CONCAT('%', ?, '%')";
 		try {
 			PreparedStatement pstm = conn.prepareStatement(query);
 			pstm.setString(1, keywords);
@@ -38,8 +38,8 @@ public class NhanVien_DAO implements INhanVien{
 				 PhongBan phongBan = null;
 				 ChucVu chucVu = null;
 				 try {
-					phongBan = new PhongBan(rs.getInt("MaPB"));
-					chucVu = new ChucVu(rs.getInt("MaCV"));
+					phongBan = new PhongBan(rs.getInt("MaPB"), rs.getString("tenPB"));
+					chucVu = new ChucVu(rs.getInt("MaCV"), rs.getString("tenCV"));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -74,7 +74,7 @@ public class NhanVien_DAO implements INhanVien{
 		// TODO Auto-generated method stub
 		ArrayList<NhanVien> listNhanVien = new ArrayList<NhanVien>();
 		Connection conn = ConnectDB.getConnection();
-		String query = "SELECT * FROM NhanVien";
+		String query = "SELECT * FROM NhanVien nv JOIN PhongBan pb ON nv.MaPB = pb.MaPB JOIN ChucVu cv ON cv.MaCV = nv.MaCV";
 		try {
 			Statement stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery(query);
@@ -84,8 +84,8 @@ public class NhanVien_DAO implements INhanVien{
 				 PhongBan phongBan = null;
 				 ChucVu chucVu = null;
 				 try {
-					phongBan = new PhongBan(rs.getInt("MaPB"));
-					chucVu = new ChucVu(rs.getInt("MaCV"));
+					phongBan = new PhongBan(rs.getInt("MaPB"), rs.getString("tenPB"));
+					chucVu = new ChucVu(rs.getInt("MaCV"), rs.getString("tenCV"));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -167,7 +167,7 @@ public class NhanVien_DAO implements INhanVien{
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
 		
-		String query = "INSERT INTO NhanVien (manv, hoTenNV, diaChi, SDT, soCCCD, gioiTinh, ngaySinh, email, maPB, maCV, trinhDoHocVan, bacTho) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO NhanVien (hoTenNV, diaChi, SDT, soCCCD, gioiTinh, ngaySinh, email, maPB, maCV, trinhDoHocVan, bacTho, manv) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 
 			PreparedStatement prestm = conn.prepareStatement(query);
@@ -188,6 +188,7 @@ public class NhanVien_DAO implements INhanVien{
 			return (prestm.executeUpdate() > 0) ? true : false;
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		

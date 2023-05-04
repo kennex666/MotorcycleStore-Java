@@ -43,6 +43,7 @@ public class Ctrl_DienThongTinKH {
 	
 	public Ctrl_DienThongTinKH() {
 		radGroup = new ToggleGroup();
+		kh_bus = new KhachHang_BUS();
 		// Tạo giao diện.
 		// Tự động
 	}
@@ -73,7 +74,6 @@ public class Ctrl_DienThongTinKH {
 	@FXML
 	private void actionBtnThemSua() {
 		Stage stage = (Stage) (frmThongTinKhachHang.getScene().getWindow());
-		kh_bus = new KhachHang_BUS();
 		KhachHang temp = null;
 		temp = getKhachHangFromField();
 		if (temp == null)

@@ -40,7 +40,7 @@ public class Ctrl_MainMenu {
 	@FXML
 	private SplitPane splitPaneXe, splitPaneLK, splitPaneBH;
 	@FXML
-	private Tab tabProduct;
+	private Tab tabProduct, tabNhanVien, tabKH;
 	@FXML
 	private TabPane allTabs;
 	@FXML
@@ -58,15 +58,13 @@ public class Ctrl_MainMenu {
 	@FXML
 	private TableColumn<NhanVien, Number> colnvSTT;
 	@FXML
-	private Tab tabKH;
-	@FXML
 	private TextField txtSearch, txtNVSearch;
 	
 
 	private KhachHang_BUS kh_bus;
-	private ObservableList<KhachHang> listKHObs = FXCollections.observableArrayList();
+	private ObservableList<KhachHang> listKHObs;
 	private NhanVien_BUS nv_bus;
-	private ObservableList<NhanVien> listNVObs = FXCollections.observableArrayList();
+	private ObservableList<NhanVien> listNVObs;
 	
 	@FXML
 	private void initialize() {
@@ -119,6 +117,14 @@ public class Ctrl_MainMenu {
 		if (tabKH.isSelected()) {
 			tabSelected = SelectedTab.KhachHang;
 			loadDataKHToTable();
+		}
+
+		if (!tabNhanVien.isSelected() && tabSelected == SelectedTab.NhanVien) {
+			removeAllRowsKH();
+		}
+		if (tabNhanVien.isSelected()) {
+			tabSelected = SelectedTab.NhanVien;
+			loadDataNVToTable();
 		}
 		
 	}
@@ -281,7 +287,7 @@ public class Ctrl_MainMenu {
 	
 	private void loadDataTablePropertyNV() {
 		colnvMa.setCellValueFactory(new PropertyValueFactory<>("maNhanVien"));
-		colnvHoTen.setCellValueFactory(new PropertyValueFactory<>("tenKhachHang"));
+		colnvHoTen.setCellValueFactory(new PropertyValueFactory<>("tenNhanVien"));
 		colnvDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
 		colnvSDT.setCellValueFactory(new PropertyValueFactory<>("soDT"));
 		colnvChucVu.setCellValueFactory(new PropertyValueFactory<>("chucVu"));
@@ -365,8 +371,10 @@ public class Ctrl_MainMenu {
 	
 	public Ctrl_MainMenu() {
 		super();
-		ConnectDB.getInstance().connect();
 		kh_bus = new KhachHang_BUS();
+		nv_bus = new NhanVien_BUS();
+		listNVObs = FXCollections.observableArrayList(); 
+		listKHObs = FXCollections.observableArrayList();
 
 		tabSelected = SelectedTab.MainMenu;
 	}

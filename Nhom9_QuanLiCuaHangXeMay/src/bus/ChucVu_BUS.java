@@ -15,8 +15,8 @@ public class ChucVu_BUS implements IChucVu{
 		cv_DAO = new ChucVu_DAO();
 	}
 	
-	public ArrayList<ChucVu> getAllChuchVu() throws Exception {
-		return cv_DAO.getAllChuchVu();
+	public ArrayList<ChucVu> getAllChucVu() {
+		return cv_DAO.getAllChucVu();
 	}
 	
 }

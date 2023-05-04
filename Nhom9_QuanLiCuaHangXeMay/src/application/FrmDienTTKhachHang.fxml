@@ -114,7 +114,7 @@
                         <Point3D />
                      </rotationAxis>
                   </Box>
-                  <TextField fx:id="txtDiaChi" prefHeight="31.0" prefWidth="531.0" />
+                  <TextField fx:id="txtDiaChi" onAction="#actionBtnThemSua" prefHeight="31.0" prefWidth="531.0" />
                   <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
                </children>
             </HBox>

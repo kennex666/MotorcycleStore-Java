@@ -1,5 +1,6 @@
 package application;
 
+import connectDB.ConnectDB;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -12,8 +13,8 @@ public class TestingApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("FrmDienTTNhanVien.fxml"));
+			ConnectDB.getInstance().connect();
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);

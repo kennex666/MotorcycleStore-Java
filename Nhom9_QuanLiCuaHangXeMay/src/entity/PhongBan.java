@@ -51,7 +51,7 @@ public class PhongBan {
 	}
 	@Override
 	public String toString() {
-		return "PhongBan [id=" + id + ", tenPB=" + tenPB + "]";
+		return tenPB;
 	}
 	
 	
