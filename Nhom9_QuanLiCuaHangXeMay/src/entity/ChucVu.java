@@ -36,7 +36,7 @@ public class ChucVu {
 
 	public void setTenChucVu(String tenChucVu) throws Exception {
 		if (tenChucVu.trim().equals("")) {
-			throw new Exception("Màu xe không được để trống");
+			throw new Exception("Tên chức vụ không được để trống");
 		}
 		else this.tenChucVu = tenChucVu;
 	}
