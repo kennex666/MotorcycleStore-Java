@@ -1,0 +1,15 @@
+package dao;
+
+import java.util.ArrayList;
+
+import interfaces.IChucVu;
+
+public class ChucVu implements IChucVu {
+
+	@Override
+	public ArrayList<entity.ChucVu> getAllChuchVu() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

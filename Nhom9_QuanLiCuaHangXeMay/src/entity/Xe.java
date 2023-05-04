@@ -1,7 +1,5 @@
 package entity;
 
-import java.time.LocalDate;
-
 public class Xe {
 	private String maXe;
 	private String tenXe;
@@ -13,7 +11,6 @@ public class Xe {
 	private String mauXe;
 	private double giaXe;
 	private String imagePath;
-	private LocalDate ngayNhap;
 	private int soLuongKho, soLuongBan;
 	
 	private NhaCungCap ncc;
@@ -29,7 +26,7 @@ public class Xe {
 	}
 
 	public Xe(String maXe, String tenXe, String loaiXe, String nuocSX, double soPK, String soKhung, String soSuon,
-			String mauXe, double giaXe, String imagePath, LocalDate ngayNhap, NhaCungCap ncc, int slKho, int slBan) throws Exception {
+			String mauXe, double giaXe, String imagePath, NhaCungCap ncc, int slKho, int slBan) throws Exception {
 		super();
 		this.setMaXe(maXe);
 		this.setTenXe(tenXe);
@@ -41,7 +38,6 @@ public class Xe {
 		this.setMauXe(mauXe);
 		this.setGiaXe(giaXe);
 		this.setImagePath(imagePath);
-		this.ngayNhap = ngayNhap;
 		this.ncc = ncc;
 		this.setSoLuongKho(slKho);
 		this.setSoLuongBan(slBan);
@@ -155,14 +151,6 @@ public class Xe {
 			throw new Exception("Đường dẫn ảnh không được để trống");
 		}
 		else this.imagePath = imagePath;
-	}
-
-	public LocalDate getNgayNhap() {
-		return ngayNhap;
-	}
-
-	public void setNgayNhap(LocalDate ngayNhap) {
-		this.ngayNhap = ngayNhap;
 	}
 
 	public NhaCungCap getNcc() {

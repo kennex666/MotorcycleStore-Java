@@ -6,14 +6,26 @@ import java.util.Objects;
 public class HoaDon {
 	private String id;
 	private Date ngayLapHoaDon;
+	private double tongTien;
+	
+	private KhachHang kh;
+	private NhanVien nv;
+	
 	public HoaDon() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public HoaDon(String id, Date ngayLapHoaDon) throws Exception {
+	public HoaDon(String maHD) throws Exception {
+		setId(maHD);
+		// TODO Auto-generated constructor stub
+	}
+	public HoaDon(String id, Date ngayLapHoaDon, KhachHang kh, NhanVien nv, double tongTien) throws Exception {
 		super();
 		setId(id);
 		this.ngayLapHoaDon = ngayLapHoaDon;
+		this.setKh(kh);
+		this.setNv(nv);
+		this.setTongTien(tongTien);
 	}
 	public String getId() {
 		return id;
@@ -47,6 +59,24 @@ public class HoaDon {
 	@Override
 	public String toString() {
 		return "HoaDon [id=" + id + ", ngayLapHoaDon=" + ngayLapHoaDon + "]";
+	}
+	public KhachHang getKh() {
+		return kh;
+	}
+	public void setKh(KhachHang kh) {
+		this.kh = kh;
+	}
+	public NhanVien getNv() {
+		return nv;
+	}
+	public void setNv(NhanVien nv) {
+		this.nv = nv;
+	}
+	public double getTongTien() {
+		return tongTien;
+	}
+	public void setTongTien(double tongTien) {
+		this.tongTien = tongTien;
 	}
 	
 	

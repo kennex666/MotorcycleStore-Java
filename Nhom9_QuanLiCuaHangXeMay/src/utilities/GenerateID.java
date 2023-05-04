@@ -7,6 +7,7 @@ import java.util.Random;
 public class GenerateID {
 	private static final String CHUOI_KY_TU = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 	private static final Random random = new Random();
+	public static final int MADAILY_FORTESTING = 2;
 	public static String taoMaXe(String tenNCC) {
 //		Tên NCC + ddmmYYYY + random 4 kí tự
 		LocalDateTime thoiGianHienTai = LocalDateTime.now();
@@ -28,4 +29,11 @@ public class GenerateID {
 		// KH cá nhân đăng kí lần đầu tại đại lí 2, tổng KH lúc đó là 12
 		// Kết quả: DN-002-0013
   }
+	public static String taoMaHD() {
+		LocalDateTime thoiGianHienTai = LocalDateTime.now();String end = "";
+		for (int i = 0; i < 4; i++) {
+			end += CHUOI_KY_TU.charAt(random.nextInt(CHUOI_KY_TU.length()));
+		}
+		return thoiGianHienTai.format(DateTimeFormatter.ofPattern("ddmmyyyy")) + end;
+	}
 }

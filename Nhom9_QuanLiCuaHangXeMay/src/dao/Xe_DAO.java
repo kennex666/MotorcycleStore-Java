@@ -34,14 +34,13 @@ public class Xe_DAO implements IXe {
 				String soSuon = results.getString("SoSuon");
 				String mauXe = results.getString("MauXe");
 				double giaXe = results.getDouble("Gia");
-				Date ngayNhap = results.getDate("NgayNhap");
 				String imgPath = results.getString("ImgPath");
 				int soLuongBan = results.getInt("SoLuongBan");
 				int soLuongKho = results.getInt("SoLuongKho");
 
 				NhaCungCap ncc = new NhaCungCap(maNCC);
 
-				Xe xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imgPath, ngayNhap.toLocalDate(), ncc, soLuongKho, soLuongBan);
+				Xe xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imgPath, ncc, soLuongKho, soLuongBan);
 				list.add(xe);
 			}
 		} 

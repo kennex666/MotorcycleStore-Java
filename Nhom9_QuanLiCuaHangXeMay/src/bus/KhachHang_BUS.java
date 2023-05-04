@@ -18,4 +18,25 @@ public class KhachHang_BUS {
 	public ArrayList<KhachHang> getAllKhachHang() throws Exception {
 		return kh_DAO.getAllKhachHang();
 	}
+	
+	public String getTenByMaKH(String maKH) {
+		return kh_DAO.getHoTenByMa(maKH);
+	}
+
+
+	public boolean addCustomer(KhachHang temp) {
+		return kh_DAO.addCustomer(temp);
+	}
+	
+	public int totalCustomers() {
+		return kh_DAO.totalCustomers();
+	}
+	
+	public ArrayList<KhachHang> getAllCustomers() {
+		return kh_DAO.getAllCustomers();
+	}
+	
+	public ArrayList<KhachHang> findCustomers(String keywords) {
+		return kh_DAO.findCustomers(keywords);
+	}
 }

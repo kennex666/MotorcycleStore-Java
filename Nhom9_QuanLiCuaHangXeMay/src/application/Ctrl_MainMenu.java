@@ -2,20 +2,28 @@ package application;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
+import bus.ChiTietHoaDon_BUS;
+import bus.HoaDon_BUS;
 import bus.KhachHang_BUS;
 import bus.LinhKien_BUS;
 import bus.NhaCungCap_BUS;
+import bus.NhanVien_BUS;
 import bus.Xe_BUS;
 import connectDB.ConnectDB;
 import dao.NhaCungCap_DAO;
 import dao.Xe_DAO;
+import entity.ChiTietHoaDon;
+import entity.HoaDon;
 import entity.KhachHang;
 import entity.LinhKien;
 import entity.NhaCungCap;
+import entity.NhanVien;
 import entity.Xe;
 import interfaces.IXe;
 import javafx.beans.property.ReadOnlyDoubleWrapper;
@@ -28,6 +36,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -37,6 +48,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -95,9 +109,6 @@ public class Ctrl_MainMenu {
 
 	@FXML
 	private TableColumn<Xe, String> nuocSX;
-
-	@FXML
-	private TableColumn<Xe, LocalDate> ngayNhap;
 
 	@FXML
 	private TableColumn<Xe, Integer> soLuongKho;
@@ -212,16 +223,76 @@ public class Ctrl_MainMenu {
 
 	@FXML
 	private TableColumn<LinhKien, Integer> soLuongCol;
+	
+	@FXML
+	private TableView<HoaDon> tblHoaDon;
+
+	@FXML
+	private TableView<ChiTietHoaDon> tblCTHD;
+	
+	@FXML
+	private TableColumn<HoaDon, String> maHDCol;
+	
+	@FXML
+	private TableColumn<HoaDon, String> tenNVCol;
+	
+	@FXML
+	private TableColumn<HoaDon, String> ngayLapHDCol;
+	
+	@FXML
+	private TableColumn<HoaDon, Double> tongTienCol;
+	
+	@FXML
+	private TableColumn<HoaDon, String> tenKHHDCol;	
+	
+	@FXML
+	private TableColumn<ChiTietHoaDon, Integer> maCTHDCol;	
+	
+	@FXML
+	private TableColumn<ChiTietHoaDon, String> maSPCTHD;	
+	
+	@FXML
+	private TableColumn<ChiTietHoaDon, String> tenSPCTHD;	
+	
+	@FXML
+	private TableColumn<ChiTietHoaDon, Double> giaSPCTHD;	
+	
+	@FXML
+	private TableColumn<ChiTietHoaDon, Integer> soLuongSPCTHD;	
+	
+	@FXML
+	private TableColumn<ChiTietHoaDon, Double> tongTienCTHD;	
+	
+	@FXML
+	private DatePicker startDate;	
+	
+	@FXML
+	private DatePicker endDate;	
+	
+	@FXML
+	private Button cartRemove;
+	
+	@FXML
+	private TextField khCart;
 
 	private NhaCungCap_BUS ncc_BUS;
 	private LinhKien_BUS linhKien_BUS;
 	private KhachHang_BUS kh_BUS;
+	private HoaDon_BUS hd_BUS;
+	private NhanVien_BUS nv_BUS;
+	private ChiTietHoaDon_BUS cthd_BUS;
 	private Xe_BUS xe_BUS = new Xe_BUS();
 	private ArrayList<Xe> listXe;
 	private ArrayList<Xe> listXeCart;
 	private ArrayList<LinhKien> listLinhKien;
 	private ArrayList<LinhKien> listLinhKienCart;
 	private ArrayList<KhachHang> listKH;
+	private ArrayList<HoaDon> listHD;
+	private ArrayList<ChiTietHoaDon> listCTHD;
+	private KhachHang khHoaDon;
+
+	@FXML
+	private Button btnThemKH;
 
 	@FXML 
 	private void addCboNCC() {
@@ -269,6 +340,51 @@ public class Ctrl_MainMenu {
 
 
 		addCboNuocSX(listXe);
+	}
+	
+	private void renderHoaDonToTable() throws Exception {
+		listHD = hd_BUS.getAllHoaDon();
+		
+		for (HoaDon i: listHD) {
+			i.getKh().setTenKhachHang(kh_BUS.getTenByMaKH(i.getKh().getMaKhachHang()));
+			i.getNv().setHoTenNV(nv_BUS.getTenByMa(i.getNv().getID()));
+		}
+		
+		maHDCol.setCellValueFactory(new PropertyValueFactory<HoaDon, String>("id"));
+		tenNVCol.setCellValueFactory(cellData -> {
+			return new SimpleStringProperty(cellData.getValue().getNv().getHoTenNV());
+		});
+		tenKHHDCol.setCellValueFactory(cellData -> {
+			return new SimpleStringProperty(cellData.getValue().getKh().getTenKhachHang());
+		});
+		ngayLapHDCol.setCellValueFactory(new PropertyValueFactory<HoaDon, String>("ngayLapHoaDon"));
+		tongTienCol.setCellValueFactory(new PropertyValueFactory<HoaDon, Double>("tongTien"));
+		
+		tblHoaDon.getItems().addAll(listHD);
+	}
+	
+	private void timKiemHoaDon() {
+		ArrayList<HoaDon> listTimKiem = new ArrayList<>();
+		for (HoaDon i: tblHoaDon.getItems()) {
+			if (i.getNgayLapHoaDon().toLocaleString().compareTo(startDate.toString()) >= 0 && 
+					i.getNgayLapHoaDon().toLocaleString().compareTo(endDate.toString()) <=0) {
+				listTimKiem.add(i);
+			}
+		}
+	}
+	
+	@FXML
+	private void xemCTHD() throws Exception {
+		HoaDon hd = tblHoaDon.getSelectionModel().getSelectedItem();
+		listCTHD = cthd_BUS.getCTHDByMaHD(hd.getId());
+		
+		maCTHDCol.setCellValueFactory(new PropertyValueFactory<ChiTietHoaDon, Integer>("id"));
+		maSPCTHD.setCellValueFactory(new PropertyValueFactory<ChiTietHoaDon, String>("maSP"));
+		giaSPCTHD.setCellValueFactory(new PropertyValueFactory<>("giaBan"));
+		soLuongSPCTHD.setCellValueFactory(new PropertyValueFactory<>("soLuongXe"));
+		
+		tblCTHD.getItems().clear();
+		tblCTHD.getItems().addAll(listCTHD);
 	}
 
 	@FXML
@@ -367,6 +483,9 @@ public class Ctrl_MainMenu {
 		xe_BUS = new Xe_BUS();
 		linhKien_BUS = new LinhKien_BUS();
 		kh_BUS = new KhachHang_BUS();
+		hd_BUS = new HoaDon_BUS();
+		nv_BUS = new NhanVien_BUS();
+		cthd_BUS = new ChiTietHoaDon_BUS();
 
 		tabProduct.getTabPane().getTabs().remove(tabProduct);
 
@@ -388,7 +507,6 @@ public class Ctrl_MainMenu {
 		new SimpleStringProperty(ncc_BUS.getTenNCCByMa(cellData.getValue().getNcc().getMaNCC())));
 		soPhanKhoi.setCellValueFactory(new PropertyValueFactory<Xe, Double>("soPK"));
 		nuocSX.setCellValueFactory(new PropertyValueFactory<Xe, String>("nuocSX"));
-		ngayNhap.setCellValueFactory(new PropertyValueFactory<Xe, LocalDate>("ngayNhap"));
 		soLuongKho.setCellValueFactory(new PropertyValueFactory<Xe, Integer>("soLuongKho"));
 
 		renderXeInfoToView();
@@ -398,6 +516,11 @@ public class Ctrl_MainMenu {
 	@FXML
 	private void handleClickTabKH() throws Exception {
 		addKHToTable();
+	}
+	
+	@FXML
+	private void handleClickTabHD () throws Exception {
+		renderHoaDonToTable();
 	}
 
 	@FXML
@@ -445,10 +568,41 @@ public class Ctrl_MainMenu {
 			soSuonModal.setText(xe.getSoSuon());
 			nuocSXModal.setText(xe.getNuocSX());
 			giaXeModal.setText(String.valueOf(xe.getGiaXe()));
-			ngayNhapModal.setText(String.valueOf(xe.getNgayNhap()));
 
 			Image image = new Image(xe.getImagePath());
 			imgPathModal.setImage(image);
+		}
+	}
+	
+	@FXML 
+	private void handleRemoveFromCart() {
+//		int index = tblCart.getSelectionModel().getSelectedIndex();
+//		Object obj = tblCart.getItems().get(index);
+//		tblCart.getItems().remove(index);
+	}
+	
+	@FXML 
+	private void handleChonKH() {
+		 BorderPane root;
+		try {
+//			root = (BorderPane)FXMLLoader.load(getClass().getResource("FrmDienThongTinKH.fxml"));
+			FXMLLoader fxml = new FXMLLoader(getClass().getResource("FrmLayKHTuList.fxml"));
+			root = (BorderPane) fxml.load();
+			Ctrl_LayKHTuList ctrl_LayKH = fxml.getController();
+			Scene scene = new Scene(root);
+			Stage modalStage = new Stage();
+			modalStage.setScene(scene);
+			modalStage.show();
+//	        modalStage.initModality(Modality.APPLICATION_MODAL);
+//	        modalStage.initOwner(btnThemKH.getScene().getWindow());
+//	        modalStage.setScene(scene);
+//	        modalStage.showAndWait();
+			ctrl_LayKH.setTextFieldLoad(khCart);
+			ctrl_LayKH.setKhachHang(khHoaDon);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -632,9 +786,35 @@ public class Ctrl_MainMenu {
 				linhKien_BUS.updateSLBan(lk.getSoLuongKho(), lk.getId());
 			}
 		}
+		NhanVien nv = new NhanVien("NV001");
+		HoaDon hd = new HoaDon("1", java.sql.Date.valueOf(LocalDate.now()), khHoaDon, nv, 100000);
+		HoaDon_BUS hd_BUS = new HoaDon_BUS();
+		hd_BUS.taoHoaDon(hd);
 		renderDataToProductTbl();
 
 	}
+	
+	@FXML 
+	private void openModalThemKH() {
+			 BorderPane root;
+			try {
+				root = (BorderPane)FXMLLoader.load(getClass().getResource("FrmDienThongTinKH.fxml"));
+				Scene scene = new Scene(root);
+//				stageTheLabelBelongs.setScene(scene);
+//				stageTheLabelBelongs.centerOnScreen();
+				Stage modalStage = new Stage();
+		        modalStage.initModality(Modality.APPLICATION_MODAL);
+		        modalStage.initOwner(btnThemKH.getScene().getWindow());
+		        modalStage.setScene(scene);
+		        modalStage.showAndWait();
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+		}
 
 	public Ctrl_MainMenu() {
 		super();

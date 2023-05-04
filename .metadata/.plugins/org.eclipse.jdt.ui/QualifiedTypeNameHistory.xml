@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javafx.scene.input.MouseEvent"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.ChoiceBox"/>
-    <fullyQualifiedTypeName name="javafx.util.StringConverter"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
-    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="interfaces.IXe"/>
-    <fullyQualifiedTypeName name="connectDB.ConnectDB"/>
-    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
-    <fullyQualifiedTypeName name="interfaces.INhaCungCap"/>
-    <fullyQualifiedTypeName name="interfaces.IXe_Kho"/>
-    <fullyQualifiedTypeName name="javafx.beans.property.SimpleIntegerProperty"/>
-    <fullyQualifiedTypeName name="javafx.beans.property.ReadOnlyObjectProperty"/>
-    <fullyQualifiedTypeName name="dao.NhaCungCap_DAO"/>
     <fullyQualifiedTypeName name="bus.NhaCungCap_BUS"/>
     <fullyQualifiedTypeName name="dao.Xe_DAO"/>
     <fullyQualifiedTypeName name="dao.Xe_Kho_DAO"/>
@@ -48,16 +34,30 @@
     <fullyQualifiedTypeName name="interfaces.IKhachHang"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="java.time.ZoneId"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="dao.KhachHang_DAO"/>
     <fullyQualifiedTypeName name="bus.KhachHang_BUS"/>
-    <fullyQualifiedTypeName name="entity.KhachHang"/>
     <fullyQualifiedTypeName name="javafx.util.Callback"/>
-    <fullyQualifiedTypeName name="javafx.beans.property.SimpleStringProperty"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TableView"/>
     <fullyQualifiedTypeName name="javafx.beans.property.ReadOnlyDoubleWrapper"/>
     <fullyQualifiedTypeName name="javafx.beans.property.ReadOnlyObjectWrapper"/>
     <fullyQualifiedTypeName name="entity.LinhKien"/>
+    <fullyQualifiedTypeName name="interfaces.IHoaDon"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="entity.KhachHang"/>
+    <fullyQualifiedTypeName name="dao.HoaDon_DAO"/>
+    <fullyQualifiedTypeName name="interfaces.IChiTietHoaDon"/>
+    <fullyQualifiedTypeName name="dao.ChiTietHoaDon_DAO"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TableView"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TableColumn"/>
+    <fullyQualifiedTypeName name="bus.HoaDon_BUS"/>
+    <fullyQualifiedTypeName name="javafx.beans.property.SimpleStringProperty"/>
+    <fullyQualifiedTypeName name="interfaces.INhanVien"/>
+    <fullyQualifiedTypeName name="dao.NhanVien_DAO"/>
+    <fullyQualifiedTypeName name="entity.NhanVien"/>
+    <fullyQualifiedTypeName name="bus.NhanVien_BUS"/>
+    <fullyQualifiedTypeName name="bus.ChiTietHoaDon_BUS"/>
+    <fullyQualifiedTypeName name="entity.ChiTietHoaDon"/>
     <fullyQualifiedTypeName name="javafx.scene.control.cell.PropertyValueFactory"/>
+    <fullyQualifiedTypeName name="entity.HoaDon"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.DatePicker"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
