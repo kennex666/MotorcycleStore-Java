@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.concurrent.locks.StampedLock;
 
 import connectDB.ConnectDB;
 import entity.ChiTietSuaChua;
@@ -99,8 +100,28 @@ public class LinhKien_DAO implements ILinhKien {
 	
 	@Override
 	public boolean themLinhKien(LinhKien lk) {
-		// TODO Auto-generated method stub
-		return false;
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		String query = "insert into LinhKien values(?,?,?,?,?,?,?,?)";
+		int n=0;
+		try {
+			statement = con.prepareStatement(query);
+			System.out.println(lk.getCtsc().getID());
+			statement.setString(1, lk.getId());
+			statement.setString(2, lk.getNhaCungCap().getMaNCC());
+			statement.setInt(3, lk.getCtsc().getID());
+			statement.setString(4, lk.getTen());
+			statement.setString(5, lk.getImagePath());
+			statement.setDouble(6, lk.getGiaLinhKien());
+			statement.setInt(7, lk.getSoLuongKho());
+			statement.setInt(8, lk.getSoLuongBan());
+			n=statement.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return n>0;
 	}
 	
 	@Override
