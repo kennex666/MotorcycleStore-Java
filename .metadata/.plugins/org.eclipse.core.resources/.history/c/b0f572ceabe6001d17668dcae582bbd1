@@ -1,9 +1,0 @@
-package utilities;
-
-import java.sql.Date;
-
-public class ProcessDate {
-	public LocalDate date2LocalDate(Date date) {
-		return date.toLocalDate();
-	}
-}

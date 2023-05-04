@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="dao.Xe_DAO"/>
-    <fullyQualifiedTypeName name="bus.Xe_BUS"/>
-    <fullyQualifiedTypeName name="entity.LinhKien"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="interfaces.ILinhKien"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
-</qualifiedTypeNameHistroy>
