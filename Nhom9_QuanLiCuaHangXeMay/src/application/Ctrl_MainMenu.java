@@ -432,6 +432,7 @@ public class Ctrl_MainMenu {
 		PopupNotify.showErrorField(null, "Thêm thành công!", null);
 	}
 	
+	
 	@FXML
 	private ComboBox<NhaCungCap> cboNXS;
 	
@@ -465,10 +466,6 @@ public class Ctrl_MainMenu {
 		cboNXS.setItems(obsListNCC);
 	}
 	
-	@FXML
-	private void xoaXe() {
-		
-	}
 	@FXML
 	private Xe_BUS xe_BUS = new Xe_BUS();
 	@FXML
@@ -579,12 +576,95 @@ public class Ctrl_MainMenu {
 		}
 	}
 	
-	private void lamMoiTextFileTimKiem() {
-		
+	@FXML
+	private TextField txtTimKiemXe;
+	@FXML
+	private void timKiemTheoMa() throws Exception {
+		String ma = txtTimKiemXe.getText();
+		xoaTrangTable();
+		if (ma.isBlank()) {
+			addXeVaoTable();
+		}else {
+			ArrayList<Xe> listXe = xe_BUS.findXe(ma);
+			for (Xe x: listXe)
+				listXeObs.add(x);
+		}
+	}
+	
+	@FXML
+	private void lamMoiTextTimKiem() {
+		txtTimKiemXe.setText("");
 	}
 	
 	private void xoaTrangTable() {
 		listXeObs.clear();
+	}
+	
+	@FXML
+	private void xoaXe() throws Exception {
+		Xe xe = (Xe) tblXe.getSelectionModel().getSelectedItem();
+		if (xe == null )
+		{
+			PopupNotify.showErrorField("Lỗi !", "Chưa chọn dữ liệu cần xóa!", null);
+			return;
+		}
+		else {
+			Xe xeXoa;
+			String maXe;
+			String tenXe;
+			String loaiXe;
+			String nuocSX;
+			double soPK; String soPk_String;
+			String soKhung;
+			String soSuon;
+			String mauXe;
+			double giaXe; String giaXe_String;
+			String imagePath;
+			int soLuongKho, soLuongBan; String soLuongKho_String,soLuongBan_String;
+			
+			
+			tenXe = txtTenXe.getText().trim();
+			maXe = utilities.GenerateID.taoMaXe(tenXe);
+			loaiXe = txtLoaiXe.getText().trim();
+			nuocSX =txtNuocSX.getText().trim();
+			soPk_String = txtSoPK.getText().trim();
+			soPK = Double.parseDouble(soPk_String);
+			soKhung = txtSoKhung.getText().trim();
+			soSuon = txtSoSuon.getText().trim();
+			mauXe = txtMauXe.getText().trim();
+			giaXe_String = txtGia.getText().trim();
+			giaXe = Double.parseDouble(giaXe_String);
+			
+			soLuongKho_String = txtSoLuongKho.getText().trim();
+			soLuongKho = Integer.parseInt(soLuongKho_String);
+			
+			NhaCungCap ncc = cboNXS.getValue();
+			xeXoa = new Xe(xe.getMaXe(), tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STIRNG", ncc, soLuongKho, 0);
+			if(PopupNotify.confirmNotification("Thông báo xóa", "Bạn có muốn xóa", null)) {
+				xe_BUS.deleteXe(xeXoa);
+				PopupNotify.showErrorField(null,"Xóa thành công!",null);
+				addXeVaoTable();
+			}else {
+				PopupNotify.showErrorField(null,"Xóa thất bại!",null);
+			}
+		}
+	}
+	
+	@FXML
+	private void xoaTrang() {
+		txtTenXe.setText("");
+		txtLoaiXe.setText("");
+		txtNuocSX.setText("");
+		txtMauXe.setText("");
+	
+	
+		txtSoPK.setText("");
+		txtSoKhung.setText("");
+		
+		txtSoSuon.setText("");
+		txtGia.setText("");
+		txtSoLuongKho.setText("");
+		
 	}
 	
 	public Ctrl_MainMenu() {

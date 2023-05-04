@@ -57,7 +57,7 @@ public class Xe_BUS implements IXe {
 
 	@Override
 	public boolean deleteXe(Xe xe) {
-		// TODO Auto-generated method stub
-		return false;
+		Xe_DAO xe_DAO = new Xe_DAO();
+		return xe_DAO.deleteXe(xe);
 	}
 }

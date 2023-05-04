@@ -50,4 +50,8 @@ public class GenerateID {
 		// Nhân viên làm việc tại đại lí 2, tổng Nhân viên lúc đó là 20
 		// Kết quả: NV-002-0021
 	}
+	public static String taoMaLK() {
+		LocalDateTime thoiGianHienTai = LocalDateTime.now();
+		return "LK" + thoiGianHienTai.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
+	}
 }
