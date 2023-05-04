@@ -3,25 +3,38 @@ package entity;
 import java.util.Objects;
 
 public class ChiTietHoaDon {
-	private int id;
+	private String id;
 	private int soLuongXe;
+	private HoaDon hd;
+	private String maSP;
+	private double giaBan;
+	
 	public ChiTietHoaDon() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ChiTietHoaDon(int id, int soLuongXe) throws Exception {
+	public ChiTietHoaDon(String id, int soLuongXe, double giaBan ,String maSP,  HoaDon hd) throws Exception {
 		super();
 		setId(id);
 		setSoLuongXe(soLuongXe);
+		setHd(hd);
+		setMaSP(maSP);
+		setGiaBan(giaBan);
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) throws Exception {
-		if (id<=0)
+	public void setId(String id) throws Exception {
+		if (id.equals(""))
 			throw new Exception("Đã có lỗi trong quá trình phát sinh ID chi tiết hóa đơn");
 		this.id = id;
+	}
+	public String getMaSP() {
+		return maSP;
+	}
+	public void setMaSP(String maSP) {
+		this.maSP = maSP;
 	}
 	public int getSoLuongXe() {
 		return soLuongXe;
@@ -49,6 +62,18 @@ public class ChiTietHoaDon {
 	@Override
 	public String toString() {
 		return "ChiTietHoaDon [id=" + id + ", soLuongXe=" + soLuongXe + "]";
+	}
+	public HoaDon getHd() {
+		return hd;
+	}
+	public void setHd(HoaDon hd) {
+		this.hd = hd;
+	}
+	public double getGiaBan() {
+		return giaBan;
+	}
+	public void setGiaBan(double giaBan) {
+		this.giaBan = giaBan;
 	}
 	
 	

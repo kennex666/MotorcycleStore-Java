@@ -1,0 +1,6 @@
+package interfaces;
+
+public interface IKho {
+	public int getSoLuongById(String maSP);
+	public void updateQuantity(String maSP);
+}

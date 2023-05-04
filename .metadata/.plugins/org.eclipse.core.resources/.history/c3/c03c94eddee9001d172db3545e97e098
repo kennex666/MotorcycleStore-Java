@@ -1,0 +1,13 @@
+package dao;
+
+import interfaces.INhanVien;
+
+public class NhanVien_DAO implements INhanVien {
+
+	@Override
+	public String getTenByMaNV(String maNV) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

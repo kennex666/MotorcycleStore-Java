@@ -1,0 +1,19 @@
+package dao;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import connectDB.ConnectDB;
+import entity.LinhKien;
+import interfaces.ILinhKien;
+
+public class LinhKien_DAO implements ILinhKien {
+	Connection con = ConnectDB.getConnection();
+
+	@Override
+	public ArrayList<LinhKien> getAllLinhKien() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

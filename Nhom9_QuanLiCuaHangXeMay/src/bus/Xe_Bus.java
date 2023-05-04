@@ -4,15 +4,31 @@ import java.util.ArrayList;
 
 import dao.Xe_DAO;
 import entity.Xe;
-import interfaces.iXe;
+import interfaces.IXe;
 
-public class Xe_Bus implements iXe{
+public class Xe_BUS implements IXe {
+	private Xe_DAO xe_DAO;
 
-	@Override
+
+	public Xe_BUS() {
+		super();
+		xe_DAO = new Xe_DAO();
+	}
+	
 	public ArrayList<Xe> getAllXe() throws Exception {
-		Xe_DAO xe_DAO = new Xe_DAO();
-		
 		return xe_DAO.getAllXe();
+	}
+	
+	public void updateSoLuongKho(int newSL, String maXe) {
+		xe_DAO.updateSoLuongKho(newSL, maXe);
+	}
+	
+	public void updateSoLuongBan(int newSL, String maXe) {
+		xe_DAO.updateSoLuongBan(newSL, maXe);
+	}
+	
+	public String getTenByMa(String maXe) {
+		return xe_DAO.getTenByMa(maXe);
 	}
 
 	@Override
@@ -32,18 +48,16 @@ public class Xe_Bus implements iXe{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 	@Override
 	public boolean addXe(Xe xe) {
 		Xe_DAO xe_DAO = new Xe_DAO();
 		return xe_DAO.addXe(xe);
 	}
-	
+
 	@Override
 	public boolean deleteXe(Xe xe) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-
 }

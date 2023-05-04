@@ -13,13 +13,13 @@ import connectDB.ConnectDB;
 import entity.KhachHang;
 import entity.NhaCungCap;
 import entity.Xe;
-import interfaces.iXe;
+import interfaces.IXe;
 import utilities.ProcessDate;
 
-public class Xe_DAO implements iXe{
+public class Xe_DAO implements IXe {
 
 	Connection con = ConnectDB.getConnection();
-	
+
 	@Override
 	public ArrayList<Xe> getAllXe() throws Exception {
 		ArrayList<Xe> list = new ArrayList<>();
@@ -44,18 +44,17 @@ public class Xe_DAO implements iXe{
 
 				NhaCungCap ncc = new NhaCungCap(maNCC, results.getString("ten"));
 
-				Xe xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imgPath, ncc, soLuongKho, soLuongBan);
+				Xe xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imgPath, ncc,
+						soLuongKho, soLuongBan);
 				list.add(xe);
 			}
-		} 
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return list;
 	}
-
 
 	@Override
 	public ArrayList<Xe> findXe(String keywords) {
@@ -75,29 +74,30 @@ public class Xe_DAO implements iXe{
 			pstm.setString(9, keywords);
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
-				 Xe temp;
-				 	String maXe = rs.getString("maXe");
-					String tenXe = rs.getString("tenXe");
-					String loaiXe = rs.getString("loaiXe");
-					String nuocSX = rs.getString("nuocSX");
-					String soPK_string = rs.getString("soPK");
-					double soPK = Double.parseDouble(soPK_string);
-					String soKhung = rs.getString("soKhung");
-					String soSuon = rs.getString("soSuon");
-					String mauXe = rs.getString("mauXe");
-					String giaXe_string = rs.getString("giaXe");
-					double giaXe = Double.parseDouble(giaXe_string);
-					String soLuongKho_string = rs.getString("soLuongKho");
-					int soLuongKho = Integer.parseInt(soLuongKho_string);
-					String soLuongBan_string = rs.getString("soLuongBan");
-					int soLuongBan = Integer.parseInt(soLuongBan_string);
-					String imagePath = rs.getString("imagePath");
-					String maNcc = rs.getString("mancc");
-					NhaCungCap ncc = new NhaCungCap(maNcc, rs.getString("ten"));
-				 try {
-					 temp = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imagePath, ncc, soLuongKho, soLuongBan);
-					 listXe.add(temp);
-				 }catch (Exception e) {
+				Xe temp;
+				String maXe = rs.getString("maXe");
+				String tenXe = rs.getString("tenXe");
+				String loaiXe = rs.getString("loaiXe");
+				String nuocSX = rs.getString("nuocSX");
+				String soPK_string = rs.getString("soPK");
+				double soPK = Double.parseDouble(soPK_string);
+				String soKhung = rs.getString("soKhung");
+				String soSuon = rs.getString("soSuon");
+				String mauXe = rs.getString("mauXe");
+				String giaXe_string = rs.getString("giaXe");
+				double giaXe = Double.parseDouble(giaXe_string);
+				String soLuongKho_string = rs.getString("soLuongKho");
+				int soLuongKho = Integer.parseInt(soLuongKho_string);
+				String soLuongBan_string = rs.getString("soLuongBan");
+				int soLuongBan = Integer.parseInt(soLuongBan_string);
+				String imagePath = rs.getString("imagePath");
+				String maNcc = rs.getString("mancc");
+				NhaCungCap ncc = new NhaCungCap(maNcc, rs.getString("ten"));
+				try {
+					temp = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imagePath, ncc,
+							soLuongKho, soLuongBan);
+					listXe.add(temp);
+				} catch (Exception e) {
 					// TODO: handle exception
 				}
 			}
@@ -106,21 +106,21 @@ public class Xe_DAO implements iXe{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public boolean editXe(Xe xeCanSua) {
-		
+
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
-		
+
 		String query = "UPDATE Xe SET tenXe = ?, loaiXe = ?, nuocSX = ?, soPK = ?, soKhung = ?, soSuon = ?, mauXe = ?, gia = ?, imgPath = ?,soluongkho=?,soluongban=?,mancc=?    WHERE maXe = ?";
 		try {
 
 			PreparedStatement prestm = conn.prepareStatement(query);
-			
+
 			prestm.setString(1, xeCanSua.getTenXe());
 			prestm.setString(2, xeCanSua.getLoaiXe());
 			prestm.setString(3, xeCanSua.getNuocSX());
@@ -138,13 +138,12 @@ public class Xe_DAO implements iXe{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		
+
 		return result;
 	}
-	
+
 	public int totalXe() {
-		
+
 		try {
 			Connection conn = ConnectDB.getConnection();
 			String query = "SELECT Count(*) AS soLuong FROM Xe";
@@ -152,25 +151,25 @@ public class Xe_DAO implements iXe{
 			ResultSet rs = stm.executeQuery(query);
 			return rs.getInt("soLuong");
 		} catch (Exception e) {
-			System.out.println("Lỗi khi cập nhật xe: "+e.getMessage());
+			System.out.println("Lỗi khi cập nhật xe: " + e.getMessage());
 		}
 		return -1;
-		
+
 	}
-	
+
 	@Override
 	public boolean addXe(Xe xe) {
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		PreparedStatement statement = null;
 		String query = "insert into Xe values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		int n =0;
+		int n = 0;
 		try {
 			statement = con.prepareStatement(query);
 			statement.setString(1, xe.getMaXe());
 			statement.setString(2, xe.getNcc().getMaNCC());
-			statement.setString(3,xe.getTenXe());
-			statement.setString(4,xe.getLoaiXe());
+			statement.setString(3, xe.getTenXe());
+			statement.setString(4, xe.getLoaiXe());
 			statement.setString(5, xe.getNuocSX());
 			statement.setDouble(6, xe.getSoPK());
 			statement.setString(7, xe.getSoKhung());
@@ -182,27 +181,71 @@ public class Xe_DAO implements iXe{
 			statement.setInt(13, xe.getSoLuongBan());
 			n = statement.executeUpdate();
 			System.out.println("Load DUoc");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
-		
+
 		}
-		return n>0;
+		return n > 0;
 	}
-	
+
 	@Override
 	public boolean deleteXe(Xe xe) {
 		String query = "DELETE FROM Xe WHERE maXe = ?";
-		
+
 		try {
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setString(1, xe.getMaXe());
-			return statement.executeUpdate()>0;
+			return statement.executeUpdate() > 0;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return false;
 	}
-	
+
+	@Override
+	public void updateSoLuongKho(int newSL, String maXe) {
+		// TODO Auto-generated method stub
+		String sql = "UPDATE Xe SET SoLuongKho = " + newSL + " WHERE MaXe = '" + maXe + "'";
+		try {
+			Statement stm = con.createStatement();
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void updateSoLuongBan(int newSL, String maXe) {
+		// TODO Auto-generated method stub
+		String sql = "UPDATE Xe SET SoLuongBan = " + newSL + " WHERE MaXe = '" + maXe + "'";
+		try {
+			Statement stm = con.createStatement();
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public String getTenByMa(String maXe) {
+
+		// TODO Auto-generated method stub
+		String sql = "Select * from Xe where MaXe = '" + maXe + "'";
+		try {
+			Statement stm = con.createStatement();
+			ResultSet results = stm.executeQuery(sql);
+			if (results.next())
+				return results.getString("TenXe");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

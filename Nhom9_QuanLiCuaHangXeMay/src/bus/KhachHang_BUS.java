@@ -4,38 +4,39 @@ import java.util.ArrayList;
 
 import dao.KhachHang_DAO;
 import entity.KhachHang;
-import interfaces.IKhachHang;
 
-public class KhachHang_BUS implements IKhachHang{
-	KhachHang_DAO kh_dao;
-	@Override
-	public ArrayList<KhachHang> findCustomers(String keywords) {
-		return kh_dao.findCustomers(keywords);
-	}
+public class KhachHang_BUS {
+	KhachHang_DAO kh_DAO;
 	
-	@Override
-	public ArrayList<KhachHang> getAllCustomers() {
-		return kh_dao.getAllCustomers();
-	}
 	
 	public KhachHang_BUS() {
-		kh_dao = new KhachHang_DAO();
-	}
-	
-	@Override
-	public int totalCustomers() {
-		// TODO Auto-generated method stub
-		return kh_dao.totalCustomers();
-	}
-	
-	@Override
-	public boolean editCustomer(KhachHang kHTTMoi) {
-		return kh_dao.editCustomer(kHTTMoi);
+		super();
+		kh_DAO = new KhachHang_DAO();
 	}
 
-	@Override
-	public String toString() {
-		return "KhachHang_BUS []";
+
+	public ArrayList<KhachHang> getAllKhachHang() throws Exception {
+		return kh_DAO.getAllKhachHang();
 	}
 	
+	public String getTenByMaKH(String maKH) {
+		return kh_DAO.getHoTenByMa(maKH);
+	}
+
+
+	public boolean addCustomer(KhachHang temp) {
+		return kh_DAO.addCustomer(temp);
+	}
+	
+	public int totalCustomers() {
+		return kh_DAO.totalCustomers();
+	}
+	
+	public ArrayList<KhachHang> getAllCustomers() {
+		return kh_DAO.getAllCustomers();
+	}
+	
+	public ArrayList<KhachHang> findCustomers(String keywords) {
+		return kh_DAO.findCustomers(keywords);
+	}
 }

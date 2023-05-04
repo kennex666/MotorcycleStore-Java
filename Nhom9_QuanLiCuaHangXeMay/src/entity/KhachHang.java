@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class KhachHang {
-	private String maKhachHang, tenKhachHang, diaChi, soDT, soCCCD;
+	private String maKhachHang, tenKhachHang, diaChi, soDT, soCCCD, email;
 	private boolean gioiTinh;
 	private LocalDate ngaySinh;
 	
@@ -13,7 +13,7 @@ public class KhachHang {
 		// TODO Auto-generated constructor stub
 	}
 	public KhachHang(String maKhachHang, String tenKhachHang, String diaChi, String soDT, String soCCCD,
-			boolean gioiTinh, LocalDate ngaySinh) throws Exception{
+			boolean gioiTinh, LocalDate ngaySinh, String email) throws Exception{
 		super();
 		setMaKhachHang(maKhachHang);
 		setTenKhachHang(tenKhachHang);
@@ -22,12 +22,18 @@ public class KhachHang {
 		setSoCCCD(soCCCD);
 		setGioiTinh(gioiTinh);
 		setNgaySinh(ngaySinh);
+		setEmail(email);
 	}
 	public KhachHang(String maKhachHang) throws Exception{
 		super();
 		setMaKhachHang(maKhachHang);
 	}
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getMaKhachHang() {
 		return maKhachHang;
 	}

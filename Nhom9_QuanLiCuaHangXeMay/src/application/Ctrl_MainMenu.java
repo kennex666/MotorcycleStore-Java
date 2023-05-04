@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import bus.NhaCungCap_BUS;
-import bus.Xe_Bus;
+import bus.Xe_BUS;
 import connectDB.ConnectDB;
 import dao.NhaCungCap_DAO;
 import entity.KhachHang;
@@ -134,7 +134,7 @@ public class Ctrl_MainMenu {
 		
 		NhaCungCap ncc = cboNXS.getValue();
 		xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STRING", ncc, soLuongKho, 0);
-		Xe_Bus xe_BUS = new Xe_Bus();
+		Xe_BUS xe_BUS = new Xe_BUS();
 		xe_BUS.addXe(xe);
 		listXeObs.add(xe);
 		//addXeVaoTable();
@@ -179,7 +179,7 @@ public class Ctrl_MainMenu {
 		
 	}
 	@FXML
-	private Xe_Bus xe_BUS = new Xe_Bus();
+	private Xe_BUS xe_BUS = new Xe_BUS();
 	@FXML
 	private TableColumn<Xe, String> colMaXe,colTenXe,colLoaiXe,colNhaSX,colNuocSX,colMauXe,colSoSuon,colSoKhung;
 	@FXML
