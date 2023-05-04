@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import bus.KhachHang_BUS;
+import bus.LinhKien_BUS;
 import bus.NhanVien_BUS;
 import connectDB.ConnectDB;
+import entity.ChiTietSuaChua;
 import entity.ChucVu;
 import entity.KhachHang;
+import entity.LinhKien;
 import entity.NhanVien;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -453,6 +456,7 @@ public class Ctrl_MainMenu {
 		PopupNotify.showErrorField(null, "Thêm thành công!", null);
 	}
 	
+	
 	@FXML
 	private ComboBox<NhaCungCap> cboNXS;
 	
@@ -472,6 +476,7 @@ public class Ctrl_MainMenu {
 	private void clickDSXe() {
 		tabLK.setVisible(true);
 		tabXe.setVisible(false);
+		themDuLieuNCCLK();
 	}
 	
 	
@@ -486,10 +491,6 @@ public class Ctrl_MainMenu {
 		cboNXS.setItems(obsListNCC);
 	}
 	
-	@FXML
-	private void xoaXe() {
-		
-	}
 	@FXML
 	private Xe_BUS xe_BUS = new Xe_BUS();
 	@FXML
@@ -600,13 +601,150 @@ public class Ctrl_MainMenu {
 		}
 	}
 	
-	private void lamMoiTextFileTimKiem() {
-		
+	@FXML
+	private TextField txtTimKiemXe;
+	@FXML
+	private void timKiemTheoMa() throws Exception {
+		String ma = txtTimKiemXe.getText();
+		xoaTrangTable();
+		if (ma.isBlank()) {
+			addXeVaoTable();
+		}else {
+			ArrayList<Xe> listXe = xe_BUS.findXe(ma);
+			for (Xe x: listXe)
+				listXeObs.add(x);
+		}
+	}
+	
+	@FXML
+	private void lamMoiTextTimKiem() throws Exception {
+		txtTimKiemXe.setText("");
+		addXeVaoTable();
 	}
 	
 	private void xoaTrangTable() {
 		listXeObs.clear();
 	}
+	
+	@FXML
+	private void xoaXe() throws Exception {
+		Xe xe = (Xe) tblXe.getSelectionModel().getSelectedItem();
+		if (xe == null )
+		{
+			PopupNotify.showErrorField("Lỗi !", "Chưa chọn dữ liệu cần xóa!", null);
+			return;
+		}
+		else {
+			Xe xeXoa;
+			String maXe;
+			String tenXe;
+			String loaiXe;
+			String nuocSX;
+			double soPK; String soPk_String;
+			String soKhung;
+			String soSuon;
+			String mauXe;
+			double giaXe; String giaXe_String;
+			String imagePath;
+			int soLuongKho, soLuongBan; String soLuongKho_String,soLuongBan_String;
+			
+			
+			tenXe = txtTenXe.getText().trim();
+			maXe = utilities.GenerateID.taoMaXe(tenXe);
+			loaiXe = txtLoaiXe.getText().trim();
+			nuocSX =txtNuocSX.getText().trim();
+			soPk_String = txtSoPK.getText().trim();
+			soPK = Double.parseDouble(soPk_String);
+			soKhung = txtSoKhung.getText().trim();
+			soSuon = txtSoSuon.getText().trim();
+			mauXe = txtMauXe.getText().trim();
+			giaXe_String = txtGia.getText().trim();
+			giaXe = Double.parseDouble(giaXe_String);
+			
+			soLuongKho_String = txtSoLuongKho.getText().trim();
+			soLuongKho = Integer.parseInt(soLuongKho_String);
+			
+			NhaCungCap ncc = cboNXS.getValue();
+			xeXoa = new Xe(xe.getMaXe(), tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STIRNG", ncc, soLuongKho, 0);
+			if(PopupNotify.confirmNotification("Thông báo xóa", "Bạn có muốn xóa", null)) {
+				xe_BUS.deleteXe(xeXoa);
+				PopupNotify.showErrorField(null,"Xóa thành công!",null);
+				addXeVaoTable();
+			}else {
+				PopupNotify.showErrorField(null,"Xóa thất bại!",null);
+			}
+		}
+	}
+	
+	@FXML
+	private void xoaTrang() {
+		txtTenXe.setText("");
+		txtLoaiXe.setText("");
+		txtNuocSX.setText("");
+		txtMauXe.setText("");
+	
+	
+		txtSoPK.setText("");
+		txtSoKhung.setText("");
+		cboNXS.getValue();
+		txtSoSuon.setText("");
+		txtGia.setText("");
+		txtSoLuongKho.setText("");
+		
+	}
+	
+//	tab Linh Kien
+	
+	@FXML
+	private TextField txtTenLinhKien,txtGiaLinhKien,txtSoLuongKhoLK;
+	
+	@FXML
+	private ComboBox<NhaCungCap> cboNCCLK;
+	
+	@FXML
+	private ObservableList<LinhKien> listXeObsLK = FXCollections.observableArrayList();
+	
+	@FXML
+	private void themDuLieuNCCLK() {
+		ArrayList<NhaCungCap> listNCC = ncc_bus.getAllNCC();
+		ObservableList<NhaCungCap> obsListNCC = FXCollections.observableArrayList();
+		obsListNCC.add(new NhaCungCap(null, "Tất cả"));
+		for (NhaCungCap x : listNCC)
+			obsListNCC.add(x);
+		cboNCCLK.setValue(obsListNCC.get(0));
+		cboNCCLK.setItems(obsListNCC);
+	}
+	
+	
+	@FXML
+	private void themLinhKien() throws Exception {
+//		LinhKien linhKien;
+//		String maLK;
+//		String tenLK;
+//		double giaLK; String giaLK_String;
+//		String imagePath;
+//		int soLuongKhoLK; String soLuongKhoLK_String;
+//		
+//		
+//		tenLK = txtTenLinhKien.getText().trim();
+//		maLK = utilities.GenerateID.taoMaLK();
+//		giaLK_String = txtGiaLinhKien.getText().trim();
+//		giaLK = Double.parseDouble(giaLK_String);
+//		
+//		soLuongKhoLK_String = txtSoLuongKhoLK.getText().trim();
+//		soLuongKhoLK = Integer.parseInt(soLuongKhoLK_String);
+//		
+//		NhaCungCap ncc = cboNCCLK.getValue();
+//		ChiTietSuaChua chiTietSuaChua = new ChiTietSuaChua();
+//		
+//		linhKien = new LinhKien(maLK, tenLK, "String", ncc, chiTietSuaChua, giaLK, soLuongKhoLK, 0);
+//		LinhKien_BUS linhKien_BUS = new LinhKien_BUS();
+//		linhKien_BUS.themLinhKien(linhKien);
+//		listXeObsLK.add(linhKien);
+//		//addXeVaoTable();
+//		PopupNotify.showErrorField(null, "Thêm thành công!", null);
+	}
+	
 	
 	public Ctrl_MainMenu() {
 		super();
