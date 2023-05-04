@@ -1,7 +1,0 @@
-package connectDB;
-
-public class ConnectDB {
-	private ConnectDB instance = new ConnectDB();
-	
-	
-}

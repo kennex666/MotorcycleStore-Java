@@ -1,7 +1,0 @@
-package utilities;
-
-public class ProcessDate {
-	public LocalDate date2LocalDate() {
-		
-	}
-}
