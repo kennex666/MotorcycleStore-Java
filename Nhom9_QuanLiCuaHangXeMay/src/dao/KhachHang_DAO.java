@@ -27,6 +27,7 @@ public class KhachHang_DAO implements IKhachHang{
 			pstm.setString(2, keywords);
 			pstm.setString(3, keywords);
 			pstm.setString(4, keywords);
+			pstm.setString(5, keywords);
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
 				 KhachHang temp;
@@ -156,6 +157,24 @@ public class KhachHang_DAO implements IKhachHang{
 			// TODO: handle exception
 		}
 		
+		
+		return result;
+	}
+	
+	@Override
+	public boolean deleteCustomer(KhachHang kh) {
+		boolean result = false;
+		Connection conn = ConnectDB.getConnection();
+		
+		String query = "DELETE FROM KhachHang WHERE maKH = ?";
+		try {
+
+			PreparedStatement prestm = conn.prepareStatement(query);
+			prestm.setString(1, kh.getMaKhachHang());
+			return (prestm.executeUpdate() > 0) ? true : false;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 		return result;
 	}

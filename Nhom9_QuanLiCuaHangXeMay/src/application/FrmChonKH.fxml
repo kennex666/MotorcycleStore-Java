@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_MainMenu">
+   <center>
+      <TabPane prefHeight="700.0" prefWidth="916.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+            <Tab closable="false" text="Danh sách khách hàng">
+               <content>
+                  <AnchorPane prefHeight="588.0" prefWidth="1294.0">
+                     <children>
+                        <TableView fx:id="tblKhachHang" layoutY="66.0" prefHeight="593.0" prefWidth="918.0">
+                          <columns>
+                              <TableColumn fx:id="colSTT" prefWidth="48.0" text="STT" />
+                            <TableColumn fx:id="colMaKH" prefWidth="135.0" text="Mã khách hàng" />
+                            <TableColumn fx:id="colHoTen" prefWidth="229.0" text="Họ và tên" />
+                              <TableColumn fx:id="colGioiTinh" minWidth="7.0" prefWidth="81.0" text="Giới tính" />
+                              <TableColumn fx:id="colNgaySinh" prefWidth="192.0" text="Ngày sinh" />
+                              <TableColumn fx:id="colSDT" prefWidth="232.0" text="Số điện thoại" />
+                              <TableColumn fx:id="colEmail" prefWidth="143.0" text="Email" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="40.0" layoutY="21.0" text="Tìm kiếm khách hàng: " />
+                        <TextField layoutX="199.0" layoutY="16.0" prefHeight="12.0" prefWidth="290.0" promptText="Tìm kiếm tên, mã kh, sdt, cccd" />
+                        <Button layoutX="517.0" layoutY="16.0" mnemonicParsing="false" text="Tìm kiếm" />
+                        <Button layoutX="627.0" layoutY="16.0" mnemonicParsing="false" text="Làm mới" />
+                        <Button fx:id="btnSelect" layoutX="729.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionBtnSuaKH" text="Chọn khách hàng" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

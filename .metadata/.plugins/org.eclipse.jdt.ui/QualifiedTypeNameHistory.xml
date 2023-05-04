@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="javafx.scene.control.DatePicker"/>
     <fullyQualifiedTypeName name="utilities.GioiTinh"/>
     <fullyQualifiedTypeName name="java.lang.Package"/>
@@ -35,5 +34,10 @@
     <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
     <fullyQualifiedTypeName name="application.Ctrl_DienThongTinKH"/>
     <fullyQualifiedTypeName name="javafx.scene.control.PopupControl"/>
+    <fullyQualifiedTypeName name="utilities.SelectedTab"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
+    <fullyQualifiedTypeName name="java.lang.StackWalker.Option"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="utilities.PopupNotify"/>
 </qualifiedTypeNameHistroy>

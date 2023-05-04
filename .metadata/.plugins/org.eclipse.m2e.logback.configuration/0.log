@@ -13,3 +13,4 @@
 2023-05-04 00:01:28,239 [Worker-177: Debug Source Lookup] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/openjfx/javafx-fxml/20/javafx-fxml-20-sources.jar
 2023-05-04 00:01:28,361 [Worker-169: JDI thread evaluations] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/openjfx/javafx-fxml/20/javafx-fxml-20-sources.jar
 2023-05-04 00:01:28,364 [Worker-177: Debug Source Lookup] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/openjfx/javafx-fxml/20/javafx-fxml-20-sources.jar
+2023-05-04 10:44:01,561 [Worker-8: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

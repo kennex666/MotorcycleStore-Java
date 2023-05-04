@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import bus.KhachHang_BUS;
 import connectDB.ConnectDB;
@@ -18,14 +19,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import utilities.PopupNotify;
+import utilities.SelectedTab;
 
 public class Ctrl_MainMenu {
+	private SelectedTab tabSelected;
 	@FXML
 	private Button btnXe, btnLinhKien;
 	@FXML
@@ -42,15 +46,22 @@ public class Ctrl_MainMenu {
 	private TableColumn<KhachHang, Boolean> colGioiTinh;
 	@FXML
 	private TableColumn<KhachHang, Number> colSTT;
+	@FXML
+	private Tab tabKH;
+	@FXML
+	private TextField txtSearch;
 	
+
 	private KhachHang_BUS kh_bus;
 	private ObservableList<KhachHang> listKHObs = FXCollections.observableArrayList();
 	
 	@FXML
-	private Tab tabKH;
-	
-	@FXML
 	private void initialize() {
+
+		// Preload for KhachHang Table
+		loadDataTablePropertyKH();
+		tblKhachHang.setItems(listKHObs);
+		
 		tabProduct.getTabPane().getTabs().remove(tabProduct);
 	}
 	
@@ -88,13 +99,22 @@ public class Ctrl_MainMenu {
 		KhachHang temp;
 		LocalDate date = LocalDate.now();
 		
-
-		if (tabKH.isSelected()) {
-			loadDataKH();
-			tblKhachHang.setItems(listKHObs);
+		// Remove after not work
+		if (!tabKH.isSelected() && tabSelected == SelectedTab.KhachHang) {
+			removeAllRowsKH();
 		}
+		if (tabKH.isSelected()) {
+			tabSelected = SelectedTab.KhachHang;
+			loadDataKHToTable();
+		}
+		
 	}
 	
+
+	
+	/*
+	 * Handle event Tab KhachHang
+	 */
 	@FXML
 	private void actionBtnSuaKH(){
 		KhachHang temp = (KhachHang) tblKhachHang.getSelectionModel().getSelectedItem();
@@ -114,6 +134,7 @@ public class Ctrl_MainMenu {
 			FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("FrmDienTTKhachHang.fxml"));
 			frmEdit = (BorderPane) fxmlLoad.load();
 			Ctrl_DienThongTinKH ctrlDienTT = fxmlLoad.getController();
+			ctrlDienTT.setTableModel(listKHObs);
 			Scene sceneTaoKH = new Scene(frmEdit);
 			Stage secondaryStage = new Stage();
 			secondaryStage.setScene(sceneTaoKH);
@@ -127,11 +148,7 @@ public class Ctrl_MainMenu {
 		return null;
 	}
 	
-	/*
-	 * Phần xử lí dữ liệu bảng Khách Hàng
-	 */
-	
-	private void loadDataKH() {
+	private void loadDataTablePropertyKH() {
 		colMaKH.setCellValueFactory(new PropertyValueFactory<>("maKhachHang"));
 		colHoTen.setCellValueFactory(new PropertyValueFactory<>("tenKhachHang"));
 		colDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
@@ -156,16 +173,69 @@ public class Ctrl_MainMenu {
 		// Auto numbered
 		colSTT.setSortable(false);
 		colSTT.setCellValueFactory(col -> 
-			new ReadOnlyObjectWrapper<Number>(tblKhachHang.getItems().indexOf(col.getValue()) + 		1));
+			new ReadOnlyObjectWrapper<Number>(tblKhachHang.getItems().indexOf(col.getValue()) + 1));
 
+	}
+	
+	private void loadDataKHToTable() {
 		ArrayList<KhachHang> listKH = kh_bus.getAllCustomers();
 		for (KhachHang x : listKH)
 			listKHObs.add(x);
 	}
 	
+	private void removeAllRowsKH() {
+		// TODO Auto-generated method stub
+		listKHObs.clear();
+	}
+	
+	@FXML
+	private void actionSearchKH() {
+		// TODO Auto-generated method stub
+		String ma = txtSearch.getText();
+		removeAllRowsKH();
+		if (ma.isBlank()) {
+			loadDataKHToTable();
+		}else {
+			ArrayList<KhachHang> listSearch = kh_bus.findCustomers(ma);
+			for (KhachHang x : listSearch) {
+				listKHObs.add(x);
+			}
+		}
+	}
+	
+	@FXML
+	private void actionBtnDeleteKH() {
+		// TODO Auto-generated method stub
+		KhachHang temp = (KhachHang) tblKhachHang.getSelectionModel().getSelectedItem();
+		if (temp == null) {
+			PopupNotify.showErrorField("Lỗi", "Vui lòng chọn khách hàng cần thay đổi thông tin", "Hãy chọn 1 khách hàng cụ thể để tiếp tục!");
+			return;
+		}
+		if (PopupNotify.confirmNotification("Xác nhận thay đổi", "Bạn có chắc chắn muốn xoá thông tin khách hàng " + temp.getTenKhachHang() +"?", "Lưu ý: Thao tác không thể hoàn tác!")) {
+			if (kh_bus.deleteCustomer(temp)) {
+				PopupNotify.successNotify("Thông tin", "Đã xoá khách hàng " + temp.getTenKhachHang() + "!", null);
+				listKHObs.remove(temp);
+			}else {
+				PopupNotify.showErrorField("Lỗi", "Lỗi cơ sở dữ liệu! Thao tác thất bại.", "Hãy liên hệ với QTV để được hỗ trợ thêm.");
+			}
+		}
+	}
+	
+	@FXML
+	private void actionRefreshTableKH() {
+		// TODO Auto-generated method stub
+		removeAllRowsKH();
+		loadDataKHToTable();
+		txtSearch.setText("");
+		
+	}
+	
+	
 	public Ctrl_MainMenu() {
 		super();
 		ConnectDB.getInstance().connect();
 		kh_bus = new KhachHang_BUS();
+
+		tabSelected = SelectedTab.MainMenu;
 	}
 }

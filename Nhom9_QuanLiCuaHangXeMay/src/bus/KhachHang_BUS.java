@@ -37,6 +37,11 @@ public class KhachHang_BUS implements IKhachHang{
 	public boolean addCustomer(KhachHang kHTTMoi) {
 		return kh_dao.addCustomer(kHTTMoi);
 	}
+	
+	@Override
+	public boolean deleteCustomer(KhachHang kh) {
+		return kh_dao.deleteCustomer(kh);
+	}
 
 	@Override
 	public String toString() {

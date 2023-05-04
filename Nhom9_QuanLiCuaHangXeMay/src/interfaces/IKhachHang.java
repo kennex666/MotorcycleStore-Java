@@ -18,4 +18,6 @@ public interface IKhachHang {
 	
 	public boolean addCustomer(KhachHang kh);
 	
+	public boolean deleteCustomer(KhachHang kh);
+	
 }

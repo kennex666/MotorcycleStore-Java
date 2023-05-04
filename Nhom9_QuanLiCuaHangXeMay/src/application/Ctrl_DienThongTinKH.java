@@ -82,7 +82,8 @@ public class Ctrl_DienThongTinKH {
 			case THEM -> {
 				if (kh_bus.addCustomer(temp)) {
 					PopupNotify.successNotify("Thông tin", "Thêm khách hàng thành công!", "");
-					tblModelKH.add(temp);
+					if (tblModelKH != null)
+						tblModelKH.add(temp);
 					stage.close();
 				}else {
 					PopupNotify.showErrorField("Lỗi", "Thêm khách hàng thất bại!", "Lỗi do kết nối cơ sở dữ liệu hoặc bất thường dữ liệu");
@@ -91,7 +92,9 @@ public class Ctrl_DienThongTinKH {
 			case SUA ->{
 				if (kh_bus.editCustomer(temp)) {
 					PopupNotify.successNotify("Thông tin", "Sửa thông tin khách hàng thành công!", "");
-					tblModelKH.set(tblModelKH.indexOf(temp), temp);
+
+					if (tblModelKH != null)
+						tblModelKH.set(tblModelKH.indexOf(temp), temp);
 					stage.close();
 				}else {
 					PopupNotify.showErrorField("Lỗi", "Sửa thông tin khách hàng thất bại!", "Lỗi do kết nối cơ sở dữ liệu hoặc bất thường dữ liệu");

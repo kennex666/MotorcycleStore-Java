@@ -314,12 +314,12 @@
                                             </columns>
                                           </TableView>
                                           <Label layoutX="50.0" layoutY="21.0" text="Tìm kiếm khách hàng: " />
-                                          <TextField layoutX="209.0" layoutY="16.0" prefHeight="12.0" prefWidth="290.0" promptText="Tìm kiếm tên, mã kh, sdt, cccd" />
-                                          <Button layoutX="527.0" layoutY="16.0" mnemonicParsing="false" text="Tìm kiếm" />
-                                          <Button layoutX="637.0" layoutY="16.0" mnemonicParsing="false" text="Làm mới" />
+                                          <TextField fx:id="txtSearch" layoutX="209.0" layoutY="16.0" onAction="#actionSearchKH" prefHeight="12.0" prefWidth="290.0" promptText="Tìm kiếm tên, mã kh, sdt, cccd" />
+                                          <Button fx:id="btnSearch" layoutX="527.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionSearchKH" text="Tìm kiếm" />
+                                          <Button fx:id="btnRefresh" layoutX="637.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionRefreshTableKH" text="Làm mới" />
                                           <Button layoutX="747.0" layoutY="16.0" mnemonicParsing="false" text="Lọc nâng cao" />
                                           <Button fx:id="btnSuaKH" layoutX="970.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionBtnSuaKH" text="Sửa thông tin" />
-                                          <Button layoutX="1113.0" layoutY="16.0" mnemonicParsing="false" text="Xoá thông tin" />
+                                          <Button layoutX="1113.0" layoutY="16.0" mnemonicParsing="false" onAction="#actionBtnDeleteKH" text="Xoá thông tin" />
                                        </children>
                                     </AnchorPane>
                                  </content>
