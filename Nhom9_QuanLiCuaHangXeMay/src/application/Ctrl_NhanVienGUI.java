@@ -923,7 +923,7 @@ public class Ctrl_NhanVienGUI {
 			for (Object obj: tblProduct.getItems()) {
 				if (obj instanceof Xe) {
 					Xe xe = (Xe) obj;
-					xe_BUS.updateSLKho(xe.getSoLuongKho(), xe.getMaXe());
+					xe_BUS.updateSoLuongKho(xe.getSoLuongKho(), xe.getMaXe());
 				}
 				else {
 					LinhKien lk = (LinhKien) obj;
@@ -933,7 +933,7 @@ public class Ctrl_NhanVienGUI {
 			for (Object obj: tblCart.getItems()) {
 				if (obj instanceof Xe) {
 					Xe xe = (Xe) obj;
-					xe_BUS.updateSLBan(xe.getSoLuongKho(), xe.getMaXe());
+					xe_BUS.updateSoLuongBan(xe.getSoLuongKho(), xe.getMaXe());
 				}
 				else {
 					LinhKien lk = (LinhKien) obj;

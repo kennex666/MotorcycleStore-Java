@@ -1,0 +1,23 @@
+package connectDB;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class ConnectDB {
+	private static ConnectDB instance = new ConnectDB();
+	private static Connection conn = null;
+	
+	public static void connect() {
+		try {
+			String url = "jdbc:sqlserver://localhost:1433;databasename=<>";
+			DriverManager.getConnection(url, "sa", "sapassword");
+			conn.
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+	}
+	
+}

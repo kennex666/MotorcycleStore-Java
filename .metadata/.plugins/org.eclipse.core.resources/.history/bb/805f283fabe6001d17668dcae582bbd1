@@ -1,0 +1,62 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import connectDB.ConnectDB;
+import entity.KhachHang;
+import interfaces.IKhachHang;
+
+public class KhachHang_DAO implements IKhachHang{
+	@Override
+	public ArrayList<KhachHang> findCustomers(String keywords) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+	
+	@Override
+	public ArrayList<KhachHang> getAllCustomers() {
+		// TODO Auto-generated method stub
+		Connection conn = ConnectDB.getConnection();
+		String query = "SELECT * FROM KhachHang";
+		try {
+			Statement stm = conn.createStatement();
+			ResultSet rs = stm.executeQuery(query);
+			while (rs.next()) {
+				 KhachHang temp;
+				 String maKH = rs.getString("maKH");
+				 String tenKH = rs.getString("tenKH");
+				 String diaChi = rs.getString("diaChi");
+				 String SDT = rs.getString("SDT");
+				 String soCCCD = rs.getString("soCCCD");
+				 boolean gt = rs.getBoolean("gioiTinh");
+				 LocalDate ngaySinh = rs.getDate("ngaySinh")
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@Override
+	public int totalCustomers() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public KhachHang_DAO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "KhachHang_DAO []";
+	}
+
+}

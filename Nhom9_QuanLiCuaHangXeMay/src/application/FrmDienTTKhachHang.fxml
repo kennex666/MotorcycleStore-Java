@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_DienThongTinKH">
+   <center>
+      <Pane prefHeight="617.0" prefWidth="810.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutY="32.0" prefHeight="53.0" prefWidth="810.0" text="Thông tin khách hàng" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" layoutY="140.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Label text="Họ tên khách hàng:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="15.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField prefHeight="31.0" prefWidth="299.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="25.0" />
+                  <Label text="Giới tính:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <RadioButton fx:id="radNam" mnemonicParsing="false" text="Nam">
+                     <font>
+                        <Font size="16.0" />
+                     </font></RadioButton>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <RadioButton fx:id="radNu" mnemonicParsing="false" text="Nữ">
+                     <font>
+                        <Font size="16.0" />
+                     </font></RadioButton>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
