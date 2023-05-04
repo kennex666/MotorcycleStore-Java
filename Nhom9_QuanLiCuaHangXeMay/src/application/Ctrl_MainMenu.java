@@ -46,7 +46,7 @@ public class Ctrl_MainMenu {
 	@FXML
 	private Button btnXe, btnLinhKien;
 	@FXML
-	private TableView tblKhachHang, tblProduct, tblNhanVien;
+	private TableView tblKhachHang, tblNhanVien;
 	@FXML
 	private SplitPane splitPaneXe, splitPaneLK, splitPaneBH;
 	@FXML
@@ -85,7 +85,7 @@ public class Ctrl_MainMenu {
 		tblKhachHang.setItems(listKHObs);
 		tblNhanVien.setItems(listNVObs);
 		themDuLieuNCC();
-		tabProduct.getTabPane().getTabs().remove(tabProduct);
+		//tabProduct.getTabPane().getTabs().remove(tabProduct);
 	}
 	
 	@FXML
@@ -133,7 +133,7 @@ public class Ctrl_MainMenu {
 		}
 
 		if (!tabNhanVien.isSelected() && tabSelected == SelectedTab.NhanVien) {
-			removeAllRowsKH();
+			removeAllRowsNV();
 		}
 		if (tabNhanVien.isSelected()) {
 			tabSelected = SelectedTab.NhanVien;

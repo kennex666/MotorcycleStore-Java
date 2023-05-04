@@ -60,10 +60,6 @@ public class Ctrl_DienThongTinNV {
 		radNam.setToggleGroup(radGroup);
 		radNu.setToggleGroup(radGroup);
 		radNam.setSelected(true);
-
-		cboChucVu.setItems(obsListCV);
-		cboPhongBan.setItems(obsListPB);
-		cboTrinhDo.setItems(obsListTD);
 		
 		cboBacTho.setItems(obsListBT);
 		cboChucVu.setItems(obsListCV);
