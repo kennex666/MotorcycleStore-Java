@@ -20,4 +20,6 @@ public interface INhanVien {
 	
 	public boolean deleteEmployee(NhanVien nv);
 	
+	String getTenByMaNV(String maNV);
+	
 }

@@ -29,6 +29,14 @@ public class GenerateID {
 		return String.format("%s-%03d-%04d", type, maDL, numberCustomer + 1) ; // [Loại KH]-1[Mã đại lí]-[0000x]
 		// KH cá nhân đăng kí lần đầu tại đại lí 2, tổng KH lúc đó là 12
 		// Kết quả: DN-002-0013
+  }
+	public static String taoMaHD() {
+		LocalDateTime thoiGianHienTai = LocalDateTime.now();
+		return "HD" + thoiGianHienTai.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
+	}
+	public static String taoMaCTHD() {
+		LocalDateTime thoiGianHienTai = LocalDateTime.now();
+		return "CTHD" + thoiGianHienTai.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
 	}
 
 	/* 

@@ -44,6 +44,10 @@ public class NhanVien_BUS implements INhanVien{
 		return nv_dao.deleteEmployee(nv);
 	}
 
+	public String getTenByMaNV(String maNV) {
+		return nv_dao.getTenByMaNV(maNV);
+	}
+
 	@Override
 	public String toString() {
 		return "NhanVien_BUS []";

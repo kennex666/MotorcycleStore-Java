@@ -199,7 +199,7 @@ public class NhanVien_DAO implements INhanVien{
 	public boolean deleteEmployee(NhanVien nv) {
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
-		
+
 		String query = "DELETE FROM NhanVien WHERE manv = ?";
 		try {
 
@@ -209,8 +209,25 @@ public class NhanVien_DAO implements INhanVien{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		return result;
+	}
+	
+	@Override
+	public String getTenByMaNV(String maNV) {
+		
+		Connection conn = ConnectDB.getConnection();
+		String query = "Select * from NhanVien WHERE MaNV = '" + maNV + "'";
+		try {
+			Statement stm = conn.createStatement();
+			ResultSet results = stm.executeQuery(query);
+			if (results.next())
+				return results.getString("HoTenNV");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public NhanVien_DAO() {

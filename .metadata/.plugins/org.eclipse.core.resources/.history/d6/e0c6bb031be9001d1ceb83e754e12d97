@@ -1,0 +1,17 @@
+package bus;
+
+import dao.Xe_Kho_DAO;
+
+public class Xe_Kho_BUS {
+	private Xe_Kho_DAO xeKho_DAO;
+
+	public Xe_Kho_BUS() {
+		super();
+		xeKho_DAO = new Xe_Kho_DAO();
+	}
+	
+	public int getSoLuongByMa(String maSP) {
+		return xeKho_DAO.getSoLuongByMaSP(maSP);
+	}
+	
+}

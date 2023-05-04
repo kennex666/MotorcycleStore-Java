@@ -1,0 +1,56 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import connectDB.ConnectDB;
+import entity.NhaCungCap;
+import entity.Xe;
+import interfaces.IXe;
+
+public class Xe_DAO implements IXe {
+	Connection con = ConnectDB.getConnection();
+	
+	@Override
+	public ArrayList<Xe> getAllXe() throws Exception {
+		// TODO Auto-generated method stub
+		ArrayList<Xe> list = new ArrayList<>();
+		String query = "Select * from Xe";
+		try {
+			Statement stm = con.createStatement();
+			ResultSet results = stm.executeQuery(query);
+			while (results.next()) {
+				String maXe = results.getString("MaXe");
+				String maNCC = results.getString("MaNCC");
+				String tenXe = results.getString("TenXe");
+				String loaiXe = results.getString("LoaiXe");
+				String nuocSX = results.getString("nuocSX");
+				double soPK = results.getDouble("SoPK");
+				String soKhung = results.getString("SoKhung");
+				String soSuon = results.getString("SoSuon");
+				String mauXe = results.getString("MauXe");
+				double giaXe = results.getDouble("Gia");
+				String ngayNhap = results.getString("NgayNhap");
+				String imgPath = results.getString("ImgPath");
+				
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate date = LocalDate.parse(ngayNhap, formatter);
+				NhaCungCap ncc = new NhaCungCap(maNCC);
+				Xe xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imgPath, date, ncc);
+				list.add(xe);
+			}
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+}

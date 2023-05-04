@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,55 @@ import entity.KhachHang;
 import interfaces.IKhachHang;
 import utilities.ProcessDate;
 
-public class KhachHang_DAO implements IKhachHang{
+public class KhachHang_DAO implements IKhachHang {
+
+	@Override
+	public ArrayList<KhachHang> getAllKhachHang() throws Exception {
+		ArrayList<KhachHang> list = new ArrayList<>();
+		String query = "Select * from KhachHang";
+		Connection conn = ConnectDB.getConnection();
+
+		try {
+			Statement stm = conn.createStatement();
+			ResultSet results = stm.executeQuery(query);
+			while (results.next()) {
+				String maKH = results.getString("MaKH");
+				String tenKH = results.getString("TenKH");
+				String diaChi = results.getString("DiaChi");
+				String sdt = results.getString("SDT");
+				String cccd = results.getString("SoCCCD");
+				boolean gioiTinhString = results.getBoolean("GioiTinh");
+				Date ngaySinh = results.getDate("NgaySinh");
+				String email = results.getString("Email");
+
+				KhachHang kh = new KhachHang(maKH, tenKH, diaChi, sdt, cccd, gioiTinhString, ngaySinh.toLocalDate(),
+						email);
+				list.add(kh);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public String getHoTenByMa(String maKH) {
+		String query = "Select * from KhachHang WHERE MaKH = '" + maKH + "'";
+		Connection conn = ConnectDB.getConnection();
+		try {
+			Statement stm = conn.createStatement();
+			ResultSet results = stm.executeQuery(query);
+			if (results.next())
+				return results.getString("TenKH");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	@Override
 	public ArrayList<KhachHang> findCustomers(String keywords) {
 		// TODO Auto-generated method stub// TODO Auto-generated method stub
@@ -30,19 +79,19 @@ public class KhachHang_DAO implements IKhachHang{
 			pstm.setString(5, keywords);
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
-				 KhachHang temp;
-				 String maKH = rs.getString("maKH");
-				 String tenKH = rs.getString("tenKH");
-				 String diaChi = rs.getString("diaChi");
-				 String SDT = rs.getString("SDT");
-				 String soCCCD = rs.getString("soCCCD");
-				 boolean gt = rs.getBoolean("gioiTinh");
-				 String email = rs.getString("email");
-				 LocalDate ngaySinh = ProcessDate.date2LocalDate(rs.getDate("ngaySinh"));
-				 try {
-					 temp = new KhachHang(maKH, tenKH, diaChi, SDT, soCCCD, gt, ngaySinh, email);
-					 listKhachHang.add(temp);
-				 }catch (Exception e) {
+				KhachHang temp;
+				String maKH = rs.getString("maKH");
+				String tenKH = rs.getString("tenKH");
+				String diaChi = rs.getString("diaChi");
+				String SDT = rs.getString("SDT");
+				String soCCCD = rs.getString("soCCCD");
+				boolean gt = rs.getBoolean("gioiTinh");
+				String email = rs.getString("email");
+				LocalDate ngaySinh = ProcessDate.date2LocalDate(rs.getDate("ngaySinh"));
+				try {
+					temp = new KhachHang(maKH, tenKH, diaChi, SDT, soCCCD, gt, ngaySinh, email);
+					listKhachHang.add(temp);
+				} catch (Exception e) {
 					// TODO: handle exception
 				}
 			}
@@ -51,10 +100,10 @@ public class KhachHang_DAO implements IKhachHang{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
+
 	@Override
 	public ArrayList<KhachHang> getAllCustomers() {
 		// TODO Auto-generated method stub
@@ -65,19 +114,19 @@ public class KhachHang_DAO implements IKhachHang{
 			Statement stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
-				 KhachHang temp;
-				 String maKH = rs.getString("maKH");
-				 String tenKH = rs.getString("tenKH");
-				 String diaChi = rs.getString("diaChi");
-				 String SDT = rs.getString("SDT");
-				 String soCCCD = rs.getString("soCCCD");
-				 boolean gt = rs.getBoolean("gioiTinh");
-				 LocalDate ngaySinh = ProcessDate.date2LocalDate(rs.getDate("ngaySinh"));
-				 String email = rs.getString("email");
-				 try {
-					 temp = new KhachHang(maKH, tenKH, diaChi, SDT, soCCCD, gt, ngaySinh, email);
-					 listKhachHang.add(temp);
-				 }catch (Exception e) {
+				KhachHang temp;
+				String maKH = rs.getString("maKH");
+				String tenKH = rs.getString("tenKH");
+				String diaChi = rs.getString("diaChi");
+				String SDT = rs.getString("SDT");
+				String soCCCD = rs.getString("soCCCD");
+				boolean gt = rs.getBoolean("gioiTinh");
+				LocalDate ngaySinh = ProcessDate.date2LocalDate(rs.getDate("ngaySinh"));
+				String email = rs.getString("email");
+				try {
+					temp = new KhachHang(maKH, tenKH, diaChi, SDT, soCCCD, gt, ngaySinh, email);
+					listKhachHang.add(temp);
+				} catch (Exception e) {
 					// TODO: handle exception
 				}
 			}
@@ -88,16 +137,16 @@ public class KhachHang_DAO implements IKhachHang{
 		}
 		return null;
 	}
-	
+
 	public boolean editCustomer(KhachHang kHTTMoi) {
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
-		
+
 		String query = "UPDATE KhachHang SET tenKH = ?, diaChi = ?, SDT = ?, soCCCD = ?, gioiTinh = ?, ngaySinh = ?, email = ? WHERE maKH = ?";
 		try {
 
 			PreparedStatement prestm = conn.prepareStatement(query);
-			
+
 			prestm.setString(1, kHTTMoi.getTenKhachHang());
 			prestm.setString(2, kHTTMoi.getDiaChi());
 			prestm.setString(3, kHTTMoi.getSoDT());
@@ -111,11 +160,10 @@ public class KhachHang_DAO implements IKhachHang{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		
+
 		return result;
 	}
-	
+
 	@Override
 	public int totalCustomers() {
 		// TODO Auto-generated method stub
@@ -133,11 +181,11 @@ public class KhachHang_DAO implements IKhachHang{
 
 		return -1;
 	}
-	
+
 	public boolean addCustomer(KhachHang kHTTMoi) {
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
-		
+
 		String query = "INSERT INTO KhachHang (maKH, tenKH, diaChi, SDT, soCCCD, gioiTinh, ngaySinh, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 
@@ -156,16 +204,15 @@ public class KhachHang_DAO implements IKhachHang{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		
+
 		return result;
 	}
-	
+
 	@Override
 	public boolean deleteCustomer(KhachHang kh) {
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
-		
+
 		String query = "DELETE FROM KhachHang WHERE maKH = ?";
 		try {
 
@@ -175,10 +222,10 @@ public class KhachHang_DAO implements IKhachHang{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		return result;
 	}
-	
+
 	public KhachHang_DAO() {
 		// TODO Auto-generated constructor stub
 	}

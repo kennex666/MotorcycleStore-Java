@@ -12,6 +12,12 @@ public class ChiTietSuaChua {
 		LinhKienID = linhKienID;
 		PhieuSuaChuaID = phieuSuaChuaID;
 	}
+	
+	public ChiTietSuaChua(int iD) {
+		super();
+		ID = iD;
+	}
+
 	public ChiTietSuaChua() {
 		super();
 	}
