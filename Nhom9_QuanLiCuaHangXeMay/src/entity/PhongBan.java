@@ -14,6 +14,10 @@ public class PhongBan {
 		setId(id);
 		setTenPB(tenPB);
 	}
+	public PhongBan(int id) throws Exception {
+		super();
+		setId(id);
+	}
 	public int getId() {
 		return id;
 	}
