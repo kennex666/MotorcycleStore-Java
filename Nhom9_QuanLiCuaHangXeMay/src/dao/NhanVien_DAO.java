@@ -118,7 +118,7 @@ public class NhanVien_DAO implements INhanVien{
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
 		
-		String query = "UPDATE NhanVien SET tennv = ?, diaChi = ?, SDT = ?, soCCCD = ?, gioiTinh = ?, ngaySinh = ?, email = ? WHERE manv = ?";
+		String query = "UPDATE NhanVien SET HoTenNV = ?, DiaChi = ?, SDT = ?, soCCCD = ?, gioiTinh = ?, ngaySinh = ?, email = ?, maPB = ?, maCV = ?, trinhDoHocVan = ?, bacTho = ? WHERE MaNV = ?";
 		try {
 
 			PreparedStatement prestm = conn.prepareStatement(query);
@@ -130,7 +130,11 @@ public class NhanVien_DAO implements INhanVien{
 			prestm.setBoolean(5, nv.isGioiTinh());
 			prestm.setDate(6, ProcessDate.localDate2Date(nv.getNgaySinh()));
 			prestm.setString(7, nv.getEmail());
-			prestm.setString(8, nv.getMaNhanVien());
+			prestm.setInt(8, nv.getPhongBan().getId());
+			prestm.setInt(9, nv.getChucVu().getMaChucVu());
+			prestm.setString(10, nv.getTrinhDo());
+			prestm.setString(11, nv.getBacTho());
+			prestm.setString(12, nv.getMaNhanVien());
 
 			return (prestm.executeUpdate() > 0) ? true : false;
 		} catch (Exception e) {
@@ -163,19 +167,23 @@ public class NhanVien_DAO implements INhanVien{
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
 		
-		String query = "INSERT INTO NhanVien (manv, tennv, diaChi, SDT, soCCCD, gioiTinh, ngaySinh, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO NhanVien (manv, hoTenNV, diaChi, SDT, soCCCD, gioiTinh, ngaySinh, email, maPB, maCV, trinhDoHocVan, bacTho) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 
 			PreparedStatement prestm = conn.prepareStatement(query);
-
-			prestm.setString(1, nv.getMaNhanVien());
-			prestm.setString(2, nv.getTenNhanVien());
-			prestm.setString(3, nv.getDiaChi());
-			prestm.setString(4, nv.getSoDT());
-			prestm.setString(5, nv.getSoCCCD());
-			prestm.setBoolean(6, nv.isGioiTinh());
-			prestm.setDate(7, ProcessDate.localDate2Date(nv.getNgaySinh()));
-			prestm.setString(8, nv.getEmail());
+			
+			prestm.setString(1, nv.getTenNhanVien());
+			prestm.setString(2, nv.getDiaChi());
+			prestm.setString(3, nv.getSoDT());
+			prestm.setString(4, nv.getSoCCCD());
+			prestm.setBoolean(5, nv.isGioiTinh());
+			prestm.setDate(6, ProcessDate.localDate2Date(nv.getNgaySinh()));
+			prestm.setString(7, nv.getEmail());
+			prestm.setInt(8, nv.getPhongBan().getId());
+			prestm.setInt(9, nv.getChucVu().getMaChucVu());
+			prestm.setString(10, nv.getTrinhDo());
+			prestm.setString(11, nv.getBacTho());
+			prestm.setString(12, nv.getMaNhanVien());
 
 			return (prestm.executeUpdate() > 0) ? true : false;
 		} catch (Exception e) {
