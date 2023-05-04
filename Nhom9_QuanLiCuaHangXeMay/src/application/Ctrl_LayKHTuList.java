@@ -149,6 +149,10 @@ public class Ctrl_LayKHTuList {
 	public void setKhachHang(KhachHang x) {
 		this.khSelected = x;
 	}
+
+	public KhachHang getKhachHang() {
+		return khSelected;
+	}
 	
 	public void setTextFieldLoad(TextField x) {
 		txtLoad = x;

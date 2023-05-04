@@ -24,4 +24,8 @@ public class LinhKien_BUS {
 	public void updateSLBan(int newSL, String maXe) {
 		linhKien_DAO.updateSoLuongBan(newSL, maXe);
 	}
+	
+	public String getTenByMa(String maXe) {
+		return linhKien_DAO.getTenByMa(maXe);
+	}
 }

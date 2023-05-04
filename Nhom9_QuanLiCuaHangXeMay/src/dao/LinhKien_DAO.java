@@ -35,9 +35,9 @@ public class LinhKien_DAO implements ILinhKien {
 				int soLuongKho = results.getInt("SoLuongKho");
 				NhaCungCap nhaCungCap = new NhaCungCap(maNCC);
 				ChiTietSuaChua ctsc = new ChiTietSuaChua(maCTSC);
-				
+
 				LinhKien lk = new LinhKien(maLK, tenLK, imgPath, nhaCungCap, ctsc, gia, soLuongKho, soLuongBan);
-				
+
 				list.add(lk);
 			}
 		} 
@@ -47,7 +47,7 @@ public class LinhKien_DAO implements ILinhKien {
 		}
 		return list;
 	}
-	
+
 	@Override
 	public void updateSoLuongKho(int newSL, String maLK) {
 		// TODO Auto-generated method stub
@@ -74,5 +74,20 @@ public class LinhKien_DAO implements ILinhKien {
 			e.printStackTrace();
 		}
 	}
-	
+
+	@Override
+	public String getTenByMa(String maLK) {
+		// TODO Auto-generated method stub
+		String sql = "Select * from LinhKien where MaLinhKien = '" + maLK + "'";
+		try {
+			Statement stm = con.createStatement();
+			ResultSet results = stm.executeQuery(sql);
+			if (results.next()) return results.getString("TenLinhKien");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

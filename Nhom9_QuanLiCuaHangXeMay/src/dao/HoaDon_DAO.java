@@ -50,7 +50,7 @@ public class HoaDon_DAO implements IHoaDon {
 		String maNV = hd.getNv().getID();
 		java.util.Date ngayLap = hd.getNgayLapHoaDon();
 		double tongTien = hd.getTongTien();
-		String sql = "INSERT INTO hoa_don (MaHD, MaKH, MaNV, NgayLapHoaDon, TongTien) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO HoaDon (MaHD, MaKH, MaNV, NgayLapHoaDon, TongTien) VALUES (?, ?, ?, ?, ?)";
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = con.prepareStatement(sql);
@@ -59,6 +59,7 @@ public class HoaDon_DAO implements IHoaDon {
 			preparedStatement.setString(3, maNV); // mã nhân viên
 			preparedStatement.setDate(4, (Date) ngayLap); // ngày lập hóa đơn
 			preparedStatement.setDouble(5, tongTien); // tổng tiền
+			preparedStatement.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -79,4 +79,20 @@ public class Xe_DAO implements IXe {
 		}
 	}
 
+	@Override
+	public String getTenByMa(String maXe) {
+
+		// TODO Auto-generated method stub
+		String sql = "Select * from Xe where MaXe = '" + maXe + "'";
+		try {
+			Statement stm = con.createStatement();
+			ResultSet results = stm.executeQuery(sql);
+			if (results.next()) return results.getString("TenXe");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

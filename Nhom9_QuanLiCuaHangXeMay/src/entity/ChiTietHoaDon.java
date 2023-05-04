@@ -3,7 +3,7 @@ package entity;
 import java.util.Objects;
 
 public class ChiTietHoaDon {
-	private int id;
+	private String id;
 	private int soLuongXe;
 	private HoaDon hd;
 	private String maSP;
@@ -13,7 +13,7 @@ public class ChiTietHoaDon {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ChiTietHoaDon(int id, int soLuongXe, double giaBan ,String maSP,  HoaDon hd) throws Exception {
+	public ChiTietHoaDon(String id, int soLuongXe, double giaBan ,String maSP,  HoaDon hd) throws Exception {
 		super();
 		setId(id);
 		setSoLuongXe(soLuongXe);
@@ -21,12 +21,12 @@ public class ChiTietHoaDon {
 		setMaSP(maSP);
 		setGiaBan(giaBan);
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) throws Exception {
-		if (id<=0)
+	public void setId(String id) throws Exception {
+		if (id.equals(""))
 			throw new Exception("Đã có lỗi trong quá trình phát sinh ID chi tiết hóa đơn");
 		this.id = id;
 	}

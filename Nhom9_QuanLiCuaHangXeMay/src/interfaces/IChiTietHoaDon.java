@@ -7,4 +7,5 @@ import entity.ChiTietHoaDon;
 public interface IChiTietHoaDon {
 
 	ArrayList<ChiTietHoaDon> getCTHDByMaHD(String maHD) throws Exception;
+	boolean taoCTHD(ChiTietHoaDon cthd);
 }

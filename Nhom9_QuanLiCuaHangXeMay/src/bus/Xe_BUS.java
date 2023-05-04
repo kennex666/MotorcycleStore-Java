@@ -24,4 +24,8 @@ public class Xe_BUS {
 	public void updateSLBan(int newSL, String maXe) {
 		xe_DAO.updateSoLuongBan(newSL, maXe);
 	}
+	
+	public String getTenByMa(String maXe) {
+		return xe_DAO.getTenByMa(maXe);
+	}
 }

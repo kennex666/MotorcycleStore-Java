@@ -22,11 +22,11 @@ public class Ctrl_Login {
 	@FXML
 	private void checkLogin() {
 		
-		if (txtUsername.getText().equals("admin") && txtPassword.getText().equals("admin")) {
+		if (txtUsername.getText().equals("thang@nhanvien.com") && txtPassword.getText().equals("123456")) {
 			 Stage stageTheLabelBelongs = (Stage) txtUsername.getScene().getWindow();
 			 BorderPane root;
 			try {
-				root = (BorderPane)FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+				root = (BorderPane)FXMLLoader.load(getClass().getResource("NhanVien.fxml"));
 				Scene scene = new Scene(root,1300, 750);
 				stageTheLabelBelongs.setScene(scene);
 				stageTheLabelBelongs.centerOnScreen();

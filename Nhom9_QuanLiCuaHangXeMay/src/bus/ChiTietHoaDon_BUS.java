@@ -18,5 +18,8 @@ public class ChiTietHoaDon_BUS {
 		return cthd_DAO.getCTHDByMaHD(maHD);
 	}
 	
+	public void taoChiTietHoaDon(ChiTietHoaDon cthd) {
+		cthd_DAO.taoCTHD(cthd);
+	}
 	
 }

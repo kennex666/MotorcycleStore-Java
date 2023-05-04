@@ -30,10 +30,11 @@ public class GenerateID {
 		// Kết quả: DN-002-0013
   }
 	public static String taoMaHD() {
-		LocalDateTime thoiGianHienTai = LocalDateTime.now();String end = "";
-		for (int i = 0; i < 4; i++) {
-			end += CHUOI_KY_TU.charAt(random.nextInt(CHUOI_KY_TU.length()));
-		}
-		return thoiGianHienTai.format(DateTimeFormatter.ofPattern("ddmmyyyy")) + end;
+		LocalDateTime thoiGianHienTai = LocalDateTime.now();
+		return "HD" + thoiGianHienTai.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
+	}
+	public static String taoMaCTHD() {
+		LocalDateTime thoiGianHienTai = LocalDateTime.now();
+		return "CTHD" + thoiGianHienTai.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
 	}
 }

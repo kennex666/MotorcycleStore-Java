@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_NhanVienGUI">
+   <center>
+      <TabPane prefHeight="750.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Sản phẩm">
+            <content>
+              <AnchorPane id="productModal" fx:id="modalProduct" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="themKHModal" layoutX="44.0" layoutY="117.0" prefHeight="499.0" prefWidth="1216.0" style="-fx-background-color: #f4f4f4;" visible="false">
+                           <children>
+                              <Label layoutX="736.0" layoutY="177.0" text="CCCD: " />
+                              <Label layoutX="736.0" layoutY="277.0" text="Giới tính:" />
+                              <TextField layoutX="860.0" layoutY="77.0" prefHeight="31.0" prefWidth="267.0" />
+                              <DatePicker layoutX="293.0" layoutY="172.0" prefHeight="31.0" prefWidth="267.0" />
+                              <TextField layoutX="292.0" layoutY="272.0" prefHeight="31.0" prefWidth="270.0" />
+                              <Label layoutX="130.0" layoutY="82.0" text="Tên khách hàng:" />
+                              <TextField layoutX="859.0" layoutY="172.0" prefHeight="31.0" prefWidth="269.0" />
+                              <TextField layoutX="293.0" layoutY="77.0" prefHeight="31.0" prefWidth="267.0" />
+                              <Label layoutX="130.0" layoutY="177.0" text="Ngày sinh:" />
+                              <Label layoutX="734.0" layoutY="82.0" text="Địa chỉ:" />
+                              <ChoiceBox layoutX="860.0" layoutY="272.0" prefHeight="31.0" prefWidth="268.0" />
+                              <Label layoutX="130.0" layoutY="277.0" text="Số điện thoại:" />
+                              <Button layoutX="530.0" layoutY="414.0" mnemonicParsing="false" text="Thêm khác hàng" />
+                           </children>
+                        </AnchorPane>
+                        <SplitPane fx:id="splitPaneXe" dividerPositions="0.13559322033898305" layoutY="77.0" prefHeight="634.0" prefWidth="1300.0" visible="false">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="216.0">
+                                 <children>
+                                    <Button fx:id="btnListProduct" alignment="BASELINE_LEFT" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionListProduct" prefHeight="48.0" prefWidth="146.0" text="Danh sách" textAlignment="CENTER">
+                                       <effect>
+                                          <Blend />
+                                       </effect>
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/ico/ico-product.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children></AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1121.0">
+                                 <children>
+                                    <TabPane fx:id="allTabs" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE">
+                                      <tabs>
+                                        <Tab fx:id="tabProduct" text="Danh sách sản phẩm">
+                                          <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TableView fx:id="tblXe" layoutY="107.0" onMouseClicked="#handleClickRowTable" prefHeight="487.0" prefWidth="1119.0">
+                                                        <columns>
+                                                          <TableColumn fx:id="stt" prefWidth="75.0" text="STT" />
+                                                          <TableColumn fx:id="maXe" prefWidth="111.0" text="Mã sản phẩm" />
+                                                            <TableColumn fx:id="tenXe" prefWidth="225.0" text="Tên sản phẩm" />
+                                                            <TableColumn fx:id="giaBan" prefWidth="114.0" text="Giá bán" />
+                                                            <TableColumn fx:id="hangSX" prefWidth="124.0" text="Hãng sản xuất" />
+                                                            <TableColumn fx:id="soLuongKho" prefWidth="155.0" text="Số lượng kho" />
+                                                            <TableColumn fx:id="soPhanKhoi" prefWidth="117.0" text="Số phân khối" />
+                                                            <TableColumn fx:id="nuocSX" prefWidth="196.0" text="Nước sản xuất" />
+                                                        </columns>
+                                                      </TableView>
+                                                      <Label layoutX="26.0" layoutY="29.0" text="Tên sản phẩm:" />
+                                                      <TextField fx:id="queryXe" layoutX="142.0" layoutY="24.0" />
+                                                      <Button layoutX="437.0" layoutY="67.0" mnemonicParsing="false" onAction="#timKiemTrenTable" text="Tìm kiếm" />
+                                                      <Button layoutX="546.0" layoutY="67.0" mnemonicParsing="false" text="Làm mới" />
+                                                      <Label layoutX="405.0" layoutY="29.0" text="Nhà cung cấp" />
+                                                      <Label layoutX="779.0" layoutY="29.0" text="Nước sản xuất" />
+                                                      <ComboBox fx:id="cbNCC" layoutX="518.0" layoutY="24.0" prefWidth="150.0" />
+                                                      <ComboBox fx:id="cbNSX" layoutX="893.0" layoutY="24.0" prefWidth="150.0" />
+
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </Tab>
+                                      </tabs>
+                                    </TabPane>
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
+                        <SplitPane fx:id="splitPaneLK" dividerPositions="0.13559322033898305" layoutY="77.0" prefHeight="633.0" prefWidth="1300.0" visible="false">
+                           <items>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="216.0">
+                                 <children>
+                                    <Button fx:id="btnListProduct1" alignment="BASELINE_LEFT" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionListProduct" prefHeight="48.0" prefWidth="146.0" text="Danh sách" textAlignment="CENTER">
+                                       <effect>
+                                          <Blend />
+                                       </effect>
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/ico/ico-product.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1121.0">
+                                 <children>
+                                    <TabPane fx:id="allTabs1" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE">
+                                       <tabs>
+                                          <Tab fx:id="tabProduct1" text="Danh sách sản phẩm">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TableView fx:id="tblLinhKien" layoutY="74.0" prefHeight="520.0" prefWidth="1119.0">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0" text="STT" />
+                                                            <TableColumn fx:id="maLKCol" prefWidth="191.0" text="Mã linh kiện" />
+                                                            <TableColumn fx:id="tenLKCol" prefWidth="292.0" text="Tên linh kiện" />
+                                                            <TableColumn fx:id="giaLKCol" minWidth="0.0" prefWidth="148.0" text="Giá bán" />
+                                                            <TableColumn fx:id="hangSXCol" prefWidth="228.0" text="Hãng sản xuất" />
+                                                            <TableColumn fx:id="soLuongCol" prefWidth="184.0" text="Số lượng" />
+                                                         </columns>
+                                                      </TableView>
+                                                      <Label layoutX="26.0" layoutY="29.0" text="Tìm kiếm sản phẩm:" />
+                                                      <TextField layoutX="179.0" layoutY="24.0" />
+                                                      <Button layoutX="384.0" layoutY="24.0" mnemonicParsing="false" text="Tìm kiếm" />
+                                                      <Button layoutX="482.0" layoutY="24.0" mnemonicParsing="false" text="Làm mới" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                       </tabs>
+                                    </TabPane>
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0" visible="false">
+                           <items>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="642.0" prefWidth="1285.0">
+                                 <children>
+                                    <TabPane fx:id="allTabs11" layoutY="4.0" prefHeight="634.0" prefWidth="770.0" tabClosingPolicy="UNAVAILABLE">
+                                       <tabs>
+                                          <Tab fx:id="tabProduct11" text="Danh sách sản phẩm">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="594.0" prefWidth="662.0">
+                                                   <children>
+                                                      <Label layoutX="26.0" layoutY="29.0" text="Tìm kiếm sản phẩm:" />
+                                                      <TextField layoutX="179.0" layoutY="24.0" />
+                                                      <Button layoutX="384.0" layoutY="24.0" mnemonicParsing="false" text="Tìm kiếm" />
+                                                      <Button layoutX="482.0" layoutY="24.0" mnemonicParsing="false" text="Làm mới" />
+                                                      <TableView fx:id="tblProduct" layoutX="1.0" layoutY="80.0" prefHeight="204.0" prefWidth="768.0">
+                                                         <columns>
+                                                            <TableColumn prefWidth="75.0" text="STT" />
+                                                            <TableColumn fx:id="maSPGen" prefWidth="111.0" text="Mã sản phẩm" />
+                                                            <TableColumn fx:id="tenSPGen" prefWidth="243.0" text="Tên sản phẩm" />
+                                                            <TableColumn fx:id="giaBanGen" prefWidth="153.0" text="Giá bán" />
+                                                            <TableColumn fx:id="soLuongGen" prefWidth="185.0" text="Số lượng" />
+                                                         </columns>
+                                                      </TableView>
+                                                      <TabPane fx:id="allTabs111" layoutX="6.0" layoutY="339.0" prefHeight="367.0" prefWidth="767.0" tabClosingPolicy="UNAVAILABLE">
+                                                         <tabs>
+                                                            <Tab fx:id="tabProduct111" text="Giỏ hàng">
+                                                               <content>
+                                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="594.0" prefWidth="662.0">
+                                                                     <children>
+                                                                        <TableView fx:id="tblCart" layoutX="-1.0" layoutY="6.0" prefHeight="173.0" prefWidth="764.0">
+                                                                           <columns>
+                                                                              <TableColumn prefWidth="75.0" text="STT" />
+                                                                              <TableColumn fx:id="maSPCart" prefWidth="111.0" text="Mã sản phẩm" />
+                                                                              <TableColumn fx:id="tenSPCart" prefWidth="168.0" text="Tên sản phẩm" />
+                                                                              <TableColumn fx:id="giaBanCart" prefWidth="134.0" text="Giá bán" />
+                                                                              <TableColumn fx:id="soLuongCart" prefWidth="137.0" text="Số lượng" />
+                                                                              <TableColumn fx:id="thanhTienCol" prefWidth="138.0" text="Thành tiền" />
+                                                                           </columns>
+                                                                        </TableView>
+                                                                        <Button fx:id="cartRemove" layoutX="280.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleRemoveFromCart" text="Xóa khỏi giỏ" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </content>
+                                                            </Tab>
+                                                         </tabs>
+                                                      </TabPane>
+                                                      <Button fx:id="btnAddToCart" layoutX="369.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="22.0" prefWidth="59.0">
+                                                         <graphic>
+                                                            <ImageView fitHeight="34.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../../../../Downloads/Iconshow-Button-Design-Pack-02-Basket.16.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic></Button>
+                                                      <TextField fx:id="txtQuantity" layoutX="305.0" layoutY="296.0" prefHeight="31.0" prefWidth="57.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                       </tabs>
+                                    </TabPane>
+                                    <Button layoutX="807.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleClickThanhToan" text="Thanh toán" />
+                                    <TextField fx:id="txtTongTien" disable="true" layoutX="953.0" layoutY="235.0" prefHeight="31.0" prefWidth="212.0" />
+                                    <Label layoutX="806.0" layoutY="120.0" text="Khách hàng:" />
+                                    <Label layoutX="806.0" layoutY="240.0" text="Tổng tiền:" />
+                                    <Label layoutX="806.0" layoutY="286.0" text="Tổng tiền đã tính thuế VAT 10%" />
+                                    <Button fx:id="btnThemKH" layoutX="1197.0" layoutY="115.0" mnemonicParsing="false" onAction="#openModalThemKH">
+                                       <graphic>
+                                          <ImageView fx:id="btnAddKH" fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../Downloads/Awicons-Vista-Artistic-Add.16%20(1).png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <TextField fx:id="khCart" layoutX="953.0" layoutY="115.0" prefHeight="31.0" prefWidth="209.0" />
+                                    <Button layoutX="807.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleChonKH" text="Chọn khách hàng" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                        <AnchorPane fx:id="productModal" layoutX="29.0" layoutY="85.0" prefHeight="605.0" prefWidth="1246.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 10, 0, 0, 2);" visible="false">
+                           <children>
+                              <ImageView fx:id="imgPathModal" fitHeight="234.0" fitWidth="278.0" layoutX="14.0" layoutY="68.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../../0x0.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="385.0" layoutY="72.0" text="Mã sản phẩm:" />
+                              <TextField fx:id="maSPModal" editable="false" layoutX="514.0" layoutY="67.0" />
+                              <TextField fx:id="tenNCCModal" editable="false" layoutX="514.0" layoutY="159.0" />
+                              <Label layoutX="385.0" layoutY="164.0" text="Hãng sản xuất:" />
+                              <TextField fx:id="nuocSXModal" editable="false" layoutX="938.0" layoutY="354.0" />
+                              <Label layoutX="809.0" layoutY="359.0" text="Nước sản xuất:" />
+                              <TextField fx:id="soSuonModal" editable="false" layoutX="514.0" layoutY="354.0" />
+                              <Label layoutX="385.0" layoutY="359.0" text="Số sườn:" />
+                              <TextField fx:id="soKhungModal" editable="false" layoutX="938.0" layoutY="261.0" />
+                              <Label layoutX="809.0" layoutY="266.0" text="Số khung:" />
+                              <TextField fx:id="soLuongKhoModal" editable="false" layoutX="938.0" layoutY="159.0" />
+                              <Label layoutX="809.0" layoutY="164.0" text="Số lượng tồn kho:" />
+                              <TextField fx:id="tenSPModal" editable="false" layoutX="938.0" layoutY="67.0" />
+                              <Label layoutX="809.0" layoutY="72.0" text="Tên sản phẩm:" />
+                              <TextField fx:id="soPKModal" editable="false" layoutX="514.0" layoutY="261.0" />
+                              <Label layoutX="385.0" layoutY="266.0" text="Số phân khối:" />
+                              <Label layoutX="809.0" layoutY="443.0" text="Ngày nhập:" />
+                              <TextField fx:id="ngayNhapModal" editable="false" layoutX="938.0" layoutY="438.0" />
+                              <Label layoutX="385.0" layoutY="443.0" text="Giá bán:" />
+                              <TextField fx:id="giaXeModal" editable="false" layoutX="514.0" layoutY="438.0" />
+                              <Button layoutX="599.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleCloseModal" prefHeight="31.0" prefWidth="73.0" text="Đóng" />
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </AnchorPane>
+                        <ToolBar prefHeight="77.0" prefWidth="1300.0">
+                          <items>
+                            <Button fx:id="btnXe" mnemonicParsing="false" onAction="#actionAddSplitPaneXe" prefHeight="57.0" prefWidth="203.0" text="Xe" textAlignment="CENTER">
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ico/ico-product.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnLinhKien" mnemonicParsing="false" onAction="#actionAddSplitPaneLK" prefHeight="57.0" prefWidth="203.0" text="Linh kiện" textAlignment="CENTER">
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ico/ico-browsing.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnBanHang" mnemonicParsing="false" onAction="#actionAddSplitPaneBH" prefHeight="57.0" prefWidth="203.0" text="Bán hàng" textAlignment="CENTER">
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fx:id="btnBangHang" fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ico/ico-productadd.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                          </items>
+                        </ToolBar>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab onSelectionChanged="#handleClickTabKH" text="Khách hàng">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ToolBar prefHeight="77.0" prefWidth="1300.0">
+                           <items>
+                              <Button fx:id="btnProduct2" mnemonicParsing="false" prefHeight="57.0" prefWidth="203.0" text="Danh sách khách hàng" textAlignment="CENTER">
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ico/ico-product.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                        <TabPane layoutY="76.0" prefHeight="673.0" prefWidth="1300.0">
+                           <tabs>
+                              <Tab closable="false" text="Danh sách khách hàng">
+                                 <content>
+                                    <AnchorPane prefHeight="588.0" prefWidth="1294.0">
+                                       <children>
+                                          <TableView fx:id="tblKhachHang" layoutY="66.0" prefHeight="530.0" prefWidth="1300.0">
+                                            <columns>
+                                              <TableColumn fx:id="maKHCol" prefWidth="126.0" text="Mã khách hàng" />
+                                              <TableColumn fx:id="tenKHCol" prefWidth="174.0" text="Họ và tên" />
+                                                <TableColumn fx:id="diaChiCol" prefWidth="352.0" text="Địa chỉ" />
+                                                <TableColumn fx:id="gioiTinhCol" prefWidth="146.0" text="Giới tính" />
+                                                <TableColumn fx:id="ngaySinhCol" prefWidth="164.0" text="Ngày sinh" />
+                                                <TableColumn fx:id="sdtCol" prefWidth="173.0" text="Số điện thoại" />
+                                                <TableColumn fx:id="cccdCol" prefWidth="164.0" text="Số CCCD" />
+                                            </columns>
+                                          </TableView>
+                                          <Label layoutX="265.0" layoutY="23.0" text="Tìm kiếm khách hàng: " />
+                                          <TextField fx:id="txtTimKH" layoutX="439.0" layoutY="18.0" />
+                                          <Button layoutX="775.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleTimKiemKH" text="Tìm kiếm" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab onSelectionChanged="#handleClickTabHD" text="Hóa đơn">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="673.0" prefWidth="1300.0">
+                           <tabs>
+                              <Tab closable="false" text="Danh sách hóa đơn">
+                                 <content>
+                                    <AnchorPane prefHeight="588.0" prefWidth="1294.0">
+                                       <children>
+                                          <TableView fx:id="tblHoaDon" layoutY="66.0" onMouseClicked="#xemCTHD" prefHeight="213.0" prefWidth="1300.0">
+                                             <columns>
+                                                <TableColumn fx:id="maHDCol" prefWidth="180.0" text="Mã hóa đơn" />
+                                                <TableColumn fx:id="tenNVCol" prefWidth="248.0" text="Tên nhân viên" />
+                                                <TableColumn fx:id="ngayLapHDCol" prefWidth="316.0" text="Ngày lập hóa đơn" />
+                                                <TableColumn fx:id="tongTienCol" prefWidth="311.0" text="Tổng tiền" />
+                                                <TableColumn fx:id="tenKHHDCol" prefWidth="244.0" text="Tên khách hàng" />
+                                             </columns>
+                                          </TableView>
+                                          <TabPane layoutY="325.0" prefHeight="503.0" prefWidth="1300.0">
+                                             <tabs>
+                                                <Tab closable="false" text="Chi tiết hóa đơn">
+                                                   <content>
+                                                      <AnchorPane layoutY="364.0" prefHeight="410.0" prefWidth="1300.0">
+                                                         <children>
+                                                            <TableView fx:id="tblCTHD" prefHeight="425.0" prefWidth="1300.0">
+                                                               <columns>
+                                                                  <TableColumn fx:id="maCTHDCol" prefWidth="179.0" text="Mã chi tiết hóa đơn" />
+                                                                  <TableColumn fx:id="maSPCTHD" prefWidth="250.0" text="Mã sản phẩm" />
+                                                                  <TableColumn fx:id="tenSPCTHD" prefWidth="309.0" text="Tên sản phẩm" />
+                                                                  <TableColumn fx:id="giaSPCTHD" prefWidth="151.0" text="Đơn giá" />
+                                                                  <TableColumn fx:id="soLuongSPCTHD" prefWidth="165.0" text="Số lượng" />
+                                                                  <TableColumn fx:id="tongTienCTHD" prefWidth="245.0" text="Thành tiền" />
+                                                               </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </Tab>
+                                             </tabs>
+                                          </TabPane>
+                                          <Button layoutX="1133.0" layoutY="18.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="123.0" text="Xuất file">
+                                             <graphic>
+                                                <ImageView fx:id="btnBangHang1" fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../Downloads/Carlosjj-Microsoft-Office-2013-Excel.16.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <DatePicker fx:id="startDate" layoutX="55.0" layoutY="21.0" />
+                                          <DatePicker fx:id="endDate" layoutX="328.0" layoutY="21.0" />
+                                          <Label layoutX="32.0" layoutY="26.0" text="Từ" />
+                                          <Label layoutX="293.0" layoutY="26.0" text="Đến" />
+                                          <Button layoutX="787.0" layoutY="21.0" mnemonicParsing="false" onAction="#timKiemHoaDon" text="Tìm kiếm" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Thống kê">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ToolBar prefHeight="77.0" prefWidth="1300.0">
+                           <items>
+                              <Button fx:id="btnProduct11" mnemonicParsing="false" prefHeight="57.0" prefWidth="131.0" text="Thông tin" textAlignment="CENTER">
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ico/ico-product.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnProduct21131" mnemonicParsing="false" prefHeight="57.0" prefWidth="136.0" text="Hướng dẫn" textAlignment="CENTER">
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ico/ico-browsing.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                        <AnchorPane layoutY="77.0" prefHeight="634.0" prefWidth="788.0">
+                           <children>
+                              <TableView layoutY="-3.0" prefHeight="635.0" prefWidth="785.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="STT" />
+                                  <TableColumn prefWidth="119.0" text="Mã sản phẩm" />
+                                    <TableColumn prefWidth="190.0" text="Tên sản phẩm" />
+                                    <TableColumn prefWidth="110.0" text="Số lượng" />
+                                    <TableColumn prefWidth="133.0" text="Giá bán" />
+                                    <TableColumn prefWidth="155.0" text="Tổng tiền" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <ListView layoutX="871.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Trợ giúp">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ToolBar prefHeight="77.0" prefWidth="1300.0">
+                           <items>
+                              <Button fx:id="btnProduct1" mnemonicParsing="false" prefHeight="57.0" prefWidth="131.0" text="Thông tin" textAlignment="CENTER">
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ico/ico-product.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnProduct2113" mnemonicParsing="false" prefHeight="57.0" prefWidth="136.0" text="Hướng dẫn" textAlignment="CENTER">
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/ico/ico-browsing.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
