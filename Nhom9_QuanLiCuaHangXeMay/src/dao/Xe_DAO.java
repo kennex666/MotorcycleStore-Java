@@ -61,7 +61,7 @@ public class Xe_DAO implements iXe{
 	public ArrayList<Xe> findXe(String keywords) {
 		ArrayList<Xe> listXe = new ArrayList<Xe>();
 		Connection conn = ConnectDB.getConnection();
-		String query = "SELECT * FROM Xe WHERE maXe LIKE CONCAT('%', ?, '%') OR tenXe LIKE CONCAT('%', ?, '%') OR nuocSX LIKE CONCAT('%', ?, '%') OR soKhung LIKE CONCAT('%', ?, '%') OR soSuon LIKE CONCAT('%', ?, '%') OR mauXe LIKE CONCAT('%', ?, '%') OR soPk=? OR giaXe=?";
+		String query = "SELECT * FROM Xe WHERE maXe LIKE CONCAT('%', ?, '%') OR tenXe LIKE CONCAT('%', ?, '%') OR nuocSX LIKE CONCAT('%', ?, '%') OR soKhung LIKE CONCAT('%', ?, '%') OR soSuon LIKE CONCAT('%', ?, '%') OR mauXe LIKE CONCAT('%', ?, '%') OR soPk=? OR gia=?";
 		try {
 			PreparedStatement pstm = conn.prepareStatement(query);
 			pstm.setString(1, keywords);
@@ -116,7 +116,7 @@ public class Xe_DAO implements iXe{
 		boolean result = false;
 		Connection conn = ConnectDB.getConnection();
 		
-		String query = "UPDATE Xe SET tenKH = ?, loaiXe = ?, nuocSX = ?, soPK = ?, soKhung = ?, soSuon = ?, mauXe = ?, giaXe = ?, imagePath = ?,soluongkho=?,soluongban=?    WHERE maXe = ?";
+		String query = "UPDATE Xe SET tenXe = ?, loaiXe = ?, nuocSX = ?, soPK = ?, soKhung = ?, soSuon = ?, mauXe = ?, gia = ?, imgPath = ?,soluongkho=?,soluongban=?    WHERE maXe = ?";
 		try {
 
 			PreparedStatement prestm = conn.prepareStatement(query);
@@ -133,7 +133,7 @@ public class Xe_DAO implements iXe{
 			prestm.setInt(10, xeCanSua.getSoLuongKho());
 			prestm.setInt(11, xeCanSua.getSoLuongBan());
 			prestm.setString(12, xeCanSua.getMaXe());
-
+			System.out.println("Co Cap Nhat");
 			return (prestm.executeUpdate() > 0) ? true : false;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -152,7 +152,7 @@ public class Xe_DAO implements iXe{
 			ResultSet rs = stm.executeQuery(query);
 			return rs.getInt("soLuong");
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Lỗi khi cập nhật xe: "+e.getMessage());
 		}
 		return -1;
 		

@@ -20,6 +20,7 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 import utilities.PopupNotify;
 
@@ -64,6 +65,9 @@ public class Ctrl_MainMenu {
 	}
 	
 	@FXML
+	private AnchorPane paneLK;
+	
+	@FXML
 	private void actionListProduct(){
 		allTabs.getTabs().add(tabProduct);
 	}
@@ -98,8 +102,8 @@ public class Ctrl_MainMenu {
 	@FXML
 	private Button btnThemXe,btnXoaTrangXe,btnSuaXe,btnXoaXe;
 	
-//	@FXML
-//	private TableView<Xe> tblXe;
+	@FXML
+	private ObservableList<Xe> listXeObs = FXCollections.observableArrayList();
 	
 	private NhaCungCap_BUS ncc_BUS;
 	
@@ -138,10 +142,30 @@ public class Ctrl_MainMenu {
 		xe = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STIRNG", ncc, soLuongKho, 0);
 		Xe_Bus xe_BUS = new Xe_Bus();
 		xe_BUS.addXe(xe);
+		addXeVaoTable();
+		PopupNotify.showErrorField("", "Thêm thành công!", null);
 	}
 	
 	@FXML
 	private ComboBox< NhaCungCap> cboNXS;
+	
+	@FXML
+	private TabPane tabXe;
+
+	@FXML
+	private TabPane tabLK;
+	
+	@FXML
+	private void clickDSLK() {
+		tabXe.setVisible(true);
+		tabLK.setVisible(false);
+	}
+	
+	@FXML
+	private void clickDSXe() {
+		tabLK.setVisible(true);
+		tabXe.setVisible(false);
+	}
 	
 	
 	@FXML
@@ -201,25 +225,13 @@ public class Ctrl_MainMenu {
 		colSoLuongKho.setCellValueFactory(new PropertyValueFactory<Xe,Integer>("soLuongKho"));
 		
 		tblXe.getItems().addAll(listXe);
-		System.out.println("LOAD DUOC");
+		
 	}
 	
 	private void xoaTrangDuLieuTable() {
 		tblXe.getItems().clear();
 	}
 	
-//	private void removeAllRowsKH() {
-//		
-//	}
-//	
-//	@FXML
-//	private void actionRefreshTableKH() {
-//		// TODO Auto-generated method stub
-//		removeAllRowsKH();
-////		loadDataKHToTable();
-////		txtSearch.setText("");
-//		
-//	}
 	
 	@FXML
 	private void clickTable() {
@@ -237,7 +249,7 @@ public class Ctrl_MainMenu {
 		txtSoSuon.setText(xe.getSoSuon());
 		txtGia.setText(Double.toString(xe.getGiaXe()));
 		txtSoLuongKho.setText(Integer.toString(xe.getSoLuongKho()));
-		System.out.println("Thanh Cong");
+		
 	}
 	
 	
@@ -281,10 +293,14 @@ public class Ctrl_MainMenu {
 			soLuongKho = Integer.parseInt(soLuongKho_String);
 			
 			NhaCungCap ncc = cboNXS.getValue();
-			xeSua = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STIRNG", ncc, soLuongKho, 0);
-			xe_BUS.editXe(xeSua);
-			PopupNotify.showErrorField("", "Đã sửa!", null);
+			xeSua = new Xe(xe.getMaXe(), tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STIRNG", ncc, soLuongKho, 0);
+			if (xe_BUS.editXe(xeSua)) PopupNotify.showErrorField("", "Đã sửa!", null);
+			
 		}
+	}
+	
+	private void lamMoiTextFileTimKiem() {
+		
 	}
 	
 	public Ctrl_MainMenu() {

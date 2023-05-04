@@ -28,4 +28,9 @@
     <fullyQualifiedTypeName name="utilities.PopupNotify"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="bus.Xe_Bus"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.SplitPane"/>
+    <fullyQualifiedTypeName name="javafx.scene.layout.AnchorPane"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TabPane"/>
+    <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
+    <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
 </qualifiedTypeNameHistroy>

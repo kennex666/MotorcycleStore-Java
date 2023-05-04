@@ -21,7 +21,7 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="173.0">
                                  <children>
-                                    <Button fx:id="btnDanhSachXe" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#actionListProduct" prefHeight="48.0" prefWidth="150.0" text="Danh sách " textAlignment="CENTER">
+                                    <Button fx:id="btnListProduct" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="93.0" mnemonicParsing="false" onAction="#clickDSLK" prefHeight="48.0" prefWidth="150.0" text="Danh sách linh kiện" textAlignment="CENTER">
                                        <effect>
                                           <Blend />
                                        </effect>
@@ -36,22 +36,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="btnListProduct" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="93.0" mnemonicParsing="false" onAction="#actionListProduct" prefHeight="48.0" prefWidth="150.0" text="Thêm sản phẩm" textAlignment="CENTER">
-                                       <effect>
-                                          <Blend />
-                                       </effect>
-                                       <font>
-                                          <Font size="13.0" />
-                                       </font>
-                                       <graphic>
-                                          <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/ico/ico-product.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="btnListProduct3" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="163.0" mnemonicParsing="false" onAction="#addXeVaoTable" prefHeight="48.0" prefWidth="150.0" text="Danh sách xe" textAlignment="CENTER">
+                                    <Button fx:id="btnListProduct1" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="23.0" mnemonicParsing="false" onAction="#clickDSXe" prefHeight="48.0" prefWidth="150.0" text="Danh sách xe" textAlignment="CENTER">
                                        <effect>
                                           <Blend />
                                        </effect>
@@ -67,9 +52,75 @@
                                        </graphic>
                                     </Button>
                                  </children></AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1121.0">
+                            <AnchorPane fx:id="paneLK" minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1121.0">
                                  <children>
-                                    <TabPane fx:id="allTabs" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE">
+                                    <TabPane fx:id="tabXe" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE" visible="false">
+                                       <tabs>
+                                          <Tab closable="false" text="Danh sách linh kiện">
+                                             <content>
+                                                <AnchorPane onDragDetected="#themXe" prefHeight="588.0" prefWidth="1294.0">
+                                                   <children>
+                                                      <TableView fx:id="tblXe1" layoutX="76.0" layoutY="238.0" prefHeight="369.0" prefWidth="844.0">
+                                                         <columns>
+                                                            <TableColumn fx:id="colMaXe1" prefWidth="96.0" text="Mã linh kiện" />
+                                                            <TableColumn fx:id="colTenXe1" prefWidth="148.0" text="Tên linh kiện" />
+                                                            <TableColumn fx:id="colGia1" prefWidth="144.0" text="Giá linh kiện" />
+                                                            <TableColumn fx:id="colNhaSX1" prefWidth="160.0" text="Nhà cung cấp" />
+                                                            <TableColumn fx:id="colSoLuongKho1" prefWidth="151.0" text="Số lượng kho" />
+                                                            <TableColumn fx:id="colGia11" prefWidth="144.0" text="Số lượng bán" />
+                                                         </columns>
+                                                      </TableView>
+                                                      <Label layoutX="76.0" layoutY="19.0" text="Tìm kiếm linh kiện :">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtTimKiemLK" layoutX="233.0" layoutY="19.0" prefHeight="25.0" prefWidth="440.0" promptText="Tìm kiếm tên linh kiện" />
+                                                      <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" text="Tìm kiếm" />
+                                                      <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" text="Làm mới" />
+                                                      <Button layoutX="950.0" layoutY="19.0" mnemonicParsing="false" text="Lọc nâng cao" />
+                                                      <Button fx:id="btnThemXe1" layoutX="934.0" layoutY="90.0" mnemonicParsing="false" onAction="#themXe" text="Thêm thông tin xe" />
+                                                      <Button fx:id="btnXoaTrangXe1" layoutX="933.0" layoutY="126.0" mnemonicParsing="false" text="Xoá trắng" />
+                                                      <HBox layoutX="56.0" layoutY="88.0" prefHeight="30.0" prefWidth="810.0">
+                                                         <children>
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="40.0" />
+                                                            <Label prefHeight="30.0" prefWidth="125.0" text="Tên linh kiện:  ">
+                                                               <font>
+                                                                  <Font name="System Bold" size="15.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="10.0" />
+                                                            <TextField fx:id="txtTenXe1" prefHeight="30.0" prefWidth="436.0" />
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="85.0" />
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="15.0" />
+                                                         </children>
+                                                      </HBox>
+                                                      <Button fx:id="btnSuaXe1" layoutX="933.0" layoutY="166.0" mnemonicParsing="false" text="Sửa thông tin xe" />
+                                                      <Button fx:id="btnXoaXe1" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" text="Xoá thông tin" />
+                                                      <Label layoutX="98.0" layoutY="143.0" prefHeight="30.0" text="Giá linh kiện:">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font></Label>
+                                                      <TextField fx:id="txtTenXe11" layoutX="230.0" layoutY="143.0" prefHeight="30.0" prefWidth="436.0" />
+                                                      <Label layoutX="98.0" layoutY="193.0" prefHeight="30.0" text="Số lượng kho:">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtTenXe111" layoutX="230.0" layoutY="193.0" prefHeight="30.0" prefWidth="436.0" />
+                                                      <Label layoutX="748.0" layoutY="84.0" prefHeight="30.0" text="Nhà cung cấp">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox layoutX="722.0" layoutY="126.0" prefWidth="150.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                       </tabs>
+                                    </TabPane>
+                                    <TabPane fx:id="tabLK" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE">
                                       <tabs>
                                           <Tab closable="false" text="Danh sách xe">
                                              <content>
@@ -95,7 +146,7 @@
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="txtTimKiem" layoutX="215.0" layoutY="19.0" prefHeight="25.0" prefWidth="451.0" promptText="Tìm kiếm tên, mã xe, tên xe, loại xe, màu xe, nước sx, giá" />
+                                                      <TextField fx:id="txtTimKiemXe" layoutX="215.0" layoutY="19.0" prefHeight="25.0" prefWidth="451.0" promptText="Tìm kiếm tên, mã xe, tên xe, loại xe, màu xe, nước sx, giá" />
                                                       <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" text="Tìm kiếm" />
                                                       <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" text="Làm mới" />
                                                       <Button layoutX="950.0" layoutY="19.0" mnemonicParsing="false" text="Lọc nâng cao" />
@@ -203,126 +254,17 @@
                                                       </HBox>
                                                       <Button fx:id="btnSuaXe" layoutX="933.0" layoutY="166.0" mnemonicParsing="false" onAction="#suaXe" text="Sửa thông tin xe" />
                                                       <Button fx:id="btnXoaXe" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" text="Xoá thông tin" />
+                                                      <Button fx:id="btnLoadDuLieu" layoutX="933.0" layoutY="246.0" mnemonicParsing="false" onAction="#addXeVaoTable" text="Load dữ liệu" />
                                                    </children>
                                                 </AnchorPane>
                                              </content>
                                           </Tab>
                                       </tabs>
                                     </TabPane>
-                                    <TabPane fx:id="allTabs2" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE" visible="false">
-                                       <tabs>
-                                          <Tab closable="false" text="Danh sách xe">
-                                             <content>
-                                                <AnchorPane onDragDetected="#themXe" prefHeight="588.0" prefWidth="1294.0">
-                                                   <children>
-                                                      <TableView fx:id="tblXe1" layoutX="4.0" layoutY="249.0" prefHeight="301.0" prefWidth="1226.0">
-                                                         <columns>
-                                                            <TableColumn fx:id="colMaXe1" prefWidth="96.0" text="Mã xe" />
-                                                            <TableColumn fx:id="colTenXe1" prefWidth="124.0" text="Tên xe" />
-                                                            <TableColumn fx:id="colLoaiXe1" prefWidth="112.0" text="Loại xe" />
-                                                            <TableColumn fx:id="colMauXe1" prefWidth="97.0" text="Màu xe" />
-                                                            <TableColumn fx:id="colSoPK" prefWidth="126.0" text="Số phân khối" />
-                                                            <TableColumn fx:id="colGia1" prefWidth="77.0" text="Giá" />
-                                                            <TableColumn fx:id="colNhaSX1" prefWidth="100.0" text="Nhà sản xuất" />
-                                                            <TableColumn fx:id="colNuocSX1" prefWidth="97.0" text="Nước sản xuất" />
-                                                            <TableColumn fx:id="colSoSuon1" prefWidth="73.0" text="Số sườn" />
-                                                            <TableColumn fx:id="colSoKhung1" prefWidth="73.0" text="Số khung" />
-                                                            <TableColumn fx:id="colSoLuongKho1" prefWidth="147.0" text="Số lượng còn trong kho" />
-                                                         </columns>
-                                                      </TableView>
-                                                      <Label layoutX="76.0" layoutY="19.0" text="Tìm kiếm linh kiện :">
-                                                         <font>
-                                                            <Font name="System Bold" size="15.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextField fx:id="txtTimKiem1" layoutX="233.0" layoutY="19.0" prefHeight="25.0" prefWidth="440.0" promptText="Tìm kiếm tên linh kiện" />
-                                                      <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" text="Tìm kiếm" />
-                                                      <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" text="Làm mới" />
-                                                      <Button layoutX="950.0" layoutY="19.0" mnemonicParsing="false" text="Lọc nâng cao" />
-                                                      <Button fx:id="btnThemXe1" layoutX="934.0" layoutY="90.0" mnemonicParsing="false" onAction="#themXe" text="Thêm thông tin xe" />
-                                                      <Button fx:id="btnXoaTrangXe1" layoutX="933.0" layoutY="126.0" mnemonicParsing="false" text="Xoá trắng" />
-                                                      <HBox layoutX="56.0" layoutY="88.0" prefHeight="30.0" prefWidth="810.0">
-                                                         <children>
-                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="40.0" />
-                                                            <Label prefHeight="30.0" prefWidth="125.0" text="Tên linh kiện:  ">
-                                                               <font>
-                                                                  <Font name="System Bold" size="15.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="10.0" />
-                                                            <TextField fx:id="txtTenXe1" prefHeight="30.0" prefWidth="436.0" />
-                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="85.0" />
-                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="15.0" />
-                                                         </children>
-                                                      </HBox>
-                                                      <Button fx:id="btnSuaXe1" layoutX="933.0" layoutY="166.0" mnemonicParsing="false" text="Sửa thông tin xe" />
-                                                      <Button fx:id="btnXoaXe1" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" text="Xoá thông tin" />
-                                                      <Label layoutX="118.0" layoutY="158.0" text="Label" />
-                                                   </children>
-                                                </AnchorPane>
-                                             </content>
-                                          </Tab>
-                                       </tabs>
-                                    </TabPane>
                                  </children></AnchorPane>
                           </items>
                         </SplitPane>
-                        <SplitPane fx:id="splitPaneLK" dividerPositions="0.13559322033898305" layoutY="77.0" prefHeight="633.0" prefWidth="1300.0" visible="false">
-                           <items>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="216.0">
-                                 <children>
-                                    <Button fx:id="btnListProduct1" alignment="BASELINE_LEFT" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionListProduct" prefHeight="48.0" prefWidth="146.0" text="Danh sách" textAlignment="CENTER">
-                                       <effect>
-                                          <Blend />
-                                       </effect>
-                                       <font>
-                                          <Font size="13.0" />
-                                       </font>
-                                       <graphic>
-                                          <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/ico/ico-product.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1121.0">
-                                 <children>
-                                    <TabPane fx:id="allTabs1" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE">
-                                       <tabs>
-                                          <Tab fx:id="tabProduct1" text="Danh sách sản phẩm">
-                                             <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                   <children>
-                                                      <TableView fx:id="tblProduct1" layoutY="74.0" prefHeight="520.0" prefWidth="1119.0">
-                                                         <columns>
-                                                            <TableColumn prefWidth="75.0" text="STT" />
-                                                            <TableColumn prefWidth="111.0" text="Mã linh kiện" />
-                                                            <TableColumn prefWidth="239.0" text="Tên linh kiện" />
-                                                            <TableColumn prefWidth="133.0" text="Giá bán" />
-                                                            <TableColumn prefWidth="133.0" text="Hãng sản xuất" />
-                                                            <TableColumn prefWidth="143.0" text="Ngày nhập" />
-                                                            <TableColumn prefWidth="127.0" text="Mã kho" />
-                                                            <TableColumn prefWidth="166.0" text="Số lượng" />
-                                                         </columns>
-                                                      </TableView>
-                                                      <Label layoutX="26.0" layoutY="29.0" text="Tìm kiếm sản phẩm:" />
-                                                      <TextField layoutX="179.0" layoutY="24.0" />
-                                                      <Button layoutX="384.0" layoutY="24.0" mnemonicParsing="false" text="Tìm kiếm" />
-                                                      <Button layoutX="482.0" layoutY="24.0" mnemonicParsing="false" text="Làm mới" />
-                                                   </children>
-                                                </AnchorPane>
-                                             </content>
-                                          </Tab>
-                                       </tabs>
-                                    </TabPane>
-                                 </children>
-                              </AnchorPane>
-                           </items>
-                        </SplitPane>
-                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0" visible="false">
+                        <SplitPane fx:id="splitPaneLK" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0" visible="false">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="642.0" prefWidth="1285.0">
                                  <children>
