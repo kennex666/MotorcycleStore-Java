@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
@@ -123,7 +124,7 @@
                                                    <children>
                                                       <TableView fx:id="tblLinhKien" layoutY="74.0" prefHeight="520.0" prefWidth="1119.0">
                                                          <columns>
-                                                            <TableColumn fx:id="sttLinhKienCol" prefWidth="75.0" text="STT" />
+                                                            <TableColumn prefWidth="75.0" text="STT" />
                                                             <TableColumn fx:id="maLKCol" prefWidth="191.0" text="Mã linh kiện" />
                                                             <TableColumn fx:id="tenLKCol" prefWidth="292.0" text="Tên linh kiện" />
                                                             <TableColumn fx:id="giaLKCol" minWidth="0.0" prefWidth="148.0" text="Giá bán" />
@@ -145,7 +146,7 @@
                               </AnchorPane>
                            </items>
                         </SplitPane>
-                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0">
+                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0" visible="false">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="642.0" prefWidth="1285.0">
                                  <children>
@@ -343,14 +344,14 @@
                                        <children>
                                           <TableView fx:id="tblKhachHang" layoutY="66.0" prefHeight="530.0" prefWidth="1300.0">
                                             <columns>
-                                                <TableColumn fx:id="sttKHCol" prefWidth="74.0" text="STT" />
-                                              <TableColumn fx:id="maKHCol" prefWidth="178.0" text="Mã khách hàng" />
+                                                <TableColumn fx:id="sttKHCol" prefWidth="126.0" text="STT" />
+                                              <TableColumn fx:id="maKHCol" prefWidth="126.0" text="Mã khách hàng" />
                                               <TableColumn fx:id="tenKHCol" prefWidth="174.0" text="Họ và tên" />
-                                                <TableColumn fx:id="diaChiCol" prefWidth="274.0" text="Địa chỉ" />
-                                                <TableColumn fx:id="gioiTinhCol" prefWidth="107.0" text="Giới tính" />
-                                                <TableColumn fx:id="ngaySinhCol" prefWidth="129.0" text="Ngày sinh" />
-                                                <TableColumn fx:id="sdtCol" prefWidth="171.0" text="Số điện thoại" />
-                                                <TableColumn fx:id="cccdCol" prefWidth="192.0" text="Số CCCD" />
+                                                <TableColumn fx:id="diaChiCol" prefWidth="294.0" text="Địa chỉ" />
+                                                <TableColumn fx:id="gioiTinhCol" prefWidth="204.0" text="Giới tính" />
+                                                <TableColumn fx:id="ngaySinhCol" prefWidth="124.0" text="Ngày sinh" />
+                                                <TableColumn fx:id="sdtCol" prefWidth="151.0" text="Số điện thoại" />
+                                                <TableColumn fx:id="cccdCol" prefWidth="100.0" text="Số CCCD" />
                                             </columns>
                                           </TableView>
                                           <Label layoutX="265.0" layoutY="23.0" text="Tìm kiếm khách hàng: " />
@@ -377,12 +378,12 @@
                                        <children>
                                           <TableView fx:id="tblHoaDon" layoutY="66.0" onMouseClicked="#xemCTHD" prefHeight="213.0" prefWidth="1300.0">
                                              <columns>
-                                                <TableColumn fx:id="sttHDCol" prefWidth="61.0" text="STT" />
-                                                <TableColumn fx:id="maHDCol" prefWidth="284.0" text="Mã hóa đơn" />
-                                                <TableColumn fx:id="tenNVCol" prefWidth="268.0" text="Tên nhân viên" />
+                                                <TableColumn fx:id="sttHDCol" prefWidth="70.0" text="STT" />
+                                                <TableColumn fx:id="maHDCol" prefWidth="232.0" text="Mã hóa đơn" />
+                                                <TableColumn fx:id="tenNVCol" prefWidth="302.0" text="Tên nhân viên" />
                                                 <TableColumn fx:id="ngayLapHDCol" prefWidth="316.0" text="Ngày lập hóa đơn" />
-                                                <TableColumn fx:id="tongTienCol" prefWidth="177.0" text="Tổng tiền" />
-                                                <TableColumn fx:id="tenKHHDCol" prefWidth="193.0" text="Tên khách hàng" />
+                                                <TableColumn fx:id="tongTienCol" prefWidth="209.0" text="Tổng tiền" />
+                                                <TableColumn fx:id="tenKHHDCol" prefWidth="166.0" text="Tên khách hàng" />
                                              </columns>
                                           </TableView>
                                           <TabPane layoutY="325.0" prefHeight="503.0" prefWidth="1300.0">
@@ -393,13 +394,13 @@
                                                          <children>
                                                             <TableView fx:id="tblCTHD" prefHeight="425.0" prefWidth="1300.0">
                                                                <columns>
-                                                                  <TableColumn fx:id="sttCTHDCol" prefWidth="68.0" text="STT" />
-                                                                  <TableColumn fx:id="maCTHDCol" prefWidth="156.0" text="Mã chi tiết hóa đơn" />
-                                                                  <TableColumn fx:id="maSPCTHD" prefWidth="146.0" text="Mã sản phẩm" />
-                                                                  <TableColumn fx:id="tenSPCTHD" prefWidth="203.0" text="Tên sản phẩm" />
-                                                                  <TableColumn fx:id="giaSPCTHD" prefWidth="242.0" text="Đơn giá" />
-                                                                  <TableColumn fx:id="soLuongSPCTHD" prefWidth="264.0" text="Số lượng" />
-                                                                  <TableColumn fx:id="tongTienCTHD" prefWidth="220.0" text="Thành tiền" />
+                                                                  <TableColumn fx:id="sttCTHDCol" prefWidth="70.0" text="STT" />
+                                                                  <TableColumn fx:id="maCTHDCol" prefWidth="237.0" text="Mã chi tiết hóa đơn" />
+                                                                  <TableColumn fx:id="maSPCTHD" prefWidth="316.0" text="Mã sản phẩm" />
+                                                                  <TableColumn fx:id="tenSPCTHD" prefWidth="267.0" text="Tên sản phẩm" />
+                                                                  <TableColumn fx:id="soLuongSPCTHD" prefWidth="109.0" text="Số lượng" />
+                                                                  <TableColumn fx:id="tongTienCTHD" prefWidth="119.0" text="Thành tiền" />
+                                                                  <TableColumn fx:id="giaSPCTHD" prefWidth="181.0" text="Đơn giá" />
                                                                </columns>
                                                             </TableView>
                                                          </children>
@@ -431,7 +432,7 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="Thống kê">
+            <Tab onSelectionChanged="#handleclickTabTK" text="Thống kê">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -469,21 +470,72 @@
                               </Button>
                            </items>
                         </ToolBar>
-                        <AnchorPane layoutY="77.0" prefHeight="634.0" prefWidth="788.0">
+                        <AnchorPane layoutY="77.0" prefHeight="634.0" prefWidth="697.0">
                            <children>
-                              <TableView layoutY="-3.0" prefHeight="635.0" prefWidth="785.0">
+                              <TableView fx:id="tbltk" layoutY="-3.0" prefHeight="635.0" prefWidth="696.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="STT" />
-                                  <TableColumn prefWidth="119.0" text="Mã sản phẩm" />
-                                    <TableColumn prefWidth="190.0" text="Tên sản phẩm" />
-                                    <TableColumn prefWidth="110.0" text="Số lượng" />
-                                    <TableColumn prefWidth="133.0" text="Giá bán" />
-                                    <TableColumn prefWidth="155.0" text="Tổng tiền" />
+                                  <TableColumn fx:id="masptk" prefWidth="99.0" text="Mã sản phẩm" />
+                                    <TableColumn fx:id="tensptk" prefWidth="114.0" text="Tên sản phẩm" />
+                                    <TableColumn fx:id="slbantk" prefWidth="113.0" text="Số lượng bán" />
+                                    <TableColumn fx:id="giasptk" prefWidth="91.0" text="Giá bán" />
+                                    <TableColumn fx:id="slkhotk" prefWidth="140.0" text="Số lượng kho" />
+                                    <TableColumn fx:id="dtsptk" prefWidth="141.0" text="Doanh thu" />
                                 </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
-                        <ListView layoutX="871.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="242.0" layoutX="856.0" layoutY="127.0" stroke="BLACK" strokeType="INSIDE" width="375.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e4e4" height="42.0" layoutX="856.0" layoutY="127.0" stroke="BLACK" strokeType="INSIDE" width="376.0" />
+                        <Label layoutX="864.0" layoutY="134.0" prefHeight="29.0" prefWidth="168.0" text="Tổng Doanh thu">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="883.0" layoutY="195.0" text="Số lượng sản phẩm đã bán:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="883.0" layoutY="248.0" text="Số lượng sản phẩm kho:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="884.0" layoutY="312.0" text="Doanh thu ước tính:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="1124.0" layoutY="136.0" mnemonicParsing="false" onAction="#btndt" text="Doanh thu" />
+                        <TextField fx:id="txtslban" editable="false" layoutX="1074.0" layoutY="193.0" />
+                        <TextField fx:id="txtslkho" editable="false" layoutX="1074.0" layoutY="246.0" />
+                        <TextField fx:id="txtdt" editable="false" layoutX="1074.0" layoutY="313.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="251.0" layoutX="856.0" layoutY="409.0" stroke="BLACK" strokeType="INSIDE" width="380.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dcdee1" height="55.0" layoutX="856.0" layoutY="409.0" stroke="BLACK" strokeType="INSIDE" width="380.0" />
+                        <Label layoutX="874.0" layoutY="423.0" prefHeight="17.0" prefWidth="131.0" text="TỶ LỆ THU/CHI">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="884.0" layoutY="486.0" text="Khoản thu:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="886.0" layoutY="535.0" text="Khoản chi:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="883.0" layoutY="589.0" text="Tỷ lệ thu/chi:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtthu" editable="false" layoutX="1074.0" layoutY="484.0" />
+                        <TextField fx:id="txtchi" editable="false" layoutX="1074.0" layoutY="533.0" />
+                        <TextField fx:id="txttl" editable="false" layoutX="1074.0" layoutY="590.0" />
+                        <Button layoutX="1123.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnthuchi" prefHeight="25.0" prefWidth="77.0" text="thu/chi" />
                      </children>
                   </AnchorPane>
                </content>

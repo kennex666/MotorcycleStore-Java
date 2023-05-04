@@ -225,7 +225,7 @@ public class KhachHang_DAO implements IKhachHang {
 
 		return result;
 	}
-	
+
 	@Override
 	public ArrayList<KhachHang> findCustomersAdvanced(Object[] obj) {
 		// TODO Auto-generated method stub
@@ -239,24 +239,22 @@ public class KhachHang_DAO implements IKhachHang {
 		Connection conn = ConnectDB.getConnection();
 		String query = "SELECT * FROM KhachHang WHERE tenKH LIKE CONCAT('%', ?, '%') ";
 
-
-		
 		if (!(isTimNu && isTimNam)) {
 			if (isTimNam) {
 				query += "AND gioiTinh = 1 ";
-			}else {
+			} else {
 				if (isTimNu == false && isTimNam == false) {
 					query += "AND gioiTinh <> 0 AND gioiTinh <> 1 ";
-				}else
+				} else
 					query += "AND gioiTinh = 0 ";
 			}
 		}
 
 		if (tuTuoi != 0) {
-			query += "AND (YEAR(GETDATE()) - YEAR(ngaySinh)) >= " + tuTuoi +" ";
+			query += "AND (YEAR(GETDATE()) - YEAR(ngaySinh)) >= " + tuTuoi + " ";
 		}
 		if (denTuoi != 0) {
-			query += "AND (YEAR(GETDATE()) - YEAR(ngaySinh)) <= " + denTuoi +" ";
+			query += "AND (YEAR(GETDATE()) - YEAR(ngaySinh)) <= " + denTuoi + " ";
 		}
 
 		if (thangSinh != 0) {
