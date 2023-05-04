@@ -287,6 +287,24 @@ public class Ctrl_NhanVienGUI {
 
 	@FXML
 	private TextField txtTongTien;
+	
+	@FXML
+	private TableColumn<LinhKien, Integer> sttLinhKienCol;
+	
+	@FXML
+	private TableColumn<KhachHang, Integer> sttKHCol;
+	
+	@FXML
+	private TableColumn<ChiTietHoaDon, Integer> sttCTHDCol;
+
+	@FXML
+	private TableColumn<HoaDon, Integer> sttHDCol;
+	
+	@FXML
+	private TableColumn<Object, Integer> sttProductCol;	
+	
+	@FXML
+	private TableColumn<Object, Integer> sttCartCol;	
 
 	private NhaCungCap_BUS ncc_BUS;
 	private LinhKien_BUS linhKien_BUS;
@@ -385,6 +403,16 @@ public class Ctrl_NhanVienGUI {
 			i.getKh().setTenKhachHang(kh_BUS.getTenByMaKH(i.getKh().getMaKhachHang()));
 			i.getNv().setHoTenNV(nv_BUS.getTenByMa(i.getNv().getID()));
 		}
+//		sttHDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+		//		Set STT auto increase
+		sttHDCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HoaDon,Integer>, ObservableValue<Integer>>() {
+
+			@Override
+			public ObservableValue<Integer> call(CellDataFeatures<HoaDon, Integer> hd) {
+				// TODO Auto-generated method stub
+				return new ReadOnlyObjectWrapper<>(tblHoaDon.getItems().indexOf(hd.getValue()) + 1);
+			}
+		});
 
 		maHDCol.setCellValueFactory(new PropertyValueFactory<HoaDon, String>("id"));
 		tenNVCol.setCellValueFactory(cellData -> {
@@ -415,24 +443,34 @@ public class Ctrl_NhanVienGUI {
 	@FXML
 	private void xemCTHD() throws Exception {
 		HoaDon hd = tblHoaDon.getSelectionModel().getSelectedItem();
-		listCTHD = cthd_BUS.getCTHDByMaHD(hd.getId());
 
-		maCTHDCol.setCellValueFactory(new PropertyValueFactory<ChiTietHoaDon, Integer>("id"));
-		maSPCTHD.setCellValueFactory(new PropertyValueFactory<ChiTietHoaDon, String>("maSP"));
-		giaSPCTHD.setCellValueFactory(cellData -> new SimpleObjectProperty<>(format.format(cellData.getValue().getGiaBan())));
-		soLuongSPCTHD.setCellValueFactory(new PropertyValueFactory<>("soLuongXe"));
-		tongTienCTHD.setCellValueFactory(cellData -> new SimpleObjectProperty<>(format.format(cellData.getValue().getGiaBan() * cellData.getValue().getSoLuongXe())));
-		tenSPCTHD.setCellValueFactory(cellData -> {
-			String ten = xe_BUS.getTenByMa(cellData.getValue().getMaSP());
-			if (ten == null) {
-				ten = linhKien_BUS.getTenByMa(cellData.getValue().getMaSP());
-			}
-			return new SimpleStringProperty(ten);
-		});
-		
-		
-		tblCTHD.getItems().clear();
-		tblCTHD.getItems().addAll(listCTHD);
+		if (hd != null) {
+			listCTHD = cthd_BUS.getCTHDByMaHD(hd.getId());
+			sttCTHDCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ChiTietHoaDon,Integer>, ObservableValue<Integer>>() {
+
+				@Override
+				public ObservableValue<Integer> call(CellDataFeatures<ChiTietHoaDon, Integer> cthd) {
+					// TODO Auto-generated method stub
+					return new ReadOnlyObjectWrapper<>(tblCTHD.getItems().indexOf(cthd.getValue()) + 1);
+				}
+			});
+			maCTHDCol.setCellValueFactory(new PropertyValueFactory<ChiTietHoaDon, Integer>("id"));
+			maSPCTHD.setCellValueFactory(new PropertyValueFactory<ChiTietHoaDon, String>("maSP"));
+			giaSPCTHD.setCellValueFactory(cellData -> new SimpleObjectProperty<>(format.format(cellData.getValue().getGiaBan())));
+			soLuongSPCTHD.setCellValueFactory(new PropertyValueFactory<>("soLuongXe"));
+			tongTienCTHD.setCellValueFactory(cellData -> new SimpleObjectProperty<>(format.format(cellData.getValue().getGiaBan() * cellData.getValue().getSoLuongXe())));
+			tenSPCTHD.setCellValueFactory(cellData -> {
+				String ten = xe_BUS.getTenByMa(cellData.getValue().getMaSP());
+				if (ten == null) {
+					ten = linhKien_BUS.getTenByMa(cellData.getValue().getMaSP());
+				}
+				return new SimpleStringProperty(ten);
+			});
+			
+			
+			tblCTHD.getItems().clear();
+			tblCTHD.getItems().addAll(listCTHD);
+		}
 	}
 
 	@FXML
@@ -484,6 +522,14 @@ public class Ctrl_NhanVienGUI {
 	private void addKHToTable() throws Exception {
 		listKH = kh_BUS.getAllKhachHang();
 
+		sttKHCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<KhachHang,Integer>, ObservableValue<Integer>>() {
+
+			@Override
+			public ObservableValue<Integer> call(CellDataFeatures<KhachHang, Integer> kh) {
+				// TODO Auto-generated method stub
+				return new ReadOnlyObjectWrapper<>(tblKhachHang.getItems().indexOf(kh.getValue()) + 1);
+			}
+		});
 		maKHCol.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("maKhachHang"));
 		tenKHCol.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("tenKhachHang"));
 		diaChiCol.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("diaChi"));
@@ -502,6 +548,14 @@ public class Ctrl_NhanVienGUI {
 	private void addLinhKienToTable() throws Exception {
 		listLinhKien = linhKien_BUS.getAllLinhKien();
 
+		sttLinhKienCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<LinhKien,Integer>, ObservableValue<Integer>>() {
+
+			@Override
+			public ObservableValue<Integer> call(CellDataFeatures<LinhKien, Integer> lk) {
+				// TODO Auto-generated method stub
+				return new ReadOnlyObjectWrapper<>(tblLinhKien.getItems().indexOf(lk.getValue()) + 1);
+			}
+		});
 		maLKCol.setCellValueFactory(new PropertyValueFactory<LinhKien, String>("id"));
 		tenLKCol.setCellValueFactory(new PropertyValueFactory<LinhKien, String>("ten"));
 		giaLKCol.setCellValueFactory(cellData -> {
@@ -675,6 +729,15 @@ public class Ctrl_NhanVienGUI {
 		System.out.println("RUN");
 		listLinhKien = linhKien_BUS.getAllLinhKien();
 		listXe = xe_BUS.getAllXe();
+		
+		sttProductCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Object,Integer>, ObservableValue<Integer>>() {
+
+			@Override
+			public ObservableValue<Integer> call(CellDataFeatures<Object, Integer> obj) {
+				// TODO Auto-generated method stub
+				return new ReadOnlyObjectWrapper<>(tblProduct.getItems().indexOf(obj.getValue()) + 1);
+			}
+		});
 
 		maSPGen.setCellValueFactory(cellData -> {
 			Object obj = cellData.getValue();
@@ -723,6 +786,15 @@ public class Ctrl_NhanVienGUI {
 		Object productSelected = tblProduct.getSelectionModel().getSelectedItem();
 		int quantityKho;
 
+		sttCartCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Object,Integer>, ObservableValue<Integer>>() {
+
+			@Override
+			public ObservableValue<Integer> call(CellDataFeatures<Object, Integer> obj) {
+				// TODO Auto-generated method stub
+				return new ReadOnlyObjectWrapper<>(tblCart.getItems().indexOf(obj.getValue()) + 1);
+			}
+		});
+		
 		maSPCart.setCellValueFactory(cellData -> {
 			Object obj = cellData.getValue();
 			if (obj instanceof Xe) {

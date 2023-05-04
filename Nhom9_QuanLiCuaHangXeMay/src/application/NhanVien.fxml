@@ -123,7 +123,7 @@
                                                    <children>
                                                       <TableView fx:id="tblLinhKien" layoutY="74.0" prefHeight="520.0" prefWidth="1119.0">
                                                          <columns>
-                                                            <TableColumn prefWidth="75.0" text="STT" />
+                                                            <TableColumn fx:id="sttLinhKienCol" prefWidth="75.0" text="STT" />
                                                             <TableColumn fx:id="maLKCol" prefWidth="191.0" text="Mã linh kiện" />
                                                             <TableColumn fx:id="tenLKCol" prefWidth="292.0" text="Tên linh kiện" />
                                                             <TableColumn fx:id="giaLKCol" minWidth="0.0" prefWidth="148.0" text="Giá bán" />
@@ -145,7 +145,7 @@
                               </AnchorPane>
                            </items>
                         </SplitPane>
-                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0" visible="false">
+                        <SplitPane fx:id="splitPaneBH" layoutX="-1.0" layoutY="67.0" prefHeight="644.0" prefWidth="1311.0">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="642.0" prefWidth="1285.0">
                                  <children>
@@ -161,7 +161,7 @@
                                                       <Button layoutX="482.0" layoutY="24.0" mnemonicParsing="false" text="Làm mới" />
                                                       <TableView fx:id="tblProduct" layoutX="1.0" layoutY="80.0" prefHeight="204.0" prefWidth="768.0">
                                                          <columns>
-                                                            <TableColumn prefWidth="75.0" text="STT" />
+                                                            <TableColumn fx:id="sttProductCol" prefWidth="75.0" text="STT" />
                                                             <TableColumn fx:id="maSPGen" prefWidth="111.0" text="Mã sản phẩm" />
                                                             <TableColumn fx:id="tenSPGen" prefWidth="243.0" text="Tên sản phẩm" />
                                                             <TableColumn fx:id="giaBanGen" prefWidth="153.0" text="Giá bán" />
@@ -176,7 +176,7 @@
                                                                      <children>
                                                                         <TableView fx:id="tblCart" layoutX="-1.0" layoutY="6.0" prefHeight="173.0" prefWidth="764.0">
                                                                            <columns>
-                                                                              <TableColumn prefWidth="75.0" text="STT" />
+                                                                              <TableColumn fx:id="sttCartCol" prefWidth="75.0" text="STT" />
                                                                               <TableColumn fx:id="maSPCart" prefWidth="111.0" text="Mã sản phẩm" />
                                                                               <TableColumn fx:id="tenSPCart" prefWidth="168.0" text="Tên sản phẩm" />
                                                                               <TableColumn fx:id="giaBanCart" prefWidth="134.0" text="Giá bán" />
@@ -343,13 +343,14 @@
                                        <children>
                                           <TableView fx:id="tblKhachHang" layoutY="66.0" prefHeight="530.0" prefWidth="1300.0">
                                             <columns>
-                                              <TableColumn fx:id="maKHCol" prefWidth="126.0" text="Mã khách hàng" />
+                                                <TableColumn fx:id="sttKHCol" prefWidth="74.0" text="STT" />
+                                              <TableColumn fx:id="maKHCol" prefWidth="178.0" text="Mã khách hàng" />
                                               <TableColumn fx:id="tenKHCol" prefWidth="174.0" text="Họ và tên" />
-                                                <TableColumn fx:id="diaChiCol" prefWidth="352.0" text="Địa chỉ" />
-                                                <TableColumn fx:id="gioiTinhCol" prefWidth="146.0" text="Giới tính" />
-                                                <TableColumn fx:id="ngaySinhCol" prefWidth="164.0" text="Ngày sinh" />
-                                                <TableColumn fx:id="sdtCol" prefWidth="173.0" text="Số điện thoại" />
-                                                <TableColumn fx:id="cccdCol" prefWidth="164.0" text="Số CCCD" />
+                                                <TableColumn fx:id="diaChiCol" prefWidth="274.0" text="Địa chỉ" />
+                                                <TableColumn fx:id="gioiTinhCol" prefWidth="107.0" text="Giới tính" />
+                                                <TableColumn fx:id="ngaySinhCol" prefWidth="129.0" text="Ngày sinh" />
+                                                <TableColumn fx:id="sdtCol" prefWidth="171.0" text="Số điện thoại" />
+                                                <TableColumn fx:id="cccdCol" prefWidth="192.0" text="Số CCCD" />
                                             </columns>
                                           </TableView>
                                           <Label layoutX="265.0" layoutY="23.0" text="Tìm kiếm khách hàng: " />
@@ -376,11 +377,12 @@
                                        <children>
                                           <TableView fx:id="tblHoaDon" layoutY="66.0" onMouseClicked="#xemCTHD" prefHeight="213.0" prefWidth="1300.0">
                                              <columns>
-                                                <TableColumn fx:id="maHDCol" prefWidth="180.0" text="Mã hóa đơn" />
-                                                <TableColumn fx:id="tenNVCol" prefWidth="248.0" text="Tên nhân viên" />
+                                                <TableColumn fx:id="sttHDCol" prefWidth="61.0" text="STT" />
+                                                <TableColumn fx:id="maHDCol" prefWidth="284.0" text="Mã hóa đơn" />
+                                                <TableColumn fx:id="tenNVCol" prefWidth="268.0" text="Tên nhân viên" />
                                                 <TableColumn fx:id="ngayLapHDCol" prefWidth="316.0" text="Ngày lập hóa đơn" />
-                                                <TableColumn fx:id="tongTienCol" prefWidth="311.0" text="Tổng tiền" />
-                                                <TableColumn fx:id="tenKHHDCol" prefWidth="244.0" text="Tên khách hàng" />
+                                                <TableColumn fx:id="tongTienCol" prefWidth="177.0" text="Tổng tiền" />
+                                                <TableColumn fx:id="tenKHHDCol" prefWidth="193.0" text="Tên khách hàng" />
                                              </columns>
                                           </TableView>
                                           <TabPane layoutY="325.0" prefHeight="503.0" prefWidth="1300.0">
@@ -391,12 +393,13 @@
                                                          <children>
                                                             <TableView fx:id="tblCTHD" prefHeight="425.0" prefWidth="1300.0">
                                                                <columns>
-                                                                  <TableColumn fx:id="maCTHDCol" prefWidth="179.0" text="Mã chi tiết hóa đơn" />
-                                                                  <TableColumn fx:id="maSPCTHD" prefWidth="250.0" text="Mã sản phẩm" />
-                                                                  <TableColumn fx:id="tenSPCTHD" prefWidth="309.0" text="Tên sản phẩm" />
-                                                                  <TableColumn fx:id="giaSPCTHD" prefWidth="151.0" text="Đơn giá" />
-                                                                  <TableColumn fx:id="soLuongSPCTHD" prefWidth="165.0" text="Số lượng" />
-                                                                  <TableColumn fx:id="tongTienCTHD" prefWidth="245.0" text="Thành tiền" />
+                                                                  <TableColumn fx:id="sttCTHDCol" prefWidth="68.0" text="STT" />
+                                                                  <TableColumn fx:id="maCTHDCol" prefWidth="156.0" text="Mã chi tiết hóa đơn" />
+                                                                  <TableColumn fx:id="maSPCTHD" prefWidth="146.0" text="Mã sản phẩm" />
+                                                                  <TableColumn fx:id="tenSPCTHD" prefWidth="203.0" text="Tên sản phẩm" />
+                                                                  <TableColumn fx:id="giaSPCTHD" prefWidth="242.0" text="Đơn giá" />
+                                                                  <TableColumn fx:id="soLuongSPCTHD" prefWidth="264.0" text="Số lượng" />
+                                                                  <TableColumn fx:id="tongTienCTHD" prefWidth="220.0" text="Thành tiền" />
                                                                </columns>
                                                             </TableView>
                                                          </children>

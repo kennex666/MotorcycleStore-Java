@@ -39,15 +39,12 @@
     <fullyQualifiedTypeName name="javafx.util.Callback"/>
     <fullyQualifiedTypeName name="javafx.beans.property.ReadOnlyDoubleWrapper"/>
     <fullyQualifiedTypeName name="javafx.beans.property.ReadOnlyObjectWrapper"/>
-    <fullyQualifiedTypeName name="entity.LinhKien"/>
     <fullyQualifiedTypeName name="interfaces.IHoaDon"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="entity.KhachHang"/>
     <fullyQualifiedTypeName name="dao.HoaDon_DAO"/>
     <fullyQualifiedTypeName name="interfaces.IChiTietHoaDon"/>
     <fullyQualifiedTypeName name="dao.ChiTietHoaDon_DAO"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TableView"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TableColumn"/>
     <fullyQualifiedTypeName name="bus.HoaDon_BUS"/>
     <fullyQualifiedTypeName name="javafx.beans.property.SimpleStringProperty"/>
     <fullyQualifiedTypeName name="interfaces.INhanVien"/>
@@ -55,9 +52,12 @@
     <fullyQualifiedTypeName name="entity.NhanVien"/>
     <fullyQualifiedTypeName name="bus.NhanVien_BUS"/>
     <fullyQualifiedTypeName name="bus.ChiTietHoaDon_BUS"/>
-    <fullyQualifiedTypeName name="entity.ChiTietHoaDon"/>
     <fullyQualifiedTypeName name="javafx.scene.control.cell.PropertyValueFactory"/>
-    <fullyQualifiedTypeName name="entity.HoaDon"/>
     <fullyQualifiedTypeName name="javafx.scene.control.DatePicker"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TableColumn"/>
+    <fullyQualifiedTypeName name="entity.HoaDon"/>
+    <fullyQualifiedTypeName name="entity.ChiTietHoaDon"/>
+    <fullyQualifiedTypeName name="entity.LinhKien"/>
+    <fullyQualifiedTypeName name="entity.KhachHang"/>
 </qualifiedTypeNameHistroy>
