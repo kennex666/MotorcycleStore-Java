@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import entity.Xe;
 
 public interface iXe {
-	public ArrayList<Xe> getAllList();
+	public ArrayList<Xe> getAllXe() throws Exception;
 	public ArrayList<Xe> findXe(String keywords);
 	public boolean editXe(Xe xeCanSua);
 	public int totalXe();

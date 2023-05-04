@@ -9,9 +9,10 @@ import interfaces.iXe;
 public class Xe_Bus implements iXe{
 
 	@Override
-	public ArrayList<Xe> getAllList() {
-		Xe_DAO xe_dao = new Xe_DAO();
-		return xe_dao.getAllList();
+	public ArrayList<Xe> getAllXe() throws Exception {
+		Xe_DAO xe_DAO = new Xe_DAO();
+		
+		return xe_DAO.getAllXe();
 	}
 
 	@Override
@@ -22,8 +23,8 @@ public class Xe_Bus implements iXe{
 
 	@Override
 	public boolean editXe(Xe xeCanSua) {
-		// TODO Auto-generated method stub
-		return false;
+		Xe_DAO xe_DAO = new Xe_DAO();
+		return xe_DAO.editXe(xeCanSua);
 	}
 
 	@Override
@@ -34,8 +35,8 @@ public class Xe_Bus implements iXe{
 	
 	@Override
 	public boolean addXe(Xe xe) {
-		// TODO Auto-generated method stub
-		return false;
+		Xe_DAO xe_DAO = new Xe_DAO();
+		return xe_DAO.addXe(xe);
 	}
 	
 	@Override

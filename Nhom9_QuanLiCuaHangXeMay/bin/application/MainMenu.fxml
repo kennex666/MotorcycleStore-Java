@@ -21,7 +21,7 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="173.0">
                                  <children>
-                                    <Button fx:id="btnListProduct2" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#actionListProduct" prefHeight="48.0" prefWidth="150.0" text="Danh sách" textAlignment="CENTER">
+                                    <Button fx:id="btnDanhSachXe" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#actionListProduct" prefHeight="48.0" prefWidth="150.0" text="Danh sách " textAlignment="CENTER">
                                        <effect>
                                           <Blend />
                                        </effect>
@@ -51,6 +51,21 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
+                                    <Button fx:id="btnListProduct3" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="163.0" mnemonicParsing="false" onAction="#addXeVaoTable" prefHeight="48.0" prefWidth="150.0" text="Danh sách xe" textAlignment="CENTER">
+                                       <effect>
+                                          <Blend />
+                                       </effect>
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/ico/ico-product.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
                                  </children></AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1121.0">
                                  <children>
@@ -58,18 +73,21 @@
                                       <tabs>
                                           <Tab closable="false" text="Danh sách xe">
                                              <content>
-                                                <AnchorPane prefHeight="588.0" prefWidth="1294.0">
+                                                <AnchorPane onDragDetected="#themXe" prefHeight="588.0" prefWidth="1294.0">
                                                    <children>
-                                                      <TableView layoutX="1.0" layoutY="389.0" prefHeight="301.0" prefWidth="1108.0">
+                                                      <TableView fx:id="tblXe" layoutX="-1.0" layoutY="365.0" onMouseClicked="#clickTable" prefHeight="301.0" prefWidth="1226.0">
                                                          <columns>
-                                                            <TableColumn prefWidth="126.33331298828125" text="Mã xe" />
-                                                            <TableColumn prefWidth="129.0" text="Tên xe" />
-                                                            <TableColumn prefWidth="122.3333740234375" text="Loại xe" />
-                                                            <TableColumn prefWidth="221.3333740234375" text="Nhà sản xuất" />
-                                                            <TableColumn prefWidth="100.66668701171875" text="Màu xe" />
-                                                            <TableColumn prefWidth="117.0" text="Số sườn" />
-                                                            <TableColumn prefWidth="126.666748046875" text="Số khung" />
-                                                            <TableColumn prefWidth="117.0" text="Giá" />
+                                                            <TableColumn fx:id="colMaXe" prefWidth="94.0" text="Mã xe" />
+                                                            <TableColumn fx:id="colTenXe" prefWidth="81.0" text="Tên xe" />
+                                                            <TableColumn fx:id="colLoaiXe" prefWidth="93.0" text="Loại xe" />
+                                                            <TableColumn fx:id="colMauXe" prefWidth="87.0" text="Màu xe" />
+                                                            <TableColumn fx:id="colSoPK" prefWidth="122.0" text="Số phân khối" />
+                                                            <TableColumn fx:id="colGia" prefWidth="140.0" text="Giá" />
+                                                            <TableColumn fx:id="colNhaSX" prefWidth="92.0" text="Nhà sản xuất" />
+                                                            <TableColumn fx:id="colNuocSX" prefWidth="97.0" text="Nước sản xuất" />
+                                                            <TableColumn fx:id="colSoSuon" prefWidth="73.0" text="Số sườn" />
+                                                            <TableColumn fx:id="colSoKhung" prefWidth="73.0" text="Số khung" />
+                                                            <TableColumn fx:id="colSoLuongKho" prefWidth="173.0" text="Số lượng còn trong kho" />
                                                          </columns>
                                                       </TableView>
                                                       <Label layoutX="76.0" layoutY="19.0" text="Tìm kiếm xe: ">
@@ -77,12 +95,12 @@
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField layoutX="215.0" layoutY="19.0" prefHeight="25.0" prefWidth="451.0" promptText="Tìm kiếm tên, mã xe, tên xe, loại xe, màu xe, nước sx, giá" />
+                                                      <TextField fx:id="txtTimKiem" layoutX="215.0" layoutY="19.0" prefHeight="25.0" prefWidth="451.0" promptText="Tìm kiếm tên, mã xe, tên xe, loại xe, màu xe, nước sx, giá" />
                                                       <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" text="Tìm kiếm" />
                                                       <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" text="Làm mới" />
                                                       <Button layoutX="950.0" layoutY="19.0" mnemonicParsing="false" text="Lọc nâng cao" />
-                                                      <Button layoutX="934.0" layoutY="90.0" mnemonicParsing="false" text="Thêm thông tin xe" />
-                                                      <Button layoutX="933.0" layoutY="126.0" mnemonicParsing="false" text="Xoá trắng" />
+                                                      <Button fx:id="btnThemXe" layoutX="934.0" layoutY="90.0" mnemonicParsing="false" onAction="#themXe" text="Thêm thông tin xe" />
+                                                      <Button fx:id="btnXoaTrangXe" layoutX="933.0" layoutY="126.0" mnemonicParsing="false" text="Xoá trắng" />
                                                       <HBox layoutX="56.0" layoutY="88.0" prefHeight="30.0" prefWidth="810.0">
                                                          <children>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="40.0" />
@@ -92,7 +110,7 @@
                                                                </font>
                                                             </Label>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="10.0" />
-                                                            <TextField prefHeight="31.0" prefWidth="299.0" />
+                                                            <TextField fx:id="txtTenXe" prefHeight="31.0" prefWidth="299.0" />
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="85.0" />
                                                             <Label prefHeight="30.0" prefWidth="89.0" text="Loại xe : ">
                                                                <font>
@@ -100,27 +118,27 @@
                                                                </font>
                                                             </Label>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="15.0" />
-                                                            <TextField prefHeight="31.0" prefWidth="207.0" />
+                                                            <TextField fx:id="txtLoaiXe" prefHeight="30.0" prefWidth="202.0" />
                                                          </children>
                                                       </HBox>
                                                       <HBox layoutX="56.0" layoutY="138.0" prefHeight="30.0" prefWidth="810.0">
                                                          <children>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="40.0" />
-                                                            <Label prefHeight="30.0" prefWidth="125.0" text="Số khung :">
+                                                            <Label prefHeight="30.0" prefWidth="125.0" text="Nước sản xuất:">
                                                                <font>
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="13.0" />
-                                                            <TextField prefHeight="31.0" prefWidth="299.0" />
+                                                            <TextField fx:id="txtNuocSX" prefHeight="31.0" prefWidth="299.0" />
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="85.0" />
-                                                            <Label prefHeight="30.0" prefWidth="90.0" text="Số sườn :">
+                                                            <Label prefHeight="30.0" prefWidth="90.0" text="Màu xe:">
                                                                <font>
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="15.0" />
-                                                            <TextField prefHeight="31.0" prefWidth="207.0" />
+                                                            <TextField fx:id="txtMauXe" prefHeight="30.0" prefWidth="199.0" />
                                                          </children>
                                                       </HBox>
                                                       <HBox layoutX="56.0" layoutY="188.0" prefHeight="30.0" prefWidth="810.0">
@@ -132,48 +150,119 @@
                                                                </font>
                                                             </Label>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="13.0" />
-                                                            <TextField prefHeight="31.0" prefWidth="299.0" />
+                                                            <TextField fx:id="txtSoPK" prefHeight="31.0" prefWidth="299.0" />
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="85.0" />
-                                                            <Label prefHeight="30.0" prefWidth="90.0" text="Màu xe :">
+                                                            <Label prefHeight="30.0" prefWidth="90.0" text="Số khung:">
                                                                <font>
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="15.0" />
-                                                            <TextField prefHeight="31.0" prefWidth="207.0" />
+                                                            <TextField fx:id="txtSoKhung" prefHeight="30.0" prefWidth="197.0" />
                                                          </children>
                                                       </HBox>
                                                       <HBox layoutX="56.0" layoutY="238.0" prefHeight="30.0" prefWidth="810.0">
                                                          <children>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="40.0" />
-                                                            <Label prefHeight="30.0" prefWidth="110.0" text="Nhà sản xuất :">
+                                                            <Label prefHeight="30.0" prefWidth="109.0" text="Nhà cung cấp:">
                                                                <font>
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="15.0" />
-                                                            <TextField prefHeight="30.0" prefWidth="648.0" />
+                                                            <ComboBox fx:id="cboNXS" prefHeight="25.0" prefWidth="283.0" />
+                                                            <Box cullFace="NONE" drawMode="LINE" height="20.0" opacity="0.0" width="85.0" />
+                                                            <Label prefHeight="30.0" prefWidth="74.0" text="Số sườn:">
+                                                               <font>
+                                                                  <Font name="System Bold" size="15.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="26.0" />
+                                                            <TextField fx:id="txtSoSuon" prefHeight="30.0" prefWidth="184.0" />
                                                          </children>
                                                       </HBox>
-                                                      <HBox layoutX="56.0" layoutY="288.0" prefHeight="30.0" prefWidth="810.0">
+                                                      <HBox layoutX="51.0" layoutY="292.0" prefHeight="30.0" prefWidth="810.0">
                                                          <children>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="40.0" />
-                                                            <Label prefHeight="30.0" prefWidth="110.0" text="Giá :">
+                                                            <Label prefHeight="30.0" prefWidth="119.0" text="Giá :">
+                                                               <font>
+                                                                  <Font name="System Bold" size="15.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="13.0" />
+                                                            <TextField fx:id="txtGia" prefHeight="30.0" prefWidth="283.0" />
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="60.0" />
+                                                            <Label prefHeight="30.0" prefWidth="120.0" text="Số lượng kho:">
                                                                <font>
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="15.0" />
-                                                            <TextField prefHeight="30.0" prefWidth="283.0" />
+                                                            <TextField fx:id="txtSoLuongKho" prefHeight="30.0" prefWidth="181.0" />
                                                          </children>
                                                       </HBox>
-                                                      <Button layoutX="933.0" layoutY="166.0" mnemonicParsing="false" text="Sửa thông tin xe" />
-                                                      <Button layoutX="933.0" layoutY="206.0" mnemonicParsing="false" text="Xoá thông tin" />
+                                                      <Button fx:id="btnSuaXe" layoutX="933.0" layoutY="166.0" mnemonicParsing="false" onAction="#suaXe" text="Sửa thông tin xe" />
+                                                      <Button fx:id="btnXoaXe" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" text="Xoá thông tin" />
                                                    </children>
                                                 </AnchorPane>
                                              </content>
                                           </Tab>
                                       </tabs>
+                                    </TabPane>
+                                    <TabPane fx:id="allTabs2" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE" visible="false">
+                                       <tabs>
+                                          <Tab closable="false" text="Danh sách xe">
+                                             <content>
+                                                <AnchorPane onDragDetected="#themXe" prefHeight="588.0" prefWidth="1294.0">
+                                                   <children>
+                                                      <TableView fx:id="tblXe1" layoutX="4.0" layoutY="249.0" prefHeight="301.0" prefWidth="1226.0">
+                                                         <columns>
+                                                            <TableColumn fx:id="colMaXe1" prefWidth="96.0" text="Mã xe" />
+                                                            <TableColumn fx:id="colTenXe1" prefWidth="124.0" text="Tên xe" />
+                                                            <TableColumn fx:id="colLoaiXe1" prefWidth="112.0" text="Loại xe" />
+                                                            <TableColumn fx:id="colMauXe1" prefWidth="97.0" text="Màu xe" />
+                                                            <TableColumn fx:id="colSoPK" prefWidth="126.0" text="Số phân khối" />
+                                                            <TableColumn fx:id="colGia1" prefWidth="77.0" text="Giá" />
+                                                            <TableColumn fx:id="colNhaSX1" prefWidth="100.0" text="Nhà sản xuất" />
+                                                            <TableColumn fx:id="colNuocSX1" prefWidth="97.0" text="Nước sản xuất" />
+                                                            <TableColumn fx:id="colSoSuon1" prefWidth="73.0" text="Số sườn" />
+                                                            <TableColumn fx:id="colSoKhung1" prefWidth="73.0" text="Số khung" />
+                                                            <TableColumn fx:id="colSoLuongKho1" prefWidth="147.0" text="Số lượng còn trong kho" />
+                                                         </columns>
+                                                      </TableView>
+                                                      <Label layoutX="76.0" layoutY="19.0" text="Tìm kiếm linh kiện :">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="txtTimKiem1" layoutX="233.0" layoutY="19.0" prefHeight="25.0" prefWidth="440.0" promptText="Tìm kiếm tên linh kiện" />
+                                                      <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" text="Tìm kiếm" />
+                                                      <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" text="Làm mới" />
+                                                      <Button layoutX="950.0" layoutY="19.0" mnemonicParsing="false" text="Lọc nâng cao" />
+                                                      <Button fx:id="btnThemXe1" layoutX="934.0" layoutY="90.0" mnemonicParsing="false" onAction="#themXe" text="Thêm thông tin xe" />
+                                                      <Button fx:id="btnXoaTrangXe1" layoutX="933.0" layoutY="126.0" mnemonicParsing="false" text="Xoá trắng" />
+                                                      <HBox layoutX="56.0" layoutY="88.0" prefHeight="30.0" prefWidth="810.0">
+                                                         <children>
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="40.0" />
+                                                            <Label prefHeight="30.0" prefWidth="125.0" text="Tên linh kiện:  ">
+                                                               <font>
+                                                                  <Font name="System Bold" size="15.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="10.0" />
+                                                            <TextField fx:id="txtTenXe1" prefHeight="30.0" prefWidth="436.0" />
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="85.0" />
+                                                            <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="15.0" />
+                                                         </children>
+                                                      </HBox>
+                                                      <Button fx:id="btnSuaXe1" layoutX="933.0" layoutY="166.0" mnemonicParsing="false" text="Sửa thông tin xe" />
+                                                      <Button fx:id="btnXoaXe1" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" text="Xoá thông tin" />
+                                                      <Label layoutX="118.0" layoutY="158.0" text="Label" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                       </tabs>
                                     </TabPane>
                                  </children></AnchorPane>
                           </items>

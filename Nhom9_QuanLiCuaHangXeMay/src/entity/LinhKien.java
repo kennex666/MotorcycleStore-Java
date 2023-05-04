@@ -3,9 +3,12 @@ package entity;
 import java.util.Objects;
 
 public class LinhKien {
-	private String id, ten;
-	private double soLuongKho,soLuongBan;
-	private String imagePath;
+	private String id, ten, imagePath;
+	private NhaCungCap nhaCungCap;
+	private ChiTietSuaChua ctsc;
+	private double giaLinhKien;
+	private int soLuongKho, soLuongBan;
+	
 	public LinhKien() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -14,15 +17,18 @@ public class LinhKien {
 		super();
 		setId(id);
 	}
-	
-	public LinhKien(String id, String ten, double soLuongKho, double soLuongBan, String imagePath) throws Exception {
+	public LinhKien(String id, String ten, String imagePath, NhaCungCap nhaCungCap, ChiTietSuaChua ctsc, double giaLinhKien, int slKho, int slBan) throws Exception{
 		super();
-		this.setId(id);
-		this.setTen(ten);
-		this.setSoLuongKho(soLuongKho);
-		this.setSoLuongBan(soLuongBan);
-		this.setImagePath(imagePath);
+		setId(id);
+		setTen(ten);
+		setImagePath(imagePath);
+		this.nhaCungCap = nhaCungCap;
+		this.ctsc = ctsc;
+		setGiaLinhKien(giaLinhKien);
+		this.setSoLuongKho(slKho);
+		this.setSoLuongBan(slBan);
 	}
+	
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -33,7 +39,6 @@ public class LinhKien {
 	public String getId() {
 		return id;
 	}
-
 	public String getTen() {
 		return ten;
 	}
@@ -41,24 +46,6 @@ public class LinhKien {
 		if (id.trim() == "" || id.isEmpty() || id.isBlank())
 			throw new Exception("ID không hợp lệ. Lỗi trong quá trình phát sinh!");
 		this.id = id;
-	}
-	
-	
-
-	
-	public double getSoLuongKho() {
-		return soLuongKho;
-	}
-	public void setSoLuongKho(double soLuongKho) throws Exception {
-		if (soLuongKho<0)
-			throw new Exception("Hết linh kiện trong kho!");
-		this.soLuongKho = soLuongKho;
-	}
-	public double getSoLuongBan() {
-		return soLuongBan;
-	}
-	public void setSoLuongBan(double soLuongBan) {
-		this.soLuongBan = soLuongBan;
 	}
 	public void setTen(String ten) throws Exception{
 		if (ten.trim() == "" || ten.isEmpty() || ten.isBlank())
@@ -73,6 +60,7 @@ public class LinhKien {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -84,7 +72,39 @@ public class LinhKien {
 		LinhKien other = (LinhKien) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+	public NhaCungCap getNhaCungCap() {
+		return nhaCungCap;
+	}
+	public void setNhaCungCap(NhaCungCap nhaCungCap) {
+		this.nhaCungCap = nhaCungCap;
+	}
+	public ChiTietSuaChua getCtsc() {
+		return ctsc;
+	}
+	public void setCtsc(ChiTietSuaChua ctsc) {
+		this.ctsc = ctsc;
+	}
+	public double getGiaLinhKien() {
+		return giaLinhKien;
+	}
+	public void setGiaLinhKien(double giaLinhKien) throws Exception {
+		if (giaLinhKien <= 0) {
+			throw new Exception("Giá xe không hợp lệ");
+		}
+		else this.giaLinhKien = giaLinhKien;
+	}
+	public int getSoLuongKho() {
+		return soLuongKho;
+	}
+	public void setSoLuongKho(int soLuongKho) {
+		this.soLuongKho = soLuongKho;
+	}
+	public int getSoLuongBan() {
+		return soLuongBan;
+	}
+	public void setSoLuongBan(int soLuongBan) {
+		this.soLuongBan = soLuongBan;
+	}
 	
 	
 }
