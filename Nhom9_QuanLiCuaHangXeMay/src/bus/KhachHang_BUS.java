@@ -51,4 +51,9 @@ public class KhachHang_BUS implements IKhachHang{
 	public ArrayList<KhachHang> findCustomers(String keywords) {
 		return kh_dao.findCustomers(keywords);
 	}
+	
+	@Override
+	public ArrayList<KhachHang> findCustomersAdvanced(Object[] obj) {
+		return kh_dao.findCustomersAdvanced(obj);
+	}
 }
