@@ -29,6 +29,10 @@ public class LinhKien_BUS implements ILinhKien{
 	public String getTenByMa(String maXe) {
 		return linhKien_DAO.getTenByMa(maXe);
 	}
+	
+	public ArrayList<LinhKien> findLinhKien(String keywords) throws Exception {
+		return linhKien_DAO.findLinhKien(keywords);
+	}
 
 	@Override
 	public void updateSoLuongKho(int newSL, String maLK) {
@@ -60,9 +64,4 @@ public class LinhKien_BUS implements ILinhKien{
 		return false;
 	}
 
-	@Override
-	public ArrayList<LinhKien> findLinhKien(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

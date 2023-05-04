@@ -226,6 +226,71 @@ public class KhachHang_DAO implements IKhachHang {
 		return result;
 	}
 
+	@Override
+	public ArrayList<KhachHang> findCustomersAdvanced(Object[] obj) {
+		// TODO Auto-generated method stub
+		String ten = (String) obj[0];
+		boolean isTimNam = (boolean) obj[1];
+		boolean isTimNu = (boolean) obj[2];
+		int tuTuoi = (int) obj[3];
+		int denTuoi = (int) obj[4];
+		int thangSinh = (int) obj[5];
+		ArrayList<KhachHang> listKhachHang = new ArrayList<KhachHang>();
+		Connection conn = ConnectDB.getConnection();
+		String query = "SELECT * FROM KhachHang WHERE tenKH LIKE CONCAT('%', ?, '%') ";
+
+		if (!(isTimNu && isTimNam)) {
+			if (isTimNam) {
+				query += "AND gioiTinh = 1 ";
+			} else {
+				if (isTimNu == false && isTimNam == false) {
+					query += "AND gioiTinh <> 0 AND gioiTinh <> 1 ";
+				} else
+					query += "AND gioiTinh = 0 ";
+			}
+		}
+
+		if (tuTuoi != 0) {
+			query += "AND (YEAR(GETDATE()) - YEAR(ngaySinh)) >= " + tuTuoi + " ";
+		}
+		if (denTuoi != 0) {
+			query += "AND (YEAR(GETDATE()) - YEAR(ngaySinh)) <= " + denTuoi + " ";
+		}
+
+		if (thangSinh != 0) {
+			query += "AND MONTH(ngaySinh) = " + thangSinh;
+		}
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(query);
+			pstm.setString(1, ten);
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				KhachHang temp;
+				String maKH = rs.getString("maKH");
+				String tenKH = rs.getString("tenKH");
+				String diaChi = rs.getString("diaChi");
+				String SDT = rs.getString("SDT");
+				String soCCCD = rs.getString("soCCCD");
+				boolean gt = rs.getBoolean("gioiTinh");
+				String email = rs.getString("email");
+				LocalDate ngaySinh = ProcessDate.date2LocalDate(rs.getDate("ngaySinh"));
+				try {
+					temp = new KhachHang(maKH, tenKH, diaChi, SDT, soCCCD, gt, ngaySinh, email);
+					listKhachHang.add(temp);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+			return listKhachHang;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 	public KhachHang_DAO() {
 		// TODO Auto-generated constructor stub
 	}

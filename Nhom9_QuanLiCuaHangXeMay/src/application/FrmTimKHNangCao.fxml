@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_TimKHNangCao">
+   <left>
+      <Pane fx:id="frmThongTinKhachHang" prefHeight="389.0" prefWidth="810.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutY="53.0" prefHeight="53.0" prefWidth="810.0" text="Tìm khách hàng nâng cao" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" layoutY="160.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Label text="Họ tên nhân viên :">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" scaleZ="0.0" width="15.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Box>
+                  <TextField fx:id="txtHoTen" prefHeight="31.0" prefWidth="299.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="25.0" />
+                  <Label text="Giới tính:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <CheckBox fx:id="chkNam" mnemonicParsing="false" prefHeight="16.0" prefWidth="83.0" text="Nam" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <CheckBox fx:id="chkNu" mnemonicParsing="false" text="Nữ" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="220.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="810.0">
+               <children>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Label prefHeight="21.0" prefWidth="57.0" text="Khoảng">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtTuTuoi" prefHeight="31.0" prefWidth="34.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="5.0" />
+                  <Label prefHeight="21.0" prefWidth="58.0" text="tuổi đến">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtDenTuoi" prefHeight="31.0" prefWidth="34.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="5.0" />
+                  <Label prefHeight="21.0" prefWidth="67.0" text="tuổi">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="20.0" prefWidth="119.0" text="Theo tháng sinh:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
+                  <ComboBox fx:id="cboThang" prefWidth="150.0" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="-13.0" layoutY="284.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="68.0" prefWidth="823.0">
+               <children>
+                  <Button fx:id="btnTim" mnemonicParsing="false" onAction="#actionBtnTim" prefHeight="39.0" prefWidth="104.0" text="Tìm" />
+                  <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
+                  <Button fx:id="btnHuy" mnemonicParsing="false" onAction="#actionBtnCancel" prefHeight="39.0" prefWidth="102.0" text="Huỷ bỏ" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>
