@@ -258,7 +258,7 @@ public class Ctrl_MainMenu {
 	}
 	
 	@FXML
-	private Ctrl_DienThongTinKH actionBtnThemNV(){
+	private Ctrl_DienThongTinNV actionBtnThemNV(){
 		// TODO Auto-generated method stub
 		BorderPane frmEdit;
 		try {

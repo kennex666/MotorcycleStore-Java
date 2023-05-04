@@ -27,7 +27,6 @@
     <fullyQualifiedTypeName name="javafx.scene.control.TableView"/>
     <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
     <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="connectDB.ConnectDB"/>
     <fullyQualifiedTypeName name="bus.KhachHang_BUS"/>
     <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
@@ -40,4 +39,11 @@
     <fullyQualifiedTypeName name="entity.KhachHang"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="utilities.PopupNotify"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="entity.PhongBan"/>
+    <fullyQualifiedTypeName name="entity.ChucVu"/>
+    <fullyQualifiedTypeName name="interfaces.INhanVien"/>
+    <fullyQualifiedTypeName name="bus.NhanVien_BUS"/>
+    <fullyQualifiedTypeName name="dao.NhanVien_DAO"/>
+    <fullyQualifiedTypeName name="entity.NhanVien"/>
 </qualifiedTypeNameHistroy>

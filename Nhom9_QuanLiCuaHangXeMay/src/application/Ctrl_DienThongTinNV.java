@@ -163,11 +163,11 @@ public class Ctrl_DienThongTinNV {
 		if (ModeEditor.SUA == trangThai) {
 			maKH = dataNV.getMaNhanVien();
 		}else {
-			maKH = GenerateID.taoIDNhanVien(nv_bus.totalEmployees(), GenerateID.MADAILY_FORTESTING, "KH");
+			maKH = GenerateID.taoIDNhanVien(nv_bus.totalEmployees(), GenerateID.MADAILY_FORTESTING, 1);
 		}
 
 		try {
-			temp = new NhanVien(maKH, ten, diaChi, soDT, soCCCD, gioiTinh, dob, email);
+			//temp = new NhanVien(maKH, ten, diaChi, soDT, soCCCD, gioiTinh, dob, email);
 		} catch (Exception e) {
 			PopupNotify.showErrorField("Lỗi khởi tạo", "Xảy ra lỗi! Xem bên dưới để biết thêm chi tiết.", "Chi tiết lỗi: " + e.getMessage());
 			return null;
