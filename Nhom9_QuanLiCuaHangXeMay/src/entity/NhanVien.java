@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class NhanVien {
-	private int ID;
+	private String ID;
 	private int NhanVienID;
 	private int PhongBanID;
 	private String HoTenNV;
@@ -23,21 +23,23 @@ public class NhanVien {
 		super();
 	}
 
+	public NhanVien(String maNV) {
+		this.setID(maNV);
+	}
 
-
-	public int getID() {
+	public String getID() {
 		return ID;
 	}
 
 
 
-	public void setID(int iD) {
+	public void setID(String iD) {
 		ID = iD;
 	}
 
 
 
-	public NhanVien(int iD, int nhanVienID, int phongBanID, String hoTenNV, LocalDate ngaySinh, String sDT,
+	public NhanVien(String iD, int nhanVienID, int phongBanID, String hoTenNV, LocalDate ngaySinh, String sDT,
 			String soCCCD, String diaChi, String email, String gioiTinh, String trinhDoHocVan, String bacTho,
 			String nhiemVu, String discriminator) {
 		super();

@@ -11,6 +11,10 @@ public class Xe {
 	private String mauXe;
 	private double giaXe;
 	private String imagePath;
+	private int soLuongKho, soLuongBan;
+	
+	private NhaCungCap ncc;
+
 	public Xe() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -22,7 +26,7 @@ public class Xe {
 	}
 
 	public Xe(String maXe, String tenXe, String loaiXe, String nuocSX, double soPK, String soKhung, String soSuon,
-			String mauXe, double giaXe, String imagePath) throws Exception {
+			String mauXe, double giaXe, String imagePath, NhaCungCap ncc, int slKho, int slBan) throws Exception {
 		super();
 		this.setMaXe(maXe);
 		this.setTenXe(tenXe);
@@ -34,6 +38,9 @@ public class Xe {
 		this.setMauXe(mauXe);
 		this.setGiaXe(giaXe);
 		this.setImagePath(imagePath);
+		this.ncc = ncc;
+		this.setSoLuongKho(slKho);
+		this.setSoLuongBan(slBan);
 	}
 
 	public String getMaXe() {
@@ -145,6 +152,32 @@ public class Xe {
 		}
 		else this.imagePath = imagePath;
 	}
+
+	public NhaCungCap getNcc() {
+		return ncc;
+	}
+
+	public void setNcc(NhaCungCap ncc) {
+		this.ncc = ncc;
+	}
+
+	public int getSoLuongKho() {
+		return soLuongKho;
+	}
+
+	public void setSoLuongKho(int soLuongKho) {
+		this.soLuongKho = soLuongKho;
+	}
+
+	public int getSoLuongBan() {
+		return soLuongBan;
+	}
+
+	public void setSoLuongBan(int soLuongBan) {
+		this.soLuongBan = soLuongBan;
+	}
+
+	
 	
 	
 }

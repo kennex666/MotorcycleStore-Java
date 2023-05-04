@@ -1,0 +1,13 @@
+package dao;
+
+import interfaces.IKho;
+
+public class Kho_DAO implements IKho {
+
+	@Override
+	public int getSoLuongById() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
