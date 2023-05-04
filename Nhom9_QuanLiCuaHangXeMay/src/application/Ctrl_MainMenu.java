@@ -8,8 +8,11 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import bus.KhachHang_BUS;
+import bus.NhanVien_BUS;
 import connectDB.ConnectDB;
+import entity.ChucVu;
 import entity.KhachHang;
+import entity.NhanVien;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -33,7 +36,7 @@ public class Ctrl_MainMenu {
 	@FXML
 	private Button btnXe, btnLinhKien;
 	@FXML
-	private TableView tblKhachHang, tblProduct;
+	private TableView tblKhachHang, tblProduct, tblNhanVien;
 	@FXML
 	private SplitPane splitPaneXe, splitPaneLK, splitPaneBH;
 	@FXML
@@ -47,20 +50,32 @@ public class Ctrl_MainMenu {
 	@FXML
 	private TableColumn<KhachHang, Number> colSTT;
 	@FXML
+	private TableColumn<NhanVien, String> colnvMa, colnvHoTen, colnvNgaySinh, colnvDiaChi, colnvSDT, colnvEmail;
+	@FXML
+	private TableColumn<NhanVien, Boolean> colnvGioiTinh;
+	@FXML
+	private TableColumn<NhanVien, ChucVu> colnvChucVu;
+	@FXML
+	private TableColumn<NhanVien, Number> colnvSTT;
+	@FXML
 	private Tab tabKH;
 	@FXML
-	private TextField txtSearch;
+	private TextField txtSearch, txtNVSearch;
 	
 
 	private KhachHang_BUS kh_bus;
 	private ObservableList<KhachHang> listKHObs = FXCollections.observableArrayList();
+	private NhanVien_BUS nv_bus;
+	private ObservableList<NhanVien> listNVObs = FXCollections.observableArrayList();
 	
 	@FXML
 	private void initialize() {
 
 		// Preload for KhachHang Table
 		loadDataTablePropertyKH();
+		loadDataTablePropertyNV();
 		tblKhachHang.setItems(listKHObs);
+		tblNhanVien.setItems(listNVObs);
 		
 		tabProduct.getTabPane().getTabs().remove(tabProduct);
 	}
@@ -225,6 +240,125 @@ public class Ctrl_MainMenu {
 		removeAllRowsKH();
 		loadDataKHToTable();
 		txtSearch.setText("");
+		
+	}
+	
+	/*
+	 * Handle event Tab NhanVien
+	 */
+	@FXML
+	private void actionBtnSuaNV(){
+		NhanVien temp = (NhanVien) tblNhanVien.getSelectionModel().getSelectedItem();
+		if (temp == null) {
+			PopupNotify.showErrorField("Lỗi", "Vui lòng chọn nhân viên cần thay đổi thông tin", "Hãy chọn 1 nhân viên cụ thể để tiếp tục!");
+			return;
+		}
+		Ctrl_DienThongTinNV ctrlDienTT = actionBtnThemNV();
+		ctrlDienTT.loadData(temp);
+	}
+	
+	@FXML
+	private Ctrl_DienThongTinKH actionBtnThemNV(){
+		// TODO Auto-generated method stub
+		BorderPane frmEdit;
+		try {
+			FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("FrmDienTTNhanVien.fxml"));
+			frmEdit = (BorderPane) fxmlLoad.load();
+			Ctrl_DienThongTinNV ctrlDienTT = fxmlLoad.getController();
+			ctrlDienTT.setTableModel(listNVObs);
+			Scene sceneTaoNV = new Scene(frmEdit);
+			Stage secondaryStage = new Stage();
+			secondaryStage.setScene(sceneTaoNV);
+			secondaryStage.setResizable(false);
+			secondaryStage.show();
+			return ctrlDienTT;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private void loadDataTablePropertyNV() {
+		colnvMa.setCellValueFactory(new PropertyValueFactory<>("maNhanVien"));
+		colnvHoTen.setCellValueFactory(new PropertyValueFactory<>("tenKhachHang"));
+		colnvDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+		colnvSDT.setCellValueFactory(new PropertyValueFactory<>("soDT"));
+		colnvChucVu.setCellValueFactory(new PropertyValueFactory<>("chucVu"));
+		colnvGioiTinh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+		colnvGioiTinh.setCellFactory(column -> {
+			return new TableCell<NhanVien, Boolean>(){
+				@Override
+				protected void updateItem(Boolean item, boolean empty) {
+					super.updateItem(item, empty);
+					if (item == null) {
+						setText(null);
+					}else {
+						setText(item ? "Nam" : "Nữ");
+					}
+				}
+			};
+		});
+		colnvEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		colnvNgaySinh.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
+		
+		// Auto numbered
+		colnvSTT.setSortable(false);
+		colnvSTT.setCellValueFactory(col -> 
+			new ReadOnlyObjectWrapper<Number>(tblNhanVien.getItems().indexOf(col.getValue()) + 1));
+
+	}
+	
+	private void loadDataNVToTable() {
+		ArrayList<NhanVien> listNV = nv_bus.getAllEmployees();
+		for (NhanVien x : listNV)
+			listNVObs.add(x);
+	}
+	
+	private void removeAllRowsNV() {
+		// TODO Auto-generated method stub
+		listNVObs.clear();
+	}
+	
+	@FXML
+	private void actionSearchNV() {
+		// TODO Auto-generated method stub
+		String ma = txtNVSearch.getText();
+		removeAllRowsNV();
+		if (ma.isBlank()) {
+			loadDataKHToTable();
+		}else {
+			ArrayList<NhanVien> listSearch = nv_bus.findEmployee(ma);
+			for (NhanVien x : listSearch) {
+				listNVObs.add(x);
+			}
+		}
+	}
+	
+	@FXML
+	private void actionBtnDeleteNV() {
+		// TODO Auto-generated method stub
+		NhanVien temp = (NhanVien) tblNhanVien.getSelectionModel().getSelectedItem();
+		if (temp == null) {
+			PopupNotify.showErrorField("Lỗi", "Vui lòng chọn nhân viên cần thay đổi thông tin", "Hãy chọn 1 nhân viên cụ thể để tiếp tục!");
+			return;
+		}
+		if (PopupNotify.confirmNotification("Xác nhận thay đổi", "Bạn có chắc chắn muốn xoá thông tin nhân viên " + temp.getMaNhanVien() +"?", "Lưu ý: Thao tác không thể hoàn tác!")) {
+			if (nv_bus.deleteEmployee(temp)) {
+				PopupNotify.successNotify("Thông tin", "Đã xoá nhân viên " + temp.getTenNhanVien() + "!", null);
+				listNVObs.remove(temp);
+			}else {
+				PopupNotify.showErrorField("Lỗi", "Lỗi cơ sở dữ liệu! Thao tác thất bại.", "Hãy liên hệ với QTV để được hỗ trợ thêm.");
+			}
+		}
+	}
+	
+	@FXML
+	private void actionRefreshTableNV() {
+		// TODO Auto-generated method stub
+		removeAllRowsNV();
+		loadDataNVToTable();
+		txtNVSearch.setText("");
 		
 	}
 	

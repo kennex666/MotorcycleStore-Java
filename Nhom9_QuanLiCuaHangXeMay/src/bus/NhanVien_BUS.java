@@ -2,50 +2,51 @@ package bus;
 
 import java.util.ArrayList;
 
-import dao.KhachHang_DAO;
-import entity.KhachHang;
-import interfaces.IKhachHang;
+import dao.NhanVien_DAO;
+import entity.NhanVien;
+import interfaces.INhanVien;
 
-public class NhanVien_BUS implements IKhachHang{
-	KhachHang_DAO kh_dao;
-	@Override
-	public ArrayList<KhachHang> findCustomers(String keywords) {
-		return kh_dao.findCustomers(keywords);
-	}
+public class NhanVien_BUS implements INhanVien{
+	NhanVien_DAO nv_dao;
 	
 	@Override
-	public ArrayList<KhachHang> getAllCustomers() {
-		return kh_dao.getAllCustomers();
+	public ArrayList<NhanVien> getAllEmployees() {
+		return nv_dao.getAllEmployees();
+	}
+
+	@Override
+	public ArrayList<NhanVien> findEmployee(String keywords) {
+		return nv_dao.findEmployee(keywords);
 	}
 	
 	public NhanVien_BUS() {
-		kh_dao = new KhachHang_DAO();
+		nv_dao = new NhanVien_DAO();
 	}
 	
 	@Override
-	public int totalCustomers() {
+	public int totalEmployees() {
 		// TODO Auto-generated method stub
-		return kh_dao.totalCustomers();
+		return nv_dao.totalEmployees();
 	}
 	
 	@Override
-	public boolean editCustomer(KhachHang kHTTMoi) {
-		return kh_dao.editCustomer(kHTTMoi);
+	public boolean editEmployee(NhanVien nv) {
+		return nv_dao.editEmployee(nv);
 	}
 	
 	@Override
-	public boolean addCustomer(KhachHang kHTTMoi) {
-		return kh_dao.addCustomer(kHTTMoi);
+	public boolean addEmployee(NhanVien nv) {
+		return nv_dao.addEmployee(nv);
 	}
 	
 	@Override
-	public boolean deleteCustomer(KhachHang kh) {
-		return kh_dao.deleteCustomer(kh);
+	public boolean deleteEmployee(NhanVien nv) {
+		return nv_dao.deleteEmployee(nv);
 	}
 
 	@Override
 	public String toString() {
-		return "KhachHang_BUS []";
+		return "NhanVien_BUS []";
 	}
 	
 }

@@ -23,7 +23,7 @@ public class NhanVien_DAO implements INhanVien{
 		// TODO Auto-generated method stub// TODO Auto-generated method stub
 		ArrayList<NhanVien> listNhanVien = new ArrayList<NhanVien>();
 		Connection conn = ConnectDB.getConnection();
-		String query = "SELECT * FROM NhanVien WHERE maNV LIKE CONCAT('%', ?, '%') OR tennv LIKE CONCAT('%', ?, '%') OR sdt LIKE CONCAT('%', ?, '%') OR soCCCD LIKE CONCAT('%', ?, '%') OR email LIKE CONCAT('%', ?, '%')";
+		String query = "SELECT * FROM NhanVien WHERE maNV LIKE CONCAT('%', ?, '%') OR HoTenNV LIKE CONCAT('%', ?, '%') OR sdt LIKE CONCAT('%', ?, '%') OR soCCCD LIKE CONCAT('%', ?, '%') OR email LIKE CONCAT('%', ?, '%')";
 		try {
 			PreparedStatement pstm = conn.prepareStatement(query);
 			pstm.setString(1, keywords);

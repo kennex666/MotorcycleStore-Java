@@ -9,6 +9,7 @@ public class GenerateID {
 	private static final Random random = new Random();
 	public static final int MADAILY_FORTESTING = 2;
 	
+	
 	public static String taoMaXe(String tenNCC) {
 //		Tên NCC + ddmmYYYY + random 4 kí tự
 		LocalDateTime thoiGianHienTai = LocalDateTime.now();
@@ -20,7 +21,7 @@ public class GenerateID {
 		String maXe = begin + end;
 		return maXe;
 	}
-  /* 
+	/* 
 	 * type: KH (Khách hàng cá nhân), DN (Khách hàng doanh nghiệp)
 	 * maDL: mã đại lí
 	 * numberCustomer: số lượng khách hàng trên Database
@@ -29,5 +30,17 @@ public class GenerateID {
 		return String.format("%s-%03d-%04d", type, maDL, numberCustomer + 1) ; // [Loại KH]-1[Mã đại lí]-[0000x]
 		// KH cá nhân đăng kí lần đầu tại đại lí 2, tổng KH lúc đó là 12
 		// Kết quả: DN-002-0013
-  }
+	}
+
+	/* 
+	 * type: Truyền vào mã chức vụ
+	 * maDL: mã đại lí
+	 * numberCustomer: số lượng nhân vi trên Database
+	 */
+	public static String taoIDNhanVien(int numberEmployee, int maDL, int type){
+		
+		return String.format("%s-%03d-%04d", type, maDL, numberEmployee + 1) ; // [Loại KH]-1[Mã đại lí]-[0000x]
+		// KH cá nhân đăng kí lần đầu tại đại lí 2, tổng KH lúc đó là 12
+		// Kết quả: DN-002-0013
+	}
 }
