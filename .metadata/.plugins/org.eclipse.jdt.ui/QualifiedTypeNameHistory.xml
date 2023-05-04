@@ -11,7 +11,6 @@
     <fullyQualifiedTypeName name="utilities.ProcessDate"/>
     <fullyQualifiedTypeName name="javafx.fxml.FXMLLoader"/>
     <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
-    <fullyQualifiedTypeName name="entity.KhachHang"/>
     <fullyQualifiedTypeName name="javafx.scene.control.TableColumn"/>
     <fullyQualifiedTypeName name="java.lang.Number"/>
     <fullyQualifiedTypeName name="javafx.beans.property.ReadOnlyObjectProperty"/>
@@ -35,9 +34,10 @@
     <fullyQualifiedTypeName name="application.Ctrl_DienThongTinKH"/>
     <fullyQualifiedTypeName name="javafx.scene.control.PopupControl"/>
     <fullyQualifiedTypeName name="utilities.SelectedTab"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
     <fullyQualifiedTypeName name="java.lang.StackWalker.Option"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="entity.KhachHang"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="utilities.PopupNotify"/>
 </qualifiedTypeNameHistroy>

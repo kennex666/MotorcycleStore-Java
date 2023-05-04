@@ -28,16 +28,9 @@ import javafx.stage.Stage;
 import utilities.PopupNotify;
 import utilities.SelectedTab;
 
-public class Ctrl_MainMenu {
-	private SelectedTab tabSelected;
+public class Ctrl_LayKHTuList {
 	@FXML
-	private Button btnXe, btnLinhKien;
-	@FXML
-	private TableView tblKhachHang, tblProduct;
-	@FXML
-	private SplitPane splitPaneXe, splitPaneLK, splitPaneBH;
-	@FXML
-	private Tab tabProduct;
+	private TableView tblKhachHang;
 	@FXML
 	private TabPane allTabs;
 	@FXML
@@ -47,109 +40,50 @@ public class Ctrl_MainMenu {
 	@FXML
 	private TableColumn<KhachHang, Number> colSTT;
 	@FXML
-	private Tab tabKH;
-	@FXML
 	private TextField txtSearch;
 	
-
+	private TextField txtLoad;
+	
 	private KhachHang_BUS kh_bus;
 	private ObservableList<KhachHang> listKHObs = FXCollections.observableArrayList();
+	private KhachHang khSelected;
 	
 	@FXML
 	private void initialize() {
 
 		// Preload for KhachHang Table
 		loadDataTablePropertyKH();
+		loadDataKHToTable();
 		tblKhachHang.setItems(listKHObs);
 		
-		tabProduct.getTabPane().getTabs().remove(tabProduct);
 	}
-	
-	@FXML
-	private void actionListProduct(){
-		allTabs.getTabs().add(tabProduct);
-	}
-	
-	@FXML
-	private void actionAddSplitPaneXe() {
-		allTabs.getTabs().add(tabProduct);
-		splitPaneXe.setVisible(true);
-		splitPaneLK.setVisible(false);
-		splitPaneBH.setVisible(false);
-	}
-	
-	@FXML
-	private void actionAddSplitPaneLK() {
-		allTabs.getTabs().add(tabProduct);
-		splitPaneLK.setVisible(true);
-		splitPaneXe.setVisible(false);
-		splitPaneBH.setVisible(false);
-	}
-	
-	@FXML
-	private void actionAddSplitPaneBH() {
-		allTabs.getTabs().add(tabProduct);
-		splitPaneBH.setVisible(true);
-		splitPaneXe.setVisible(false);
-		splitPaneLK.setVisible(false);
-	}
-	
-	@FXML
-	private void actionTabChange() {
-		
-		// Remove after not work
-		if (!tabKH.isSelected() && tabSelected == SelectedTab.KhachHang) {
-			removeAllRowsKH();
-		}
-		if (tabKH.isSelected()) {
-			tabSelected = SelectedTab.KhachHang;
-			loadDataKHToTable();
-		}
-		
-	}
-	
 
 	
 	/*
 	 * Handle event Tab KhachHang
 	 */
 	@FXML
-	private void actionBtnSuaKH(){
-		KhachHang temp = (KhachHang) tblKhachHang.getSelectionModel().getSelectedItem();
-		if (temp == null) {
-			PopupNotify.showErrorField("Lỗi", "Vui lòng chọn khách hàng cần thay đổi thông tin", "Hãy chọn 1 khách hàng cụ thể để tiếp tục!");
+	private void actionBtnSelect(){
+		if (txtLoad == null) {
+			PopupNotify.showErrorField("Lỗi", "Load dữ liệu thất bại!", null);
 			return;
 		}
-		Ctrl_DienThongTinKH ctrlDienTT = actionBtnThemKH();
-		ctrlDienTT.loadData(temp);
-	}
-	
-	@FXML
-	private Ctrl_DienThongTinKH actionBtnThemKH(){
-		// TODO Auto-generated method stub
-		BorderPane frmEdit;
-		try {
-			FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("FrmDienTTKhachHang.fxml"));
-			frmEdit = (BorderPane) fxmlLoad.load();
-			Ctrl_DienThongTinKH ctrlDienTT = fxmlLoad.getController();
-			ctrlDienTT.setTableModel(listKHObs);
-			Scene sceneTaoKH = new Scene(frmEdit);
-			Stage secondaryStage = new Stage();
-			secondaryStage.setScene(sceneTaoKH);
-			secondaryStage.setResizable(false);
-			secondaryStage.show();
-			return ctrlDienTT;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		KhachHang temp = (KhachHang) tblKhachHang.getSelectionModel().getSelectedItem();
+		if (temp == null) {
+			PopupNotify.showErrorField("Lỗi", "Chưa chọn khách hàng!", "Hãy nhấn vào tên khách hàng để chọn");
+			return;
 		}
-		return null;
+		khSelected = temp;
+		txtLoad.setText(temp.getTenKhachHang() + " | " + temp.getSoDT());
+		txtLoad.setDisable(true);
+		Stage stg = (Stage) tblKhachHang.getScene().getWindow();
+		stg.close();
+		
 	}
 	
 	private void loadDataTablePropertyKH() {
 		colMaKH.setCellValueFactory(new PropertyValueFactory<>("maKhachHang"));
 		colHoTen.setCellValueFactory(new PropertyValueFactory<>("tenKhachHang"));
-		colDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
 		colSDT.setCellValueFactory(new PropertyValueFactory<>("soDT"));
 		colGioiTinh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
 		colGioiTinh.setCellFactory(column -> {
@@ -202,24 +136,6 @@ public class Ctrl_MainMenu {
 	}
 	
 	@FXML
-	private void actionBtnDeleteKH() {
-		// TODO Auto-generated method stub
-		KhachHang temp = (KhachHang) tblKhachHang.getSelectionModel().getSelectedItem();
-		if (temp == null) {
-			PopupNotify.showErrorField("Lỗi", "Vui lòng chọn khách hàng cần thay đổi thông tin", "Hãy chọn 1 khách hàng cụ thể để tiếp tục!");
-			return;
-		}
-		if (PopupNotify.confirmNotification("Xác nhận thay đổi", "Bạn có chắc chắn muốn xoá thông tin khách hàng " + temp.getTenKhachHang() +"?", "Lưu ý: Thao tác không thể hoàn tác!")) {
-			if (kh_bus.deleteCustomer(temp)) {
-				PopupNotify.successNotify("Thông tin", "Đã xoá khách hàng " + temp.getTenKhachHang() + "!", null);
-				listKHObs.remove(temp);
-			}else {
-				PopupNotify.showErrorField("Lỗi", "Lỗi cơ sở dữ liệu! Thao tác thất bại.", "Hãy liên hệ với QTV để được hỗ trợ thêm.");
-			}
-		}
-	}
-	
-	@FXML
 	private void actionRefreshTableKH() {
 		// TODO Auto-generated method stub
 		removeAllRowsKH();
@@ -228,12 +144,18 @@ public class Ctrl_MainMenu {
 		
 	}
 	
+	public void setKhachHang(KhachHang x) {
+		this.khSelected = x;
+	}
 	
-	public Ctrl_MainMenu() {
+	public void setTextFieldLoad(TextField x) {
+		txtLoad = x;
+	}
+	
+	
+	public Ctrl_LayKHTuList() {
 		super();
 		ConnectDB.getInstance().connect();
 		kh_bus = new KhachHang_BUS();
-
-		tabSelected = SelectedTab.MainMenu;
 	}
 }
