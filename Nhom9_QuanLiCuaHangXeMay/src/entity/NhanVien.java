@@ -4,184 +4,129 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class NhanVien {
-	private String ID;
-	private int NhanVienID;
-	private int PhongBanID;
-	private String HoTenNV;
-	private LocalDate NgaySinh;
-	private String SDT;
-	private String SoCCCD;
-	private String DiaChi;
-	private String Email;
-	private String GioiTinh;
-	private String TrinhDoHocVan;
-	private String BacTho;
-	private String NhiemVu;
-	private String Discriminator;
+	private String maNhanVien, tenNhanVien, diaChi, soDT, soCCCD, email, trinhDo, bacTho;
+	private boolean gioiTinh;
+	private LocalDate ngaySinh;
+	private ChucVu chucVu;
+	private PhongBan phongBan;
 	
 	public NhanVien() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public NhanVien(String maNV) {
-		this.setID(maNV);
-	}
-
-	public String getID() {
-		return ID;
-	}
-
-
-
-	public void setID(String iD) {
-		ID = iD;
-	}
-
-
-
-	public NhanVien(String iD, int nhanVienID, int phongBanID, String hoTenNV, LocalDate ngaySinh, String sDT,
-			String soCCCD, String diaChi, String email, String gioiTinh, String trinhDoHocVan, String bacTho,
-			String nhiemVu, String discriminator) {
+	public NhanVien(String maNhanVien, String tenNhanVien, String diaChi, String soDT, String soCCCD,
+			boolean gioiTinh, LocalDate ngaySinh, String email, String trinhDo, String bacTho, ChucVu chucVu, PhongBan phongBan) throws Exception{
 		super();
-		ID = iD;
-		NhanVienID = nhanVienID;
-		PhongBanID = phongBanID;
-		HoTenNV = hoTenNV;
-		NgaySinh = ngaySinh;
-		SDT = sDT;
-		SoCCCD = soCCCD;
-		DiaChi = diaChi;
-		Email = email;
-		GioiTinh = gioiTinh;
-		TrinhDoHocVan = trinhDoHocVan;
-		BacTho = bacTho;
-		NhiemVu = nhiemVu;
-		Discriminator = discriminator;
+		setMaNhanVien(maNhanVien);
+		setTenNhanVien(tenNhanVien);
+		setDiaChi(diaChi);
+		setSoDT(soDT);
+		setSoCCCD(soCCCD);
+		setGioiTinh(gioiTinh);
+		setNgaySinh(ngaySinh);
+		setEmail(email);
+		setTrinhDo(trinhDo);
+		setBacTho(bacTho);
+		setChucVu(chucVu);
+		setPhongBan(phongBan);
 	}
-
-
-
-	public int getNhanVienID() {
-		return NhanVienID;
+	public NhanVien(String maNhanVien) throws Exception{
+		super();
+		setMaNhanVien(maNhanVien);
 	}
-
-	public void setNhanVienID(int nhanVienID) {
-		NhanVienID = nhanVienID;
-	}
-
-	public int getPhongBanID() {
-		return PhongBanID;
-	}
-
-	public void setPhongBanID(int phongBanID) {
-		PhongBanID = phongBanID;
-	}
-
-	public String getHoTenNV() {
-		return HoTenNV;
-	}
-
-	public void setHoTenNV(String hoTenNV) {
-		HoTenNV = hoTenNV;
-	}
-
-	public LocalDate getNgaySinh() {
-		return NgaySinh;
-	}
-
-	public void setNgaySinh(LocalDate ngaySinh) {
-		NgaySinh = ngaySinh;
-	}
-
-	public String getSDT() {
-		return SDT;
-	}
-
-	public void setSDT(String sDT) {
-		SDT = sDT;
-	}
-
-	public String getSoCCCD() {
-		return SoCCCD;
-	}
-
-	public void setSoCCCD(String soCCCD) {
-		SoCCCD = soCCCD;
-	}
-
-	public String getDiaChi() {
-		return DiaChi;
-	}
-
-	public void setDiaChi(String diaChi) {
-		DiaChi = diaChi;
-	}
-
+	
 	public String getEmail() {
-		return Email;
+		return email;
 	}
-
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
-
-	public String getGioiTinh() {
-		return GioiTinh;
+	public String getMaNhanVien() {
+		return maNhanVien;
 	}
-
-	public void setGioiTinh(String gioiTinh) {
-		GioiTinh = gioiTinh;
+	public void setMaNhanVien(String maNhanVien) throws Exception{
+		if (maNhanVien.trim() == "" || maNhanVien.isBlank() || maNhanVien.isEmpty())
+			throw new Exception("Mã khách hàng rỗng! Đã có lỗi trong quá trình phát sinh");
+		this.maNhanVien = maNhanVien;
 	}
-
-	public String getTrinhDoHocVan() {
-		return TrinhDoHocVan;
+	public String getTenNhanVien() {
+		return tenNhanVien;
 	}
-
-	public void setTrinhDoHocVan(String trinhDoHocVan) {
-		TrinhDoHocVan = trinhDoHocVan;
+	public void setTenNhanVien(String tenNhanVien) throws Exception{
+		if (tenNhanVien.trim() == "" || tenNhanVien.isBlank() || tenNhanVien.isEmpty())
+			throw new Exception("Tên khách hàng là trường bắt buộc!");
+		this.tenNhanVien = tenNhanVien;
 	}
-
+	public String getDiaChi() {
+		return diaChi;
+	}
+	public void setDiaChi(String diaChi) throws Exception{
+		if (diaChi.trim() == "" || diaChi.isBlank() || diaChi.isEmpty())
+			throw new Exception("Địa chỉ là một trường bắt buộc!");
+		
+		this.diaChi = diaChi;
+	}
+	public String getSoDT() {
+		return soDT;
+	}
+	public void setSoDT(String soDT) throws Exception{
+		if (soDT.trim() == "" || soDT.isBlank() || soDT.isEmpty())
+			throw new Exception("Số điện thoại là một trường bắt buộc!");
+		this.soDT = soDT;
+	}
+	public String getSoCCCD() {
+		return soCCCD;
+	}
+	public void setSoCCCD(String soCCCD) throws Exception{
+		if (soCCCD.trim() == "" || soCCCD.isBlank() || soCCCD.isEmpty())
+			throw new Exception("Số căn cước công dân là một trường bắt buộc!");
+		this.soCCCD = soCCCD;
+	}
+	public boolean isGioiTinh() {
+		return gioiTinh;
+	}
+	public void setGioiTinh(boolean gioiTinh) {
+		this.gioiTinh = gioiTinh;
+	}
+	public LocalDate getNgaySinh() {
+		return ngaySinh;
+	}
+	public void setNgaySinh(LocalDate ngaySinh) throws Exception{
+		this.ngaySinh = ngaySinh;
+	}
+	public String getTrinhDo() {
+		return trinhDo;
+	}
+	public void setTrinhDo(String trinhDo) {
+		this.trinhDo = trinhDo;
+	}
 	public String getBacTho() {
-		return BacTho;
+		return bacTho;
 	}
-
 	public void setBacTho(String bacTho) {
-		BacTho = bacTho;
+		this.bacTho = bacTho;
 	}
-
-	public String getNhiemVu() {
-		return NhiemVu;
+	public ChucVu getChucVu() {
+		return chucVu;
 	}
-
-	public void setNhiemVu(String nhiemVu) {
-		NhiemVu = nhiemVu;
+	public void setChucVu(ChucVu chucVu) {
+		this.chucVu = chucVu;
 	}
-
-	public String getDiscriminator() {
-		return Discriminator;
+	public PhongBan getPhongBan() {
+		return phongBan;
 	}
-
-	public void setDiscriminator(String discriminator) {
-		Discriminator = discriminator;
+	public void setPhongBan(PhongBan phongBan) {
+		this.phongBan = phongBan;
 	}
-
 	@Override
 	public String toString() {
-		return "NhanVien [NhanVienID=" + NhanVienID + ", PhongBanID=" + PhongBanID + ", HoTenNV=" + HoTenNV
-				+ ", NgaySinh=" + NgaySinh + ", SDT=" + SDT + ", SoCCCD=" + SoCCCD + ", DiaChi=" + DiaChi + ", Email="
-				+ Email + ", GioiTinh=" + GioiTinh + ", TrinhDoHocVan=" + TrinhDoHocVan + ", BacTho=" + BacTho
-				+ ", NhiemVu=" + NhiemVu + ", Discriminator=" + Discriminator + "]";
+		return "NhanVien [maNhanVien=" + maNhanVien + ", tenNhanVien=" + tenNhanVien + ", diaChi=" + diaChi
+				+ ", soDT=" + soDT + ", soCCCD=" + soCCCD + ", gioiTinh=" + gioiTinh + ", ngaySinh=" + ngaySinh + "]";
 	}
-
-
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(ID, NhanVienID, PhongBanID, SDT, SoCCCD);
+		return Objects.hash(maNhanVien);
 	}
-
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -191,10 +136,8 @@ public class NhanVien {
 		if (getClass() != obj.getClass())
 			return false;
 		NhanVien other = (NhanVien) obj;
-		return ID == other.ID && NhanVienID == other.NhanVienID && PhongBanID == other.PhongBanID
-				&& Objects.equals(SDT, other.SDT) && Objects.equals(SoCCCD, other.SoCCCD);
+		return Objects.equals(maNhanVien, other.maNhanVien);
 	}
-	
 	
 	
 	

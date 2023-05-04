@@ -12,12 +12,12 @@ import entity.ChucVu;
 import interfaces.IChucVu;
 
 public class ChucVu_DAO implements IChucVu {
-	Connection con = ConnectDB.getConnection(); 
 
 	@Override
-	public ArrayList<ChucVu> getAllChuchVu() throws Exception {
-		ArrayList<ChucVu> list = new ArrayList<>();
-		String query = "Select * from ChucVu";
+	public ArrayList<ChucVu> getAllChucVu() {
+		Connection con = ConnectDB.getConnection(); 
+		ArrayList<ChucVu> list = new ArrayList<ChucVu>();
+		String query = "SELECT * FROM ChucVu";
 		try {
 			Statement stm = con.createStatement();
 			ResultSet results = stm.executeQuery(query);
@@ -25,8 +25,12 @@ public class ChucVu_DAO implements IChucVu {
 				int maCV = results.getInt("MaCV");
 				String tenCV = results.getString("TenCV");
 
-				ChucVu cv = new ChucVu(maCV, tenCV);
-				list.add(cv);
+				ChucVu cv;
+				try {
+					cv = new ChucVu(maCV, tenCV);
+					list.add(cv);
+				} catch (Exception e) {
+				}
 			}
 		} 
 		catch (SQLException e) {

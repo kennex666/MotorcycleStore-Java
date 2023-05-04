@@ -1,5 +1,26 @@
 <<<<<<< HEAD
 1683047438683	Copy file
+<<<<<<< HEAD
+1683102587305	Rename type 'Popup'
+1683102762136	Rename type 'Regex'
+1683129205019	Delete element
+1683172832911	Copy file
+1683172848693	Delete element
+1683172854987	Copy file
+1683173817783	Copy compilation unit
+1683179426695	Copy compilation unit
+1683179454448	Rename resource 'FrmChonKH.fxml'
+1683179465350	Rename type 'Ctrl_GetKhachHangTuList'
+1683185575709	Copy compilation unit
+1683185589535	Copy compilation unit
+1683185803894	Copy compilation unit
+1683189914052	Copy file
+1683189937258	Copy compilation unit
+1683194058760	Copy compilation unit
+1683194067628	Copy compilation unit
+1683194078814	Copy compilation unit
+1683212012699	Rename type 'PhongBan'
+=======
 1683095447551	Copy file
 1683095473142	Rename resource 'QuanLiXe.fxml'
 1683095520675	Copy compilation unit
@@ -19,4 +40,5 @@
 1683214773656	Delete element
 1683214780975	Delete element
 1683224360367	Rename resource 'Iconshow-Button-Design-Pack-02-Basket.16.png'
+>>>>>>> dev
 >>>>>>> dev

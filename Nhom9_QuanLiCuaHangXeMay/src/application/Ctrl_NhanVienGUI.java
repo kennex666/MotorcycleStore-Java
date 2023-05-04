@@ -397,8 +397,8 @@ public class Ctrl_NhanVienGUI {
 		listHD = hd_BUS.getAllHoaDon();
 
 		for (HoaDon i: listHD) {
-			i.getKh().setTenKhachHang(kh_BUS.getTenByMaKH(i.getKh().getMaKhachHang()));
-			i.getNv().setHoTenNV(nv_BUS.getTenByMa(i.getNv().getID()));
+			i.getKh().setTenKhachHang(kh_BUS.getHoTenByMa(i.getKh().getMaKhachHang()));
+			i.getNv().setTenNhanVien(nv_BUS.getTenByMaNV(i.getNv().getMaNhanVien()));
 		}
 //		sttHDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
 		//		Set STT auto increase
@@ -413,7 +413,7 @@ public class Ctrl_NhanVienGUI {
 
 		maHDCol.setCellValueFactory(new PropertyValueFactory<HoaDon, String>("id"));
 		tenNVCol.setCellValueFactory(cellData -> {
-			return new SimpleStringProperty(cellData.getValue().getNv().getHoTenNV());
+			return new SimpleStringProperty(cellData.getValue().getNv().getTenNhanVien());
 		});
 		tenKHHDCol.setCellValueFactory(cellData -> {
 			return new SimpleStringProperty(cellData.getValue().getKh().getTenKhachHang());
@@ -576,7 +576,7 @@ public class Ctrl_NhanVienGUI {
 		try {
 			ConnectDB.getInstance().connect();
 			System.out.println("Connect");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
