@@ -32,6 +32,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -84,6 +85,9 @@ public class Ctrl_NhanVienGUI {
 
 	@FXML
 	private TableView<Object> tblProduct;
+	
+	@FXML 
+	private TableView<Object>tbltk;
 
 	@FXML
 	private TableView<Object> tblCart;
@@ -108,6 +112,22 @@ public class Ctrl_NhanVienGUI {
 
 	@FXML
 	private TableColumn<Xe, String> nuocSX;
+
+	//thong kê
+	@FXML
+	private TableColumn<Object, String> masptk;
+	@FXML
+	private TableColumn<Object, String> tensptk;
+
+	@FXML
+	private TableColumn<Object, String> giasptk;
+	@FXML
+	private TableColumn<Object, String> dtsptk;
+	@FXML
+	private TableColumn<Object, Integer> slbantk;
+
+	@FXML
+	private TableColumn<Object, Integer> slkhotk;
 
 	@FXML
 	private TableColumn<Xe, Integer> soLuongKho;
@@ -141,6 +161,24 @@ public class Ctrl_NhanVienGUI {
 
 	@FXML
 	private ComboBox<String> cbNSX;
+
+	@FXML
+	private TextField txtslban;
+
+	@FXML
+	private TextField txtslkho;
+
+	@FXML
+	private TextField txtdt;
+
+	@FXML
+	private TextField txtthu;
+
+	@FXML
+	private TextField txtchi;
+
+	@FXML
+	private TextField txttl;
 
 	@FXML
 	private TextField queryXe;
@@ -264,7 +302,7 @@ public class Ctrl_NhanVienGUI {
 
 	@FXML
 	private DatePicker startDate;	
-	
+
 	@FXML
 	private TextField txtTimKH;
 
@@ -282,28 +320,28 @@ public class Ctrl_NhanVienGUI {
 
 	@FXML
 	private TextField txtTongTien;
-	
+
 	@FXML
 	private TableColumn<LinhKien, Integer> sttLinhKienCol;
-	
+
 	@FXML
 	private TableColumn<KhachHang, Integer> sttKHCol;
-	
+
 	@FXML
 	private TableColumn<ChiTietHoaDon, Integer> sttCTHDCol;
 
 	@FXML
 	private TableColumn<HoaDon, Integer> sttHDCol;
-	
+
 	@FXML
 	private TableColumn<Object, Integer> sttProductCol;	
-	
+
 	@FXML
 	private TableColumn<Object, Integer> sttCartCol;	
-	
+
 	@FXML 
 	private TextField txtTimLK;
-	
+
 
 	private NhaCungCap_BUS ncc_BUS;
 	private LinhKien_BUS linhKien_BUS;
@@ -404,7 +442,7 @@ public class Ctrl_NhanVienGUI {
 			i.getKh().setTenKhachHang(kh_BUS.getHoTenByMa(i.getKh().getMaKhachHang()));
 			i.getNv().setTenNhanVien(nv_BUS.getTenByMaNV(i.getNv().getMaNhanVien()));
 		}
-//		sttHDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+		//		sttHDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
 		//		Set STT auto increase
 		sttHDCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HoaDon,Integer>, ObservableValue<Integer>>() {
 
@@ -468,8 +506,8 @@ public class Ctrl_NhanVienGUI {
 				}
 				return new SimpleStringProperty(ten);
 			});
-			
-			
+
+
 			tblCTHD.getItems().clear();
 			tblCTHD.getItems().addAll(listCTHD);
 		}
@@ -546,7 +584,7 @@ public class Ctrl_NhanVienGUI {
 		tblKhachHang.getItems().clear();
 		tblKhachHang.getItems().addAll(listKH);
 	}
-	
+
 	@FXML
 	private void handleTimLK() throws Exception {
 		tblLinhKien.getItems().clear();
@@ -619,6 +657,113 @@ public class Ctrl_NhanVienGUI {
 	@FXML
 	private void actionListProduct(){
 		allTabs.getTabs().add(tabProduct);
+	}
+	
+	@FXML
+	private void handleclickTabTK() throws Exception{
+		renderDatatotbltxe();
+		
+	}
+
+	public void btndt(ActionEvent e) throws Exception {
+
+		listLinhKien = linhKien_BUS.getAllLinhKien();
+		listXe = xe_BUS.getAllXe();
+		int slban=0;
+		int slkho=0;
+		double dt=0.0;
+		for(LinhKien lk:listLinhKien) {
+			slban+=lk.getSoLuongBan();
+			slkho+=lk.getSoLuongKho();
+			dt+=(lk.getGiaLinhKien()*lk.getSoLuongBan());
+		}
+		for(Xe xe:listXe) {
+			slban+=xe.getSoLuongBan();
+			slkho+=xe.getSoLuongKho();
+			dt+=(xe.getSoLuongBan()*xe.getGiaXe());
+		}
+		txtslban.setText(slban+"");
+		txtslkho.setText(slkho+"");
+		txtdt.setText(format.format(dt)+"");
+
+	}
+	public void btnthuchi(ActionEvent e) throws Exception {
+
+		listLinhKien = linhKien_BUS.getAllLinhKien();
+		listXe = xe_BUS.getAllXe();
+		double tl=0.0;
+		double chi=0.0;
+		double dt=0.0;
+		for(LinhKien lk:listLinhKien) {
+
+			dt+=(lk.getGiaLinhKien()*lk.getSoLuongBan());
+		}
+		for(Xe xe:listXe) {
+
+			dt+=(xe.getSoLuongBan()*xe.getGiaXe());
+		}
+		chi=dt*0.3;
+		tl=((dt*1.0)/(chi*1.0));
+		txtthu.setText(format.format(dt)+"");
+
+		txtchi.setText(format.format(chi)+"");
+		txttl.setText(tl+"");
+
+	}
+
+
+	private void renderDatatotbltxe() throws Exception {
+		listLinhKien = linhKien_BUS.getAllLinhKien();
+		listXe = xe_BUS.getAllXe();
+		masptk.setCellValueFactory(cellData -> {
+			Object obj = cellData.getValue();
+			if (obj instanceof Xe) {
+				return new SimpleStringProperty(((Xe) obj).getMaXe());
+			}
+			else return new SimpleStringProperty(((LinhKien) obj).getId());
+		});
+
+		tensptk.setCellValueFactory(cellData -> {
+			Object obj = cellData.getValue();
+			if (obj instanceof Xe) {
+				return new SimpleStringProperty(((Xe) obj).getTenXe());
+			}
+			else return new SimpleStringProperty(((LinhKien) obj).getTen());
+		});
+
+		slkhotk.setCellValueFactory(cellData -> {
+			Object obj = cellData.getValue();
+			if (obj instanceof Xe) {
+				return new ReadOnlyObjectWrapper<>(((Xe)cellData.getValue()).getSoLuongKho());
+			}
+			else return new ReadOnlyObjectWrapper<>(((LinhKien)cellData.getValue()).getSoLuongKho());
+		});
+		slbantk.setCellValueFactory(cellData -> {
+			Object obj = cellData.getValue();
+			if (obj instanceof Xe) {
+				return new ReadOnlyObjectWrapper<>(((Xe)cellData.getValue()).getSoLuongBan());
+			}
+			else return new ReadOnlyObjectWrapper<>(((LinhKien)cellData.getValue()).getSoLuongBan());
+		});
+
+		giasptk.setCellValueFactory(cellData -> {
+			Object obj = cellData.getValue();
+			if (obj instanceof Xe) {
+				return new ReadOnlyObjectWrapper<>(format.format(((Xe) obj).getGiaXe()));
+			}
+			else return new ReadOnlyObjectWrapper<>(format.format(((LinhKien) obj).getGiaLinhKien()));
+		});
+		dtsptk.setCellValueFactory(cellData -> {
+			Object obj = cellData.getValue();
+			if (obj instanceof Xe) {
+				return new ReadOnlyObjectWrapper<>(format.format(((Xe) obj).getGiaXe()*((Xe) obj).getSoLuongBan()));
+			}
+			else return new ReadOnlyObjectWrapper<>(format.format(((LinhKien) obj).getGiaLinhKien()*((LinhKien) obj).getSoLuongBan()));
+		});
+		tbltk.getItems().clear();
+		tbltk.getItems().addAll(listXe);
+		tbltk.getItems().addAll(listLinhKien);
+
 	}
 
 	@FXML
@@ -719,7 +864,7 @@ public class Ctrl_NhanVienGUI {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@FXML
 	private void handleTimKiemKH() {
 		ArrayList<KhachHang> listTimKiem;
@@ -736,7 +881,7 @@ public class Ctrl_NhanVienGUI {
 	private void renderDataToProductTbl() throws Exception {
 		listLinhKien = linhKien_BUS.getAllLinhKien();
 		listXe = xe_BUS.getAllXe();
-		
+
 		sttProductCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Object,Integer>, ObservableValue<Integer>>() {
 
 			@Override
@@ -801,7 +946,7 @@ public class Ctrl_NhanVienGUI {
 				return new ReadOnlyObjectWrapper<>(tblCart.getItems().indexOf(obj.getValue()) + 1);
 			}
 		});
-		
+
 		maSPCart.setCellValueFactory(cellData -> {
 			Object obj = cellData.getValue();
 			if (obj instanceof Xe) {
@@ -902,8 +1047,8 @@ public class Ctrl_NhanVienGUI {
 			txtQuantity.setText("");
 			tblProduct.refresh();
 			tblCart.refresh();
-			
-//			Tinh Tong Tien
+
+			//			Tinh Tong Tien
 			for (Object i: tblCart.getItems()) {
 				if (i instanceof Xe) {
 					Xe x = (Xe) i;
@@ -914,7 +1059,7 @@ public class Ctrl_NhanVienGUI {
 					tongTien += lk.getGiaLinhKien() * lk.getSoLuongKho();
 				}
 			}
-//			Tính thuế VAT 10%
+			//			Tính thuế VAT 10%
 			txtTongTien.setText(format.format(tongTien * 1.1));
 		}
 
