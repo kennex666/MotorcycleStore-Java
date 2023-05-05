@@ -54,8 +54,7 @@ public class LinhKien_BUS implements ILinhKien{
 
 	@Override
 	public boolean xoaLinhKien(LinhKien lk) {
-		// TODO Auto-generated method stub
-		return false;
+		return linhKien_DAO.xoaLinhKien(lk);
 	}
 
 	@Override
