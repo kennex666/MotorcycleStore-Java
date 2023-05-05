@@ -93,7 +93,7 @@
                                  </children></AnchorPane>
                           </items>
                         </SplitPane>
-                        <SplitPane fx:id="splitPaneLK" dividerPositions="0.13559322033898305" layoutY="77.0" prefHeight="633.0" prefWidth="1300.0" visible="false">
+                        <SplitPane fx:id="splitPaneLK" dividerPositions="0.13559322033898305" layoutY="77.0" prefHeight="633.0" prefWidth="1300.0">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="216.0">
                                  <children>
@@ -116,7 +116,7 @@
                               </AnchorPane>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1121.0">
                                  <children>
-                                    <TabPane fx:id="allTabs1" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE">
+                                    <TabPane fx:id="allTabs1" prefHeight="633.0" prefWidth="1119.0" tabClosingPolicy="UNAVAILABLE" visible="false">
                                        <tabs>
                                           <Tab fx:id="tabProduct1" text="Danh sách sản phẩm">
                                              <content>
@@ -124,7 +124,7 @@
                                                    <children>
                                                       <TableView fx:id="tblLinhKien" layoutY="74.0" prefHeight="520.0" prefWidth="1119.0">
                                                          <columns>
-                                                            <TableColumn prefWidth="75.0" text="STT" />
+                                                            <TableColumn fx:id="sttLinhKienCol" prefWidth="75.0" text="STT" />
                                                             <TableColumn fx:id="maLKCol" prefWidth="191.0" text="Mã linh kiện" />
                                                             <TableColumn fx:id="tenLKCol" prefWidth="292.0" text="Tên linh kiện" />
                                                             <TableColumn fx:id="giaLKCol" minWidth="0.0" prefWidth="148.0" text="Giá bán" />
@@ -196,11 +196,12 @@
                                                          <graphic>
                                                             <ImageView fitHeight="34.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
-                                                                  <Image url="@../../../../../../Downloads/Iconshow-Button-Design-Pack-02-Basket.16.png" />
+                                                                  <Image url="@../images/ico/ico-add-cart.png" />
                                                                </image>
                                                             </ImageView>
                                                          </graphic></Button>
                                                       <TextField fx:id="txtQuantity" layoutX="305.0" layoutY="296.0" prefHeight="31.0" prefWidth="57.0" />
+                                                      <Label layoutX="229.0" layoutY="301.0" text="Số lượng:" />
                                                    </children>
                                                 </AnchorPane>
                                              </content>
@@ -216,7 +217,7 @@
                                        <graphic>
                                           <ImageView fx:id="btnAddKH" fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../Downloads/Awicons-Vista-Artistic-Add.16%20(1).png" />
+                                                <Image url="@../images/ico/icon-add-kh.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>

@@ -22,7 +22,7 @@ public class PhongBan {
 		return id;
 	}
 	public void setId(int id) throws Exception {
-		if (id<=0)
+		if (id<0)
 			throw new Exception("Đã có lỗi trong quá trình phát sinh ID phòng ban");
 		this.id = id;
 	}

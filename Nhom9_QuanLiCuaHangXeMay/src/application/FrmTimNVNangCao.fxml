@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_TimKHNangCao">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_TimNVNangCao">
    <left>
       <Pane fx:id="frmThongTinKhachHang" prefHeight="450.0" prefWidth="810.0" BorderPane.alignment="CENTER">
          <children>
@@ -105,7 +105,7 @@
                      </font>
                   </Label>
                   <Box cullFace="NONE" depth="0.0" opacity="0.0" width="15.0" />
-                  <ComboBox fx:id="cboChucVu" onAction="#selectedCboChucVu" prefHeight="31.0" prefWidth="213.0" />
+                  <ComboBox fx:id="cboChucVu" prefHeight="31.0" prefWidth="213.0" />
                   <Box cullFace="NONE" depth="0.0" opacity="0.0" width="60.0" />
                </children>
             </HBox>

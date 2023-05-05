@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Ctrl_Login">
-   <top>
+   <bottom>
       <Pane prefHeight="342.0" prefWidth="530.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="txtUsername" layoutX="187.0" layoutY="127.0" prefHeight="31.0" prefWidth="223.0" />
@@ -25,7 +25,8 @@
                   <Font size="17.0" />
                </font>
             </Button>
+            <Text layoutX="48.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tài khoản nv: nhanvien/nhanvien - Tài khoản quản lí: ql001/ql001" wrappingWidth="437.455078125" />
          </children>
       </Pane>
-   </top>
+   </bottom>
 </BorderPane>
