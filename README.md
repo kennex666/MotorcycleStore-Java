@@ -10,10 +10,16 @@ This project for education.
     4. Võ Ngọc Thắng (Leader) - Student code: 21110561
 - Team's name: Nhóm 9
 - Summary purpose about project: For education.
-## The language/technology
+## The technologies, applications, libraries used whole project
 1. Java Language
 2. JavaFX Library
 3. Microsoft SQL Server
 4. JDBC Library
+5. Eclipse IDE
+6. Visual Studio Code
+7. Visual Paradigm for UML
+8. Figma
+9. Google Meet
+10. GitHub & Git
 ## The rules apply for student team
 Not apply yet.
