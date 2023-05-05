@@ -697,33 +697,73 @@ public class Ctrl_MainMenu {
 	
 	@FXML
 	private void themLinhKien() throws Exception {
-//		LinhKien linhKien;
-//		String maLK;
-//		String tenLK;
-//		double giaLK; String giaLK_String;
-//		String imagePath;
-//		int soLuongKhoLK; String soLuongKhoLK_String;
-//		
-//		
-//		tenLK = txtTenLinhKien.getText().trim();
-//		maLK = utilities.GenerateID.taoMaLK();
-//		giaLK_String = txtGiaLinhKien.getText().trim();
-//		giaLK = Double.parseDouble(giaLK_String);
-//		
-//		soLuongKhoLK_String = txtSoLuongKhoLK.getText().trim();
-//		soLuongKhoLK = Integer.parseInt(soLuongKhoLK_String);
-//		
-//		NhaCungCap ncc = cboNCCLK.getValue();
-//		ChiTietSuaChua chiTietSuaChua = new ChiTietSuaChua();
-//		
-//		linhKien = new LinhKien(maLK, tenLK, "String", ncc, chiTietSuaChua, giaLK, soLuongKhoLK, 0);
-//		LinhKien_BUS linhKien_BUS = new LinhKien_BUS();
-//		linhKien_BUS.themLinhKien(linhKien);
-//		listXeObsLK.add(linhKien);
-//		//addXeVaoTable();
-//		PopupNotify.showErrorField(null, "Thêm thành công!", null);
+		LinhKien linhKien;
+		String maLK;
+		String tenLK;
+		double giaLK; String giaLK_String;
+		String imagePath;
+		int soLuongKhoLK; String soLuongKhoLK_String;
+		
+		
+		tenLK = txtTenLinhKien.getText().trim();
+		maLK = utilities.GenerateID.taoMaLK();
+		giaLK_String = txtGiaLinhKien.getText().trim();
+		giaLK = Double.parseDouble(giaLK_String);
+		
+		soLuongKhoLK_String = txtSoLuongKhoLK.getText().trim();
+		soLuongKhoLK = Integer.parseInt(soLuongKhoLK_String);
+		
+		NhaCungCap ncc = cboNCCLK.getValue();
+		
+		linhKien = new LinhKien(maLK, tenLK, "String", ncc, giaLK, soLuongKhoLK, 0);
+		LinhKien_BUS linhKien_BUS = new LinhKien_BUS();
+		linhKien_BUS.themLinhKien(linhKien);
+		listXeObsLK.add(linhKien);
+		//addXeVaoTable();
+		PopupNotify.showErrorField(null, "Thêm thành công!", null);
 	}
 	
+	@FXML
+	private void clickTableLK() {
+		LinhKien lk =  tblLinhKien.getSelectionModel().getSelectedItem();
+		txtTenLinhKien.setText(lk.getTen());
+		txtGiaLinhKien.setText(Double.toString(lk.getGiaLinhKien()));
+		txtSoLuongKhoLK.setText(Integer.toString(lk.getSoLuongKho()));
+		cboNCCLK.setValue(lk.getNhaCungCap());
+		
+	}
+	
+	@FXML
+	private TableColumn<LinhKien, String> colMaLK,colTenLK,colNhaSXLK;
+	@FXML
+	private TableColumn<LinhKien, Double> colGiaLK; 
+	@FXML
+	private TableColumn<LinhKien, Integer>  colSoLuongKhoLK,colSoLuongBanLK;
+	@FXML
+	private LinhKien_BUS linhKien_BUS = new LinhKien_BUS();
+	@FXML
+	private TableView<LinhKien> tblLinhKien;
+	@FXML
+	private void addXeVaoTableLK() throws Exception {
+		xoaTrangDuLieuTable();
+		ArrayList<LinhKien> listLinhKien = linhKien_BUS.getAllLinhKien();
+		
+		colMaLK.setCellValueFactory(new PropertyValueFactory<LinhKien,String>("id"));
+		colTenLK.setCellValueFactory(new PropertyValueFactory<LinhKien,String>("ten"));
+		colGiaLK.setCellValueFactory(new PropertyValueFactory<LinhKien,Double>("giaLinhKien"));
+//		colNhaSXLK.setCellValueFactory(cellData -> {
+//			return new SimpleStringProperty(ncc_bus.getTenNCCByMa(cellData.getValue().getNhaCungCap().getMaNCC()));
+//		});
+		colNhaSXLK.setCellValueFactory(new PropertyValueFactory<LinhKien, String>("nhaCungCap"));
+		colSoLuongKhoLK.setCellValueFactory(new PropertyValueFactory<LinhKien,Integer>("soLuongKho"));
+		colSoLuongBanLK.setCellValueFactory(new PropertyValueFactory<LinhKien,Integer>("soLuongBan"));
+		
+		for (LinhKien x : listLinhKien)
+			listXeObsLK.add(x);
+		
+		tblLinhKien.setItems(listXeObsLK);
+		
+	}
 	
 	public Ctrl_MainMenu() {
 		super();

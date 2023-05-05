@@ -5,7 +5,6 @@ import java.util.Objects;
 public class LinhKien {
 	private String id, ten, imagePath;
 	private NhaCungCap nhaCungCap;
-	private ChiTietSuaChua ctsc;
 	private double giaLinhKien;
 	private int soLuongKho, soLuongBan;
 
@@ -19,14 +18,13 @@ public class LinhKien {
 		setId(id);
 	}
 
-	public LinhKien(String id, String ten, String imagePath, NhaCungCap nhaCungCap, ChiTietSuaChua ctsc,
+	public LinhKien(String id, String ten, String imagePath, NhaCungCap nhaCungCap, 
 			double giaLinhKien, int slKho, int slBan) throws Exception {
 		super();
 		setId(id);
 		setTen(ten);
 		setImagePath(imagePath);
 		this.nhaCungCap = nhaCungCap;
-		this.ctsc = ctsc;
 		setGiaLinhKien(giaLinhKien);
 		this.setSoLuongKho(slKho);
 		this.setSoLuongBan(slBan);
@@ -91,13 +89,6 @@ public class LinhKien {
 		this.nhaCungCap = nhaCungCap;
 	}
 
-	public ChiTietSuaChua getCtsc() {
-		return ctsc;
-	}
-
-	public void setCtsc(ChiTietSuaChua ctsc) {
-		this.ctsc = ctsc;
-	}
 
 	public double getGiaLinhKien() {
 		return giaLinhKien;

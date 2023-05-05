@@ -21,24 +21,23 @@ public class LinhKien_DAO implements ILinhKien {
 	public ArrayList<LinhKien> getAllLinhKien() throws Exception {
 		// TODO Auto-generated method stub
 		ArrayList<LinhKien> list = new ArrayList<>();
-		String query = "Select * from LinhKien";
+		String query = "Select * from LinhKien lk JOIN NhaCungCap ncc ON lk.MaNCC = ncc.MaNCC";
 		try {
 			Statement stm = con.createStatement();
 			ResultSet results = stm.executeQuery(query);
 			while (results.next()) {
 				String maLK = results.getString("MaLinhKien");
-				String maNCC = results.getString("MaNCC");
-				int maCTSC = results.getInt("MaCTSuaChua");
+				String maNCC = results.getString("MaNCC"); // ????
+				String tenNCC = results.getString("Ten");
 				String tenLK = results.getString("TenLinhKien");
 				String imgPath = results.getString("ImgPath");
 				double gia = results.getDouble("GiaBan");
 
 				int soLuongBan = results.getInt("SoLuongBan");
 				int soLuongKho = results.getInt("SoLuongKho");
-				NhaCungCap nhaCungCap = new NhaCungCap(maNCC);
-				ChiTietSuaChua ctsc = new ChiTietSuaChua(maCTSC);
+				NhaCungCap nhaCungCap = new NhaCungCap(maNCC, tenNCC);
 
-				LinhKien lk = new LinhKien(maLK, tenLK, imgPath, nhaCungCap, ctsc, gia, soLuongKho, soLuongBan);
+				LinhKien lk = new LinhKien(maLK, tenLK, imgPath, nhaCungCap, gia, soLuongKho, soLuongBan);
 
 				list.add(lk);
 			}
@@ -103,19 +102,17 @@ public class LinhKien_DAO implements ILinhKien {
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		PreparedStatement statement = null;
-		String query = "insert into LinhKien values(?,?,?,?,?,?,?,?)";
+		String query = "insert into LinhKien values(?,?,?,?,?,?,?)";
 		int n=0;
 		try {
 			statement = con.prepareStatement(query);
-			System.out.println(lk.getCtsc().getID());
 			statement.setString(1, lk.getId());
 			statement.setString(2, lk.getNhaCungCap().getMaNCC());
-			statement.setInt(3, lk.getCtsc().getID());
-			statement.setString(4, lk.getTen());
-			statement.setString(5, lk.getImagePath());
-			statement.setDouble(6, lk.getGiaLinhKien());
-			statement.setInt(7, lk.getSoLuongKho());
-			statement.setInt(8, lk.getSoLuongBan());
+			statement.setString(3, lk.getTen());
+			statement.setString(4, lk.getImagePath());
+			statement.setDouble(5, lk.getGiaLinhKien());
+			statement.setInt(6, lk.getSoLuongKho());
+			statement.setInt(7, lk.getSoLuongBan());
 			n=statement.executeUpdate();
 			
 		} catch (Exception e) {
@@ -134,7 +131,7 @@ public class LinhKien_DAO implements ILinhKien {
 	public ArrayList<LinhKien> findLinhKien(String keywords) throws Exception {
 		ArrayList<LinhKien> list = new ArrayList<LinhKien>();
 		Connection conn = ConnectDB.getConnection();
-		String query = "SELECT * FROM LinhKien WHERE MaLinhKien LIKE CONCAT('%', ?, '%') OR TenLinhKien LIKE CONCAT('%', ?, '%');";
+		String query = "SELECT * FROM LinhKien lk JOIN NhaCungCap ncc ON lk.MaNCC = ncc.MaNCC WHERE MaLinhKien LIKE CONCAT('%', ?, '%') OR TenLinhKien LIKE CONCAT('%', ?, '%');";
 		try {
 			PreparedStatement pstm = conn.prepareStatement(query);
 			pstm.setString(1, keywords);
@@ -143,17 +140,17 @@ public class LinhKien_DAO implements ILinhKien {
 			while (results.next()) {
 				String maLK = results.getString("MaLinhKien");
 				String maNCC = results.getString("MaNCC");
-				int maCTSC = results.getInt("MaCTSuaChua");
+				String tenNCC = results.getString("Ten");
+				
 				String tenLK = results.getString("TenLinhKien");
 				String imgPath = results.getString("ImgPath");
 				double gia = results.getDouble("GiaBan");
 
 				int soLuongBan = results.getInt("SoLuongBan");
 				int soLuongKho = results.getInt("SoLuongKho");
-				NhaCungCap nhaCungCap = new NhaCungCap(maNCC);
-				ChiTietSuaChua ctsc = new ChiTietSuaChua(maCTSC);
+				NhaCungCap nhaCungCap = new NhaCungCap(maNCC, tenNCC);
 
-				LinhKien lk = new LinhKien(maLK, tenLK, imgPath, nhaCungCap, ctsc, gia, soLuongKho, soLuongBan);
+				LinhKien lk = new LinhKien(maLK, tenLK, imgPath, nhaCungCap, gia, soLuongKho, soLuongBan);
 
 				list.add(lk);
 			}
