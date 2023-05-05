@@ -405,6 +405,27 @@ public class Ctrl_MainMenu {
 		
 	}
 	
+	@FXML
+	private void actionLocNVNangCao() {// TODO Auto-generated method stub
+		BorderPane frmEdit;
+		try {
+			FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("FrmTimNVNangCao.fxml"));
+			frmEdit = (BorderPane) fxmlLoad.load();
+			Ctrl_TimNVNangCao ctrlDienTT = fxmlLoad.getController();
+			ctrlDienTT.setTableModel(listNVObs);
+			Scene sceneTaoKH = new Scene(frmEdit);
+			Stage secondaryStage = new Stage();
+			secondaryStage.setScene(sceneTaoKH);
+			secondaryStage.setResizable(false);
+			secondaryStage.show();
+			return;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
 	
 	@FXML
 	private TextField txtTenXe,txtLoaiXe,txtSoKhung,txtSoSuon,txtSoPK,txtMauXe,txtNhaSX,txtGia,txtSoLuongKho,txtNuocSX;

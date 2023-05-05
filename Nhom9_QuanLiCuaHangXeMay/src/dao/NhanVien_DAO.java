@@ -243,7 +243,7 @@ public class NhanVien_DAO implements INhanVien{
 		int maPb = (int) obj[6], maCV = (int) obj[7];
 		ArrayList<NhanVien> listNv = new ArrayList<NhanVien>();
 		Connection conn = ConnectDB.getConnection();
-		String query = "SELECT * FROM NhanVien nv JOIN PhongBan pb ON nv.MaPB = pb.MaPB JOIN ChucVu cv ON cv.MaCV = nv.MaCV WHERE tenKH LIKE CONCAT('%', ?, '%') ";
+		String query = "SELECT * FROM NhanVien nv JOIN PhongBan pb ON nv.MaPB = pb.MaPB JOIN ChucVu cv ON cv.MaCV = nv.MaCV WHERE hoTenNV LIKE CONCAT('%', ?, '%') ";
 
 
 		
@@ -270,10 +270,10 @@ public class NhanVien_DAO implements INhanVien{
 		}
 		
 		if (maCV != 0) {
-			query += "AND maCV = " + maCV + " ";
+			query += "AND nv.maCV = '" + maCV + "' ";
 		}
 		if (maPb != 0) {
-			query += "AND maPB = " + maPb + " ";
+			query += "AND nv.maPB = '" + maPb + "' ";
 		}
 
 		try {

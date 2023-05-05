@@ -24,7 +24,7 @@ public class ChucVu {
 	}
 
 		public void setMaChucVu(int maChucVu) throws Exception {
-			if (maChucVu <= 0) {
+			if (maChucVu < 0) {
 				throw new Exception("Mã chức vụ không hợp lệ");
 			}
 			else this.maChucVu = maChucVu;
