@@ -75,9 +75,9 @@
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="txtTimKiemLK" layoutX="233.0" layoutY="19.0" prefHeight="25.0" prefWidth="440.0" promptText="Tìm kiếm tên linh kiện" />
-                                                      <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" text="Tìm kiếm" />
-                                                      <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" text="Làm mới" />
+                                                      <TextField fx:id="txtTimKiemLK" layoutX="233.0" layoutY="19.0" onAction="#actionSearchLK" prefHeight="25.0" prefWidth="440.0" promptText="Tìm kiếm tên linh kiện" />
+                                                      <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" onAction="#actionSearchLK" text="Tìm kiếm" />
+                                                      <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" onAction="#actionRefreshTableLK" text="Làm mới" />
                                                       <Button layoutX="950.0" layoutY="19.0" mnemonicParsing="false" text="Lọc nâng cao" />
                                                       <Button fx:id="btnThemLK" layoutX="934.0" layoutY="90.0" mnemonicParsing="false" onAction="#themLinhKien" text="Thêm thông tin xe" />
                                                       <Button fx:id="btnXoaTrangXe1" layoutX="933.0" layoutY="126.0" mnemonicParsing="false" text="Xoá trắng" />
@@ -96,7 +96,7 @@
                                                          </children>
                                                       </HBox>
                                                       <Button fx:id="btnSuaXe1" layoutX="933.0" layoutY="166.0" mnemonicParsing="false" text="Sửa thông tin xe" />
-                                                      <Button fx:id="btnXoaXe1" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" text="Xoá thông tin" />
+                                                      <Button fx:id="btnXoaXe1" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" onAction="#actionBtnDeleteLK" text="Xoá thông tin" />
                                                       <Label layoutX="98.0" layoutY="143.0" prefHeight="30.0" text="Giá linh kiện:">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />

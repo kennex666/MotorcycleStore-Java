@@ -71,7 +71,7 @@ public class Ctrl_MainMenu {
 	@FXML
 	private TableColumn<NhanVien, Number> colnvSTT;
 	@FXML
-	private TextField txtSearch, txtNVSearch;
+	private TextField txtSearch, txtNVSearch, txtTimKiemLK;
 	
 
 	private KhachHang_BUS kh_bus;
@@ -764,9 +764,10 @@ public class Ctrl_MainMenu {
 	private LinhKien_BUS linhKien_BUS = new LinhKien_BUS();
 	@FXML
 	private TableView<LinhKien> tblLinhKien;
+	
 	@FXML
 	private void addXeVaoTableLK() throws Exception {
-		xoaTrangDuLieuTable();
+		listXeObsLK.clear();
 		ArrayList<LinhKien> listLinhKien = linhKien_BUS.getAllLinhKien();
 		
 		colMaLK.setCellValueFactory(new PropertyValueFactory<LinhKien,String>("id"));
@@ -784,6 +785,48 @@ public class Ctrl_MainMenu {
 		
 		tblLinhKien.setItems(listXeObsLK);
 		
+	}
+	
+	@FXML
+	private void actionSearchLK() {
+		listXeObsLK.clear();	
+		try {
+			ArrayList<LinhKien> listLinhKien = linhKien_BUS.findLinhKien(txtTimKiemLK.getText());
+			for (LinhKien x : listLinhKien)
+				listXeObsLK.add(x);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+	}
+	
+	@FXML
+	private void actionRefreshTableLK() {
+		// TODO Auto-generated method stub
+
+		try {
+			addXeVaoTableLK();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	@FXML
+	private void actionBtnDeleteLK() {
+		// TODO Auto-generated method stub
+		LinhKien temp = tblLinhKien.getSelectionModel().getSelectedItem();
+		if (temp == null) {
+			PopupNotify.showErrorField("Lỗi", "Bạn chưa chọn dòng nào để xoá!", null);
+			return;
+		}
+		if (PopupNotify.confirmNotification("Cảnh báo", "Bạn có thật sự muốn xoá linh kiện " + temp.getTen() + "?", "Thao tác này không thể hoàn tác!")) {
+			linhKien_BUS.xoaLinhKien(temp);
+			listXeObsLK.remove(temp);
+		}
 	}
 	
 	public Ctrl_MainMenu() {

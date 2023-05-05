@@ -124,6 +124,17 @@ public class LinhKien_DAO implements ILinhKien {
 	@Override
 	public boolean xoaLinhKien(LinhKien lk) {
 		// TODO Auto-generated method stub
+		Connection con = ConnectDB.getConnection();
+		
+		String query = "DELETE FROM LinhKien WHERE maLinhKien = ?";
+		try {
+			PreparedStatement stm = con.prepareStatement(query);
+			stm.setString(1, lk.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 	
