@@ -60,14 +60,14 @@
                                              <content>
                                                 <AnchorPane onDragDetected="#themXe" prefHeight="588.0" prefWidth="1294.0">
                                                    <children>
-                                                      <TableView fx:id="tblXe1" layoutX="76.0" layoutY="238.0" prefHeight="369.0" prefWidth="844.0">
+                                                      <TableView fx:id="tblLinhKien" layoutX="76.0" layoutY="238.0" onMouseClicked="#clickTableLK" prefHeight="369.0" prefWidth="844.0">
                                                          <columns>
-                                                            <TableColumn fx:id="colMaXe1" prefWidth="96.0" text="Mã linh kiện" />
-                                                            <TableColumn fx:id="colTenXe1" prefWidth="148.0" text="Tên linh kiện" />
-                                                            <TableColumn fx:id="colGia1" prefWidth="144.0" text="Giá linh kiện" />
-                                                            <TableColumn fx:id="colNhaSX1" prefWidth="160.0" text="Nhà cung cấp" />
-                                                            <TableColumn fx:id="colSoLuongKho1" prefWidth="151.0" text="Số lượng kho" />
-                                                            <TableColumn fx:id="colGia11" prefWidth="144.0" text="Số lượng bán" />
+                                                            <TableColumn fx:id="colMaLK" prefWidth="96.0" text="Mã linh kiện" />
+                                                            <TableColumn fx:id="colTenLK" prefWidth="148.0" text="Tên linh kiện" />
+                                                            <TableColumn fx:id="colGiaLK" prefWidth="144.0" text="Giá linh kiện" />
+                                                            <TableColumn fx:id="colNhaSXLK" prefWidth="160.0" text="Nhà cung cấp" />
+                                                            <TableColumn fx:id="colSoLuongKhoLK" prefWidth="151.0" text="Số lượng kho" />
+                                                            <TableColumn fx:id="colSoLuongBanLK" prefWidth="144.0" text="Số lượng bán" />
                                                          </columns>
                                                       </TableView>
                                                       <Label layoutX="76.0" layoutY="19.0" text="Tìm kiếm linh kiện :">
@@ -75,10 +75,10 @@
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="txtTimKiemLK" layoutX="233.0" layoutY="19.0" prefHeight="25.0" prefWidth="440.0" promptText="Tìm kiếm tên linh kiện" />
-                                                      <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" text="Tìm kiếm" />
-                                                      <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" text="Làm mới" />
-                                                      <Button layoutX="950.0" layoutY="19.0" mnemonicParsing="false" text="Lọc nâng cao" visible="false" />
+                                                      <TextField fx:id="txtTimKiemLK" layoutX="233.0" layoutY="19.0" onAction="#actionSearchLK" prefHeight="25.0" prefWidth="440.0" promptText="Tìm kiếm tên linh kiện" />
+                                                      <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" onAction="#actionSearchLK" text="Tìm kiếm" />
+                                                      <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" onAction="#actionRefreshTableLK" text="Làm mới" />
+                                                      <Button layoutX="950.0" layoutY="19.0" mnemonicParsing="false" text="Lọc nâng cao" />
                                                       <Button fx:id="btnThemLK" layoutX="934.0" layoutY="90.0" mnemonicParsing="false" onAction="#themLinhKien" text="Thêm thông tin xe" />
                                                       <Button fx:id="btnXoaTrangXe1" layoutX="933.0" layoutY="126.0" mnemonicParsing="false" text="Xoá trắng" />
                                                       <HBox layoutX="56.0" layoutY="88.0" prefHeight="30.0" prefWidth="810.0">
@@ -96,7 +96,7 @@
                                                          </children>
                                                       </HBox>
                                                       <Button fx:id="btnSuaXe1" layoutX="933.0" layoutY="166.0" mnemonicParsing="false" text="Sửa thông tin xe" />
-                                                      <Button fx:id="btnXoaXe1" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" text="Xoá thông tin" />
+                                                      <Button fx:id="btnXoaXe1" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" onAction="#actionBtnDeleteLK" text="Xoá thông tin" />
                                                       <Label layoutX="98.0" layoutY="143.0" prefHeight="30.0" text="Giá linh kiện:">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />
@@ -114,6 +114,7 @@
                                                          </font>
                                                       </Label>
                                                       <ComboBox fx:id="cboNCCLK" layoutX="722.0" layoutY="126.0" prefWidth="150.0" />
+                                                      <Button fx:id="btnXoaXe11" layoutX="933.0" layoutY="246.0" mnemonicParsing="false" onAction="#addXeVaoTableLK" text="Load dữ liệu" />
                                                    </children>
                                                 </AnchorPane>
                                              </content>

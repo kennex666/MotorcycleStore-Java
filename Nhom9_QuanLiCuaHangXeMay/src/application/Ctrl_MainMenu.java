@@ -71,7 +71,7 @@ public class Ctrl_MainMenu {
 	@FXML
 	private TableColumn<NhanVien, Number> colnvSTT;
 	@FXML
-	private TextField txtSearch, txtNVSearch;
+	private TextField txtSearch, txtNVSearch, txtTimKiemLK;
 	
 
 	private KhachHang_BUS kh_bus;
@@ -739,33 +739,116 @@ public class Ctrl_MainMenu {
 	
 	@FXML
 	private void themLinhKien() throws Exception {
-//		LinhKien linhKien;
-//		String maLK;
-//		String tenLK;
-//		double giaLK; String giaLK_String;
-//		String imagePath;
-//		int soLuongKhoLK; String soLuongKhoLK_String;
-//		
-//		
-//		tenLK = txtTenLinhKien.getText().trim();
-//		maLK = utilities.GenerateID.taoMaLK();
-//		giaLK_String = txtGiaLinhKien.getText().trim();
-//		giaLK = Double.parseDouble(giaLK_String);
-//		
-//		soLuongKhoLK_String = txtSoLuongKhoLK.getText().trim();
-//		soLuongKhoLK = Integer.parseInt(soLuongKhoLK_String);
-//		
-//		NhaCungCap ncc = cboNCCLK.getValue();
-//		ChiTietSuaChua chiTietSuaChua = new ChiTietSuaChua();
-//		
-//		linhKien = new LinhKien(maLK, tenLK, "String", ncc, chiTietSuaChua, giaLK, soLuongKhoLK, 0);
-//		LinhKien_BUS linhKien_BUS = new LinhKien_BUS();
-//		linhKien_BUS.themLinhKien(linhKien);
-//		listXeObsLK.add(linhKien);
-//		//addXeVaoTable();
-//		PopupNotify.showErrorField(null, "Thêm thành công!", null);
+		LinhKien linhKien;
+		String maLK;
+		String tenLK;
+		double giaLK; String giaLK_String;
+		String imagePath;
+		int soLuongKhoLK; String soLuongKhoLK_String;
+		
+		
+		tenLK = txtTenLinhKien.getText().trim();
+		maLK = utilities.GenerateID.taoMaLK();
+		giaLK_String = txtGiaLinhKien.getText().trim();
+		giaLK = Double.parseDouble(giaLK_String);
+		
+		soLuongKhoLK_String = txtSoLuongKhoLK.getText().trim();
+		soLuongKhoLK = Integer.parseInt(soLuongKhoLK_String);
+		
+		NhaCungCap ncc = cboNCCLK.getValue();
+		
+		linhKien = new LinhKien(maLK, tenLK, "String", ncc, giaLK, soLuongKhoLK, 0);
+		LinhKien_BUS linhKien_BUS = new LinhKien_BUS();
+		linhKien_BUS.themLinhKien(linhKien);
+		listXeObsLK.add(linhKien);
+		//addXeVaoTable();
+		PopupNotify.showErrorField(null, "Thêm thành công!", null);
 	}
 	
+	@FXML
+	private void clickTableLK() {
+		LinhKien lk =  tblLinhKien.getSelectionModel().getSelectedItem();
+		txtTenLinhKien.setText(lk.getTen());
+		txtGiaLinhKien.setText(Double.toString(lk.getGiaLinhKien()));
+		txtSoLuongKhoLK.setText(Integer.toString(lk.getSoLuongKho()));
+		cboNCCLK.setValue(lk.getNhaCungCap());
+		
+	}
+	
+	@FXML
+	private TableColumn<LinhKien, String> colMaLK,colTenLK,colNhaSXLK;
+	@FXML
+	private TableColumn<LinhKien, Double> colGiaLK; 
+	@FXML
+	private TableColumn<LinhKien, Integer>  colSoLuongKhoLK,colSoLuongBanLK;
+	@FXML
+	private LinhKien_BUS linhKien_BUS = new LinhKien_BUS();
+	@FXML
+	private TableView<LinhKien> tblLinhKien;
+	
+	@FXML
+	private void addXeVaoTableLK() throws Exception {
+		listXeObsLK.clear();
+		ArrayList<LinhKien> listLinhKien = linhKien_BUS.getAllLinhKien();
+		
+		colMaLK.setCellValueFactory(new PropertyValueFactory<LinhKien,String>("id"));
+		colTenLK.setCellValueFactory(new PropertyValueFactory<LinhKien,String>("ten"));
+		colGiaLK.setCellValueFactory(new PropertyValueFactory<LinhKien,Double>("giaLinhKien"));
+//		colNhaSXLK.setCellValueFactory(cellData -> {
+//			return new SimpleStringProperty(ncc_bus.getTenNCCByMa(cellData.getValue().getNhaCungCap().getMaNCC()));
+//		});
+		colNhaSXLK.setCellValueFactory(new PropertyValueFactory<LinhKien, String>("nhaCungCap"));
+		colSoLuongKhoLK.setCellValueFactory(new PropertyValueFactory<LinhKien,Integer>("soLuongKho"));
+		colSoLuongBanLK.setCellValueFactory(new PropertyValueFactory<LinhKien,Integer>("soLuongBan"));
+		
+		for (LinhKien x : listLinhKien)
+			listXeObsLK.add(x);
+		
+		tblLinhKien.setItems(listXeObsLK);
+		
+	}
+	
+	@FXML
+	private void actionSearchLK() {
+		listXeObsLK.clear();	
+		try {
+			ArrayList<LinhKien> listLinhKien = linhKien_BUS.findLinhKien(txtTimKiemLK.getText());
+			for (LinhKien x : listLinhKien)
+				listXeObsLK.add(x);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+	}
+	
+	@FXML
+	private void actionRefreshTableLK() {
+		// TODO Auto-generated method stub
+
+		try {
+			addXeVaoTableLK();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	@FXML
+	private void actionBtnDeleteLK() {
+		// TODO Auto-generated method stub
+		LinhKien temp = tblLinhKien.getSelectionModel().getSelectedItem();
+		if (temp == null) {
+			PopupNotify.showErrorField("Lỗi", "Bạn chưa chọn dòng nào để xoá!", null);
+			return;
+		}
+		if (PopupNotify.confirmNotification("Cảnh báo", "Bạn có thật sự muốn xoá linh kiện " + temp.getTen() + "?", "Thao tác này không thể hoàn tác!")) {
+			linhKien_BUS.xoaLinhKien(temp);
+			listXeObsLK.remove(temp);
+		}
+	}
 	
 	public Ctrl_MainMenu() {
 		super();
