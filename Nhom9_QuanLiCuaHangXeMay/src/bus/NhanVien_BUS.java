@@ -10,6 +10,11 @@ public class NhanVien_BUS implements INhanVien{
 	NhanVien_DAO nv_dao;
 	
 	@Override
+	public ArrayList<NhanVien> findEmployeeAdvanced(Object[] obj) {
+		return nv_dao.findEmployeeAdvanced(obj);
+	}
+	
+	@Override
 	public ArrayList<NhanVien> getAllEmployees() {
 		return nv_dao.getAllEmployees();
 	}

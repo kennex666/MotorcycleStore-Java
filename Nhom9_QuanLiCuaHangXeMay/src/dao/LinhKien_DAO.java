@@ -1,10 +1,12 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.concurrent.locks.StampedLock;
 
 import connectDB.ConnectDB;
 import entity.ChiTietSuaChua;
@@ -90,4 +92,78 @@ public class LinhKien_DAO implements ILinhKien {
 		return null;
 	}
 
+	@Override
+	public boolean editLinhKien(LinhKien lk) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean themLinhKien(LinhKien lk) {
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		String query = "insert into LinhKien values(?,?,?,?,?,?,?,?)";
+		int n=0;
+		try {
+			statement = con.prepareStatement(query);
+			System.out.println(lk.getCtsc().getID());
+			statement.setString(1, lk.getId());
+			statement.setString(2, lk.getNhaCungCap().getMaNCC());
+			statement.setInt(3, lk.getCtsc().getID());
+			statement.setString(4, lk.getTen());
+			statement.setString(5, lk.getImagePath());
+			statement.setDouble(6, lk.getGiaLinhKien());
+			statement.setInt(7, lk.getSoLuongKho());
+			statement.setInt(8, lk.getSoLuongBan());
+			n=statement.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return n>0;
+	}
+	
+	@Override
+	public boolean xoaLinhKien(LinhKien lk) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public ArrayList<LinhKien> findLinhKien(String keywords) throws Exception {
+		ArrayList<LinhKien> list = new ArrayList<LinhKien>();
+		Connection conn = ConnectDB.getConnection();
+		String query = "SELECT * FROM LinhKien WHERE MaLinhKien LIKE CONCAT('%', ?, '%') OR TenLinhKien LIKE CONCAT('%', ?, '%');";
+		try {
+			PreparedStatement pstm = conn.prepareStatement(query);
+			pstm.setString(1, keywords);
+			pstm.setString(2, keywords);
+			ResultSet results = pstm.executeQuery();
+			while (results.next()) {
+				String maLK = results.getString("MaLinhKien");
+				String maNCC = results.getString("MaNCC");
+				int maCTSC = results.getInt("MaCTSuaChua");
+				String tenLK = results.getString("TenLinhKien");
+				String imgPath = results.getString("ImgPath");
+				double gia = results.getDouble("GiaBan");
+
+				int soLuongBan = results.getInt("SoLuongBan");
+				int soLuongKho = results.getInt("SoLuongKho");
+				NhaCungCap nhaCungCap = new NhaCungCap(maNCC);
+				ChiTietSuaChua ctsc = new ChiTietSuaChua(maCTSC);
+
+				LinhKien lk = new LinhKien(maLK, tenLK, imgPath, nhaCungCap, ctsc, gia, soLuongKho, soLuongBan);
+
+				list.add(lk);
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
 }

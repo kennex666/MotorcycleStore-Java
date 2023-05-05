@@ -60,7 +60,7 @@ public class Xe_DAO implements IXe {
 	public ArrayList<Xe> findXe(String keywords) {
 		ArrayList<Xe> listXe = new ArrayList<Xe>();
 		Connection conn = ConnectDB.getConnection();
-		String query = "SELECT * FROM Xe x JOIN NhaCungCap ncc ON x.Mancc = ncc.mancc WHERE maXe LIKE CONCAT('%', ?, '%') OR tenXe LIKE CONCAT('%', ?, '%') OR nuocSX LIKE CONCAT('%', ?, '%') OR soKhung LIKE CONCAT('%', ?, '%') OR soSuon LIKE CONCAT('%', ?, '%') OR mauXe LIKE CONCAT('%', ?, '%') OR soPk=? OR gia=?";
+		String query = "SELECT * FROM Xe x JOIN NhaCungCap ncc ON x.Mancc = ncc.mancc WHERE maXe LIKE CONCAT('%', ?, '%') OR tenXe LIKE CONCAT('%', ?, '%')OR loaiXe LIKE CONCAT('%',?,'%') OR nuocSX LIKE CONCAT('%', ?, '%') OR soKhung LIKE CONCAT('%', ?, '%') OR soSuon LIKE CONCAT('%', ?, '%') OR mauXe LIKE CONCAT('%', ?, '%') OR soPk LIKE CONCAT('%', ?, '%') OR gia LIKE CONCAT('%',?, '%') OR soLuongKho LIKE CONCAT('%', ?, '%') OR soLuongBan LIKE CONCAT('%', ?, '%') OR imgPath LIKE CONCAT('%', ?, '%') OR Ten LIKE CONCAT('%',?,'%') ";
 		try {
 			PreparedStatement pstm = conn.prepareStatement(query);
 			pstm.setString(1, keywords);
@@ -72,32 +72,35 @@ public class Xe_DAO implements IXe {
 			pstm.setString(7, keywords);
 			pstm.setString(8, keywords);
 			pstm.setString(9, keywords);
+			pstm.setString(10, keywords);
+			pstm.setString(11, keywords);
+			pstm.setString(12, keywords);
+			pstm.setString(13, keywords);
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()) {
-				Xe temp;
-				String maXe = rs.getString("maXe");
-				String tenXe = rs.getString("tenXe");
-				String loaiXe = rs.getString("loaiXe");
-				String nuocSX = rs.getString("nuocSX");
-				String soPK_string = rs.getString("soPK");
-				double soPK = Double.parseDouble(soPK_string);
-				String soKhung = rs.getString("soKhung");
-				String soSuon = rs.getString("soSuon");
-				String mauXe = rs.getString("mauXe");
-				String giaXe_string = rs.getString("giaXe");
-				double giaXe = Double.parseDouble(giaXe_string);
-				String soLuongKho_string = rs.getString("soLuongKho");
-				int soLuongKho = Integer.parseInt(soLuongKho_string);
-				String soLuongBan_string = rs.getString("soLuongBan");
-				int soLuongBan = Integer.parseInt(soLuongBan_string);
-				String imagePath = rs.getString("imagePath");
-				String maNcc = rs.getString("mancc");
-				NhaCungCap ncc = new NhaCungCap(maNcc, rs.getString("ten"));
-				try {
-					temp = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imagePath, ncc,
-							soLuongKho, soLuongBan);
-					listXe.add(temp);
-				} catch (Exception e) {
+				 Xe temp;
+				 	String maXe = rs.getString("maXe");
+					String tenXe = rs.getString("tenXe");
+					String loaiXe = rs.getString("loaiXe");
+					String nuocSX = rs.getString("nuocSX");
+					String soPK_string = rs.getString("soPK");
+					double soPK = Double.parseDouble(soPK_string);
+					String soKhung = rs.getString("soKhung");
+					String soSuon = rs.getString("soSuon");
+					String mauXe = rs.getString("mauXe");
+					String giaXe_string = rs.getString("gia");
+					double giaXe = Double.parseDouble(giaXe_string);
+					String soLuongKho_string = rs.getString("soLuongKho");
+					int soLuongKho = Integer.parseInt(soLuongKho_string);
+					String soLuongBan_string = rs.getString("soLuongBan");
+					int soLuongBan = Integer.parseInt(soLuongBan_string);
+					String imagePath = rs.getString("imgPath");
+					String maNcc = rs.getString("mancc");
+					NhaCungCap ncc = new NhaCungCap(maNcc, rs.getString("ten"));
+				 try {
+					 temp = new Xe(maXe, tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, imagePath, ncc, soLuongKho, soLuongBan);
+					 listXe.add(temp);
+				 }catch (Exception e) {
 					// TODO: handle exception
 				}
 			}
@@ -106,10 +109,9 @@ public class Xe_DAO implements IXe {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		return null;
 	}
-
 	@Override
 	public boolean editXe(Xe xeCanSua) {
 

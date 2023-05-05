@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.ArrayList;
 
+import entity.KhachHang;
 import entity.NhanVien;
 
 public interface INhanVien {
@@ -20,6 +21,8 @@ public interface INhanVien {
 	
 	public boolean deleteEmployee(NhanVien nv);
 	
-	String getTenByMaNV(String maNV);
+	public String getTenByMaNV(String maNV);
+	
+	public ArrayList<NhanVien> findEmployeeAdvanced(Object[] obj);
 	
 }

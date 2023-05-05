@@ -13,5 +13,8 @@ public interface IKhachHang {
 	public boolean editCustomer(KhachHang kHTTMoi);
 	public boolean addCustomer(KhachHang kh);
 	public boolean deleteCustomer(KhachHang kh);
-	ArrayList<KhachHang> getAllCustomers();
+	public ArrayList<KhachHang> getAllCustomers();
+	public ArrayList<KhachHang> findCustomersAdvanced(Object[] obj);
+	
+	
 }
