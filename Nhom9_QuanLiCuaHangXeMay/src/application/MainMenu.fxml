@@ -21,7 +21,7 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="173.0">
                                  <children>
-                                    <Button fx:id="btnListProduct" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="93.0" mnemonicParsing="false" onAction="#clickDSLK" prefHeight="48.0" prefWidth="150.0" text="Danh sách linh kiện" textAlignment="CENTER" visible="false">
+                                    <Button fx:id="btnListProduct" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="93.0" mnemonicParsing="false" onAction="#clickDSLK" prefHeight="48.0" prefWidth="150.0" text="Danh sách linh kiện" textAlignment="CENTER">
                                        <effect>
                                           <Blend />
                                        </effect>
@@ -79,7 +79,7 @@
                                                       <Button layoutX="720.0" layoutY="19.0" mnemonicParsing="false" onAction="#actionSearchLK" text="Tìm kiếm" />
                                                       <Button layoutX="834.0" layoutY="19.0" mnemonicParsing="false" onAction="#actionRefreshTableLK" text="Làm mới" />
                                                       <Button layoutX="950.0" layoutY="19.0" mnemonicParsing="false" text="Lọc nâng cao" />
-                                                      <Button fx:id="btnThemLK" layoutX="934.0" layoutY="90.0" mnemonicParsing="false" onAction="#themLinhKien" text="Thêm thông tin xe" />
+                                                      <Button fx:id="btnThemLK" layoutX="934.0" layoutY="90.0" mnemonicParsing="false" onAction="#themLinhKien" text="Thêm thông tin" />
                                                       <Button fx:id="btnXoaTrangXe1" layoutX="933.0" layoutY="126.0" mnemonicParsing="false" text="Xoá trắng" />
                                                       <HBox layoutX="56.0" layoutY="88.0" prefHeight="30.0" prefWidth="810.0">
                                                          <children>
@@ -95,7 +95,7 @@
                                                             <Box cullFace="NONE" drawMode="LINE" height="30.0" opacity="0.0" width="15.0" />
                                                          </children>
                                                       </HBox>
-                                                      <Button fx:id="btnSuaXe1" layoutX="933.0" layoutY="166.0" mnemonicParsing="false" text="Sửa thông tin xe" />
+                                                      <Button fx:id="btnSuaXe1" layoutX="933.0" layoutY="166.0" mnemonicParsing="false" text="Sửa thông tin" />
                                                       <Button fx:id="btnXoaXe1" layoutX="933.0" layoutY="206.0" mnemonicParsing="false" onAction="#actionBtnDeleteLK" text="Xoá thông tin" />
                                                       <Label layoutX="98.0" layoutY="143.0" prefHeight="30.0" text="Giá linh kiện:">
                                                          <font>

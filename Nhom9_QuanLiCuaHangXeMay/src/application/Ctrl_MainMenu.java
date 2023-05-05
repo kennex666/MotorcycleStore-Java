@@ -474,7 +474,7 @@ public class Ctrl_MainMenu {
 		xe_BUS.addXe(xe);
 		listXeObs.add(xe);
 		//addXeVaoTable();
-		PopupNotify.showErrorField(null, "Thêm thành công!", null);
+		PopupNotify.successNotify(null, "Thêm thành công!", null);
 	}
 	
 	
@@ -615,7 +615,7 @@ public class Ctrl_MainMenu {
 			NhaCungCap ncc = cboNXS.getValue();
 			xeSua = new Xe(xe.getMaXe(), tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STIRNG", ncc, soLuongKho, 0);
 			if (xe_BUS.editXe(xeSua)) {
-				PopupNotify.showErrorField(null, "Đã sửa!", null);
+				PopupNotify.successNotify(null, "Đã sửa thông tin", null);
 				listXeObs.set( tblXe.getSelectionModel().getSelectedIndex(), xeSua);
 			}
 			
@@ -689,7 +689,7 @@ public class Ctrl_MainMenu {
 			xeXoa = new Xe(xe.getMaXe(), tenXe, loaiXe, nuocSX, soPK, soKhung, soSuon, mauXe, giaXe, "STIRNG", ncc, soLuongKho, 0);
 			if(PopupNotify.confirmNotification("Thông báo xóa", "Bạn có muốn xóa", null)) {
 				xe_BUS.deleteXe(xeXoa);
-				PopupNotify.showErrorField(null,"Xóa thành công!",null);
+				PopupNotify.successNotify(null,"Xóa thành công!",null);
 				addXeVaoTable();
 			}else {
 				PopupNotify.showErrorField(null,"Xóa thất bại!",null);
@@ -762,7 +762,7 @@ public class Ctrl_MainMenu {
 		linhKien_BUS.themLinhKien(linhKien);
 		listXeObsLK.add(linhKien);
 		//addXeVaoTable();
-		PopupNotify.showErrorField(null, "Thêm thành công!", null);
+		PopupNotify.successNotify(null, "Thêm thành công!", null);
 	}
 	
 	@FXML
